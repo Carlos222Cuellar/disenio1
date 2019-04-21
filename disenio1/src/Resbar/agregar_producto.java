@@ -19,7 +19,7 @@ public class agregar_producto extends javax.swing.JFrame {
      */
     public agregar_producto() {
         initComponents();
-         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
+         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());//se quita el icono de la taza de java
         this.setTitle("Agregar Productos");
          this.setExtendedState(MAXIMIZED_BOTH);
          bebidas.setVisible(false);
