@@ -97,6 +97,7 @@ public class nueva_orden extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
+        btnquitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -320,21 +321,39 @@ public class nueva_orden extends javax.swing.JFrame {
 
         btneliminar.setBackground(new java.awt.Color(102, 204, 102));
         btneliminar.setText("-");
+        btneliminar.setBorderPainted(false);
         btneliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btneliminarMouseMoved(evt);
             }
         });
-        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 650, 50, -1));
+        btneliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btneliminarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btneliminarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 50, -1));
 
         btnagregar.setBackground(new java.awt.Color(102, 204, 102));
         btnagregar.setText("+");
+        btnagregar.setBorderPainted(false);
         btnagregar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnagregarMouseMoved(evt);
             }
         });
-        jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 50, -1));
+        btnagregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnagregarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnagregarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 650, 50, -1));
 
         postres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -420,7 +439,6 @@ public class nueva_orden extends javax.swing.JFrame {
 
         jButton27.setText("Carne ");
         platos.add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
-        jButton27.getAccessibleContext().setAccessibleName("Carne ");
 
         jButton28.setText("Estofado");
         platos.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 90));
@@ -456,6 +474,24 @@ public class nueva_orden extends javax.swing.JFrame {
         platos.add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
 
         jPanel1.add(platos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
+
+        btnquitar.setBackground(new java.awt.Color(102, 204, 102));
+        btnquitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnquitar.setBorderPainted(false);
+        btnquitar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnquitarMouseMoved(evt);
+            }
+        });
+        btnquitar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnquitarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnquitarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 650, 50, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -577,6 +613,43 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         this.postres.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void btnquitarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseMoved
+        // TODO add your handling code here:
+       String texto="Quitar";
+       btnquitar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
+  
+    }//GEN-LAST:event_btnquitarMouseMoved
+
+    private void btneliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseEntered
+        btneliminar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btneliminarMouseEntered
+
+    private void btneliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseExited
+        // TODO add your handling code here:
+        btneliminar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btneliminarMouseExited
+
+    private void btnagregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseEntered
+        // TODO add your handling code here:
+        btnagregar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnagregarMouseEntered
+
+    private void btnagregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseExited
+        // TODO add your handling code here:
+        btnagregar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnagregarMouseExited
+
+    private void btnquitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseEntered
+        // TODO add your handling code here:
+        btnquitar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnquitarMouseEntered
+
+    private void btnquitarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseExited
+        // TODO add your handling code here:
+        btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnquitarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -618,6 +691,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnquitar;
     private javax.swing.JButton btnsalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

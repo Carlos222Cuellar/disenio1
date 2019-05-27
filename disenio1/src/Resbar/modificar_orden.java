@@ -52,6 +52,7 @@ public class modificar_orden extends javax.swing.JFrame {
         btnagregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        btnquitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -226,21 +227,39 @@ public class modificar_orden extends javax.swing.JFrame {
 
         btneliminar.setBackground(new java.awt.Color(102, 204, 103));
         btneliminar.setText("-");
+        btneliminar.setBorderPainted(false);
         btneliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btneliminarMouseMoved(evt);
             }
         });
-        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 493, 50, -1));
+        btneliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btneliminarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btneliminarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 50, -1));
 
         btnagregar.setBackground(new java.awt.Color(102, 204, 102));
         btnagregar.setText("+");
+        btnagregar.setBorderPainted(false);
         btnagregar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnagregarMouseMoved(evt);
             }
         });
-        jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 493, 50, -1));
+        btnagregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnagregarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnagregarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 50, -1));
 
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Total:");
@@ -249,6 +268,24 @@ public class modificar_orden extends javax.swing.JFrame {
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 110, -1));
+
+        btnquitar.setBackground(new java.awt.Color(102, 204, 102));
+        btnquitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnquitar.setBorderPainted(false);
+        btnquitar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnquitarMouseMoved(evt);
+            }
+        });
+        btnquitar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnquitarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnquitarMouseEntered(evt);
+            }
+        });
+        jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 50, 25));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 570));
 
@@ -323,6 +360,43 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
   
     }//GEN-LAST:event_btnagregarMouseMoved
 
+    private void btnquitarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseMoved
+        // TODO add your handling code here:
+        String texto="Quitar";
+        btnquitar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
+  
+    }//GEN-LAST:event_btnquitarMouseMoved
+
+    private void btneliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseEntered
+        // TODO add your handling code here:
+        btneliminar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btneliminarMouseEntered
+
+    private void btneliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseExited
+        // TODO add your handling code here:
+        btneliminar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btneliminarMouseExited
+
+    private void btnagregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseEntered
+        // TODO add your handling code here:
+        btnagregar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnagregarMouseEntered
+
+    private void btnagregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseExited
+        // TODO add your handling code here:
+        btnagregar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnagregarMouseExited
+
+    private void btnquitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseEntered
+        // TODO add your handling code here:
+        btnquitar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnquitarMouseEntered
+
+    private void btnquitarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseExited
+        // TODO add your handling code here:
+        btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnquitarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +439,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnquitar;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
