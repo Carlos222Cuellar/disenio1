@@ -5,7 +5,7 @@
  */
 package Resbar;
 
-import conexion.Conexion;
+import conexion.Conexionn;
 import java.sql.ResultSet;
 
 /**
@@ -15,8 +15,8 @@ import java.sql.ResultSet;
 
 
 
-public class Productos {
-      Conexion cn = new Conexion();
+public class Producto {
+      Conexionn cn = new Conexionn();
 
     public ResultSet llenarProductos( String categoria) {
         return (cn.getValores("SELECT IdProductos,nombre FROM Productos where IdCategoria= '"+categoria+"'"));

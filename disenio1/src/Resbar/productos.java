@@ -1,5 +1,5 @@
 
-import Resbar.Productos;
+import Resbar.Producto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class productos extends javax.swing.JFrame {
     
     DefaultTableModel modeloProducto = new DefaultTableModel();
     ResultSet rs = null;
-    Productos productos = new Productos();
+    Producto productos = new Producto();
     String seleccionado;
     
     

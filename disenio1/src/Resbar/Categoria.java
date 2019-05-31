@@ -6,15 +6,15 @@
 package Resbar;
 
 import java.sql.ResultSet;
-import conexion.Conexion;
+import conexion.Conexionn;
 
 /**
  *
  * @author cuellar
  */
-public class Categorias {
+public class Categoria {
     
-     Conexion cn = new Conexion();
+     Conexionn cn = new Conexionn();
 
     public ResultSet llenarCategorias() {
         return (cn.getValores("SELECT * FROM Categorias"));

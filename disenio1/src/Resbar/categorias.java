@@ -1,5 +1,5 @@
 
-import Resbar.Categorias;
+import Resbar.Categoria;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class categorias extends javax.swing.JFrame {
      */
    DefaultTableModel modeloCategoria = new DefaultTableModel();
     ResultSet rs = null;
-    Categorias categorias = new Categorias();
+    Categoria categorias = new Categoria();
     
     
     public categorias() {
