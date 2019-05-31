@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -23,13 +24,35 @@ public class categorias extends javax.swing.JFrame {
     /**
      * Creates new form categorias
      */
-   
+   DefaultTableModel modeloCategoria = new DefaultTableModel();
+    ResultSet rs = null;
+    Categorias categorias = new Categorias();
+    
     
     public categorias() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Categorias");
          this.setLocationRelativeTo(null);
+         
+         //Llenando el cmbDepartamento mediante un modelo
+        rs = categorias.llenarCategorias();
+        
+        modeloCategoria.addColumn("IdCategorias");
+        modeloCategoria.addColumn("nombre");
+        String[] dato=new String[2];
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                modeloCategoria.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        jtblcategorias.setModel(modeloCategoria);
+         
     }
 
     /**
@@ -66,7 +89,6 @@ public class categorias extends javax.swing.JFrame {
 
         jtblcategorias.setBackground(new java.awt.Color(204, 255, 255));
         jtblcategorias.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jtblcategorias.setForeground(new java.awt.Color(153, 255, 255));
         jtblcategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -93,6 +115,7 @@ public class categorias extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtblcategorias.setToolTipText("Categorias");
         jScrollPane1.setViewportView(jtblcategorias);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 90));

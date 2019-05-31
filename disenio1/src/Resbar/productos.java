@@ -1,6 +1,11 @@
 
+import Resbar.Productos;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,12 +22,47 @@ public class productos extends javax.swing.JFrame {
     /**
      * Creates new form productos
      */
+    
+    DefaultTableModel modeloProducto = new DefaultTableModel();
+    ResultSet rs = null;
+    Productos productos = new Productos();
+    String seleccionado;
+    
+    
     public productos() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Productos");
          this.setLocationRelativeTo(null);
+         
+         
+        modeloProducto.addColumn("IdCategorias");
+        modeloProducto.addColumn("nombre");
+       
     }
+    
+    
+    private void Producto(String seleccionado) {
+        rs = null;
+        rs = productos.llenarProductos(seleccionado);
+        //modeloProducto.addColumn("IdCategorias");
+        //modeloProducto.addColumn("nombre");
+        String[] dato=new String[2]; 
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                modeloProducto.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        jtblproducto.setModel(modeloProducto);
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,9 +78,9 @@ public class productos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbcategorias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblproducto = new javax.swing.JTable();
         btnnuevo = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
@@ -76,17 +116,27 @@ public class productos extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/shipping_products_22121.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 80, 70));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Platos", "Bebidas", "Postres" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Platos", "Bebidas", "Postres" }));
+        cmbcategorias.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbcategoriasItemStateChanged(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 218, -1));
+        cmbcategorias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbcategoriasFocusGained(evt);
+            }
+        });
+        cmbcategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbcategoriasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmbcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 218, -1));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblproducto.setBackground(new java.awt.Color(204, 255, 255));
+        jtblproducto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        jtblproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -112,7 +162,8 @@ public class productos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jtblproducto.setToolTipText("Productos");
+        jScrollPane1.setViewportView(jtblproducto);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 560, 90));
 
@@ -213,9 +264,9 @@ public class productos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbcategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbcategoriasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbcategoriasActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
@@ -288,6 +339,22 @@ public class productos extends javax.swing.JFrame {
         btnsalir.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
     }//GEN-LAST:event_btnsalirMouseMoved
 
+    private void cmbcategoriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbcategoriasItemStateChanged
+        // TODO add your handling code here:
+       cmbcategorias.requestFocus();
+        modeloProducto.setRowCount(0);
+        seleccionado=String.valueOf(this.cmbcategorias.getSelectedIndex()+1);
+        Producto(seleccionado); //invoque al método para llenar la tabla depende de lo que se escoja en el combobox
+            
+    }//GEN-LAST:event_cmbcategoriasItemStateChanged
+
+    private void cmbcategoriasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbcategoriasFocusGained
+        // TODO add your handling code here:
+        modeloProducto.setRowCount(0);
+        seleccionado=String.valueOf(this.cmbcategorias.getSelectedIndex()+1);
+        Producto(seleccionado);
+    }//GEN-LAST:event_cmbcategoriasFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -328,13 +395,13 @@ public class productos extends javax.swing.JFrame {
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbcategorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtblproducto;
     // End of variables declaration//GEN-END:variables
 }
