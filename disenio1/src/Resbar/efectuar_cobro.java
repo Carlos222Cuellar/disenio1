@@ -33,7 +33,7 @@ public class efectuar_cobro extends javax.swing.JFrame {
            
           
         
-          exito_de_cobro cobro=new exito_de_cobro();
+          final exito_de_cobro cobro=new exito_de_cobro();
        cobro.setVisible(true);
           Timer timer=new Timer();
           TimerTask task=new TimerTask(){
