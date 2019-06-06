@@ -21,6 +21,7 @@ import br.com.adilson.util.Extenso;
 import br.com.adilson.util.PrinterMatrix;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 /*
@@ -41,7 +42,7 @@ public class dashboard extends javax.swing.JFrame {
     public dashboard() {
         initComponents();
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
-          this.setExtendedState(MAXIMIZED_BOTH);//maximiza el frame al tamaño de la pantalla completa
+          this.setExtendedState(JFrame.MAXIMIZED_BOTH);//maximiza el frame al tamaño de la pantalla completa
           rbtnmodomesa.setVisible(false);
           rbtnmodocaja.setVisible(false);
           lblmensaje.setVisible(false);
@@ -577,9 +578,11 @@ btnnuevaorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando po
         if(rbtnmodomesa.isSelected()==true){
         nueva_orden NuevaOrden= new nueva_orden();
        NuevaOrden.setVisible(true);
+       this.dispose();
         }else{
         nueva_orden_modo_caja NuevaOrdenCaja= new nueva_orden_modo_caja();
        NuevaOrdenCaja.setVisible(true);
+       this.dispose();
         }
     }//GEN-LAST:event_btnnuevaordenActionPerformed
 
@@ -666,9 +669,11 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
         if(rbtnmodomesa.isSelected()==true){
         agregar_producto agregar=new agregar_producto();
         agregar.setVisible(true);
+        this.dispose();
         }else{
         agregar_producto_modo_caja agregarModoCaja=new agregar_producto_modo_caja();
         agregarModoCaja.setVisible(true);
+        this.dispose();
         }
     }//GEN-LAST:event_btnagregarproductoActionPerformed
 
@@ -678,6 +683,7 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
            
         modificar_orden modificar=new modificar_orden();
         modificar.setVisible(true);
+        
         }else{
        
         }

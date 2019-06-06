@@ -401,7 +401,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton39">
+            <Component class="javax.swing.JButton" name="btnpostre1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Flan"/>
               </Properties>
@@ -411,7 +411,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton40">
+            <Component class="javax.swing.JButton" name="btnpostre2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Budin"/>
               </Properties>
@@ -421,7 +421,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton41">
+            <Component class="javax.swing.JButton" name="btnpostre3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bollo"/>
               </Properties>
@@ -431,7 +431,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton42">
+            <Component class="javax.swing.JButton" name="btnpostre4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pastel"/>
               </Properties>
@@ -441,7 +441,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton43">
+            <Component class="javax.swing.JButton" name="btnpostre5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Milhoja"/>
               </Properties>
@@ -451,7 +451,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton44">
+            <Component class="javax.swing.JButton" name="btnpostre6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="cupcake"/>
               </Properties>
@@ -461,7 +461,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton45">
+            <Component class="javax.swing.JButton" name="btnpostre7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gelato"/>
               </Properties>
@@ -471,7 +471,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton46">
+            <Component class="javax.swing.JButton" name="btnpostre8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tiramisu"/>
               </Properties>
@@ -481,7 +481,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton47">
+            <Component class="javax.swing.JButton" name="btnpostre9">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alfajor"/>
               </Properties>
@@ -491,7 +491,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton48">
+            <Component class="javax.swing.JButton" name="btnpostre10">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crepa"/>
               </Properties>
@@ -501,7 +501,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton49">
+            <Component class="javax.swing.JButton" name="btnpostre11">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gelatina"/>
               </Properties>
@@ -511,7 +511,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton50">
+            <Component class="javax.swing.JButton" name="btnpostre12">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mousse"/>
               </Properties>
@@ -534,7 +534,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton51">
+            <Component class="javax.swing.JButton" name="btnbebida1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cafe"/>
               </Properties>
@@ -544,7 +544,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton52">
+            <Component class="javax.swing.JButton" name="btnbebida2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agua"/>
               </Properties>
@@ -554,7 +554,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton53">
+            <Component class="javax.swing.JButton" name="btnbebida3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mate"/>
               </Properties>
@@ -564,7 +564,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton54">
+            <Component class="javax.swing.JButton" name="btnbebida4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cebada"/>
               </Properties>
@@ -574,7 +574,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton55">
+            <Component class="javax.swing.JButton" name="btnbebida5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Leche"/>
               </Properties>
@@ -584,7 +584,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton56">
+            <Component class="javax.swing.JButton" name="btnbebida6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Licuado"/>
               </Properties>
@@ -594,7 +594,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton57">
+            <Component class="javax.swing.JButton" name="btnbebida7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Te"/>
               </Properties>
@@ -604,7 +604,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton58">
+            <Component class="javax.swing.JButton" name="btnbebida8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mojito"/>
               </Properties>
@@ -614,7 +614,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton59">
+            <Component class="javax.swing.JButton" name="btnbebida9">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vino"/>
               </Properties>
@@ -624,7 +624,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton60">
+            <Component class="javax.swing.JButton" name="btnbebida10">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Choco"/>
               </Properties>
@@ -634,7 +634,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton61">
+            <Component class="javax.swing.JButton" name="btnbebida11">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Soda"/>
               </Properties>
@@ -644,7 +644,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton62">
+            <Component class="javax.swing.JButton" name="btnbebida12">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Horchata"/>
               </Properties>
@@ -667,7 +667,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton27">
+            <Component class="javax.swing.JButton" name="btnplato1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Carne "/>
               </Properties>
@@ -677,7 +677,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton28">
+            <Component class="javax.swing.JButton" name="btnplato2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Estofado"/>
               </Properties>
@@ -687,7 +687,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton29">
+            <Component class="javax.swing.JButton" name="btnplato3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pasta"/>
               </Properties>
@@ -697,7 +697,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton30">
+            <Component class="javax.swing.JButton" name="btnplato4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ramen"/>
               </Properties>
@@ -707,7 +707,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton31">
+            <Component class="javax.swing.JButton" name="btnplato5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Flauta"/>
               </Properties>
@@ -717,7 +717,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton32">
+            <Component class="javax.swing.JButton" name="btnplato6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sopa"/>
               </Properties>
@@ -727,7 +727,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton33">
+            <Component class="javax.swing.JButton" name="btnplato7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Arroz"/>
               </Properties>
@@ -737,7 +737,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton34">
+            <Component class="javax.swing.JButton" name="btnplato8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pescado"/>
               </Properties>
@@ -747,7 +747,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton35">
+            <Component class="javax.swing.JButton" name="btnplato9">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guiso"/>
               </Properties>
@@ -757,7 +757,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton36">
+            <Component class="javax.swing.JButton" name="btnplato10">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vegetal"/>
               </Properties>
@@ -767,7 +767,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton37">
+            <Component class="javax.swing.JButton" name="btnplato11">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pollo"/>
               </Properties>
@@ -777,7 +777,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton38">
+            <Component class="javax.swing.JButton" name="btnplato12">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pupusa"/>
               </Properties>
@@ -789,13 +789,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnplatos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Platos"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnplatosMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnplatosActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -803,13 +803,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnbebidas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bebidas"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnbebidasMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbebidasActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -817,13 +817,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnpostres">
           <Properties>
             <Property name="text" type="java.lang.String" value="Postres"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnpostresMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnpostresActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

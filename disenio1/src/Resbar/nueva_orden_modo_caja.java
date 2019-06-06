@@ -1,6 +1,11 @@
 
+import Resbar.controladorproducto;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +22,12 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
     /**
      * Creates new form nueva_orden
      */
+    
+    
+     ResultSet rs = null;
+    controladorproducto productos = new controladorproducto();
+    String seleccionado;
+    
     public nueva_orden_modo_caja() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
@@ -57,47 +68,47 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         btneliminar = new javax.swing.JButton();
         btnagregar = new javax.swing.JButton();
         postres = new org.edisoncor.gui.panel.PanelRound();
-        jButton39 = new javax.swing.JButton();
-        jButton40 = new javax.swing.JButton();
-        jButton41 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
-        jButton43 = new javax.swing.JButton();
-        jButton44 = new javax.swing.JButton();
-        jButton45 = new javax.swing.JButton();
-        jButton46 = new javax.swing.JButton();
-        jButton47 = new javax.swing.JButton();
-        jButton48 = new javax.swing.JButton();
-        jButton49 = new javax.swing.JButton();
-        jButton50 = new javax.swing.JButton();
+        btnpostre1 = new javax.swing.JButton();
+        btnpostre2 = new javax.swing.JButton();
+        btnpostre3 = new javax.swing.JButton();
+        btnpostre4 = new javax.swing.JButton();
+        btnpostre5 = new javax.swing.JButton();
+        btnpostre6 = new javax.swing.JButton();
+        btnpostre7 = new javax.swing.JButton();
+        btnpostre8 = new javax.swing.JButton();
+        btnpostre9 = new javax.swing.JButton();
+        btnpostre10 = new javax.swing.JButton();
+        btnpostre11 = new javax.swing.JButton();
+        btnpostre12 = new javax.swing.JButton();
         bebidas = new org.edisoncor.gui.panel.PanelRound();
-        jButton51 = new javax.swing.JButton();
-        jButton52 = new javax.swing.JButton();
-        jButton53 = new javax.swing.JButton();
-        jButton54 = new javax.swing.JButton();
-        jButton55 = new javax.swing.JButton();
-        jButton56 = new javax.swing.JButton();
-        jButton57 = new javax.swing.JButton();
-        jButton58 = new javax.swing.JButton();
-        jButton59 = new javax.swing.JButton();
-        jButton60 = new javax.swing.JButton();
-        jButton61 = new javax.swing.JButton();
-        jButton62 = new javax.swing.JButton();
+        btnbebida1 = new javax.swing.JButton();
+        btnbebida2 = new javax.swing.JButton();
+        btnbebida3 = new javax.swing.JButton();
+        btnbebida4 = new javax.swing.JButton();
+        btnbebida5 = new javax.swing.JButton();
+        btnbebida6 = new javax.swing.JButton();
+        btnbebida7 = new javax.swing.JButton();
+        btnbebida8 = new javax.swing.JButton();
+        btnbebida9 = new javax.swing.JButton();
+        btnbebida10 = new javax.swing.JButton();
+        btnbebida11 = new javax.swing.JButton();
+        btnbebida12 = new javax.swing.JButton();
         platos = new org.edisoncor.gui.panel.PanelRound();
-        jButton27 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jButton29 = new javax.swing.JButton();
-        jButton30 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
-        jButton33 = new javax.swing.JButton();
-        jButton34 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
-        jButton38 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnplato1 = new javax.swing.JButton();
+        btnplato2 = new javax.swing.JButton();
+        btnplato3 = new javax.swing.JButton();
+        btnplato4 = new javax.swing.JButton();
+        btnplato5 = new javax.swing.JButton();
+        btnplato6 = new javax.swing.JButton();
+        btnplato7 = new javax.swing.JButton();
+        btnplato8 = new javax.swing.JButton();
+        btnplato9 = new javax.swing.JButton();
+        btnplato10 = new javax.swing.JButton();
+        btnplato11 = new javax.swing.JButton();
+        btnplato12 = new javax.swing.JButton();
+        btnplatos = new javax.swing.JButton();
+        btnbebidas = new javax.swing.JButton();
+        btnpostres = new javax.swing.JButton();
         btnquitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -344,162 +355,162 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
 
         postres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton39.setText("Flan");
-        postres.add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
+        btnpostre1.setText("Flan");
+        postres.add(btnpostre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
-        jButton40.setText("Budin");
-        postres.add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
+        btnpostre2.setText("Budin");
+        postres.add(btnpostre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
 
-        jButton41.setText("Bollo");
-        postres.add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
+        btnpostre3.setText("Bollo");
+        postres.add(btnpostre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
-        jButton42.setText("Pastel");
-        postres.add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
+        btnpostre4.setText("Pastel");
+        postres.add(btnpostre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
-        jButton43.setText("Milhoja");
-        postres.add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
+        btnpostre5.setText("Milhoja");
+        postres.add(btnpostre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
-        jButton44.setText("cupcake");
-        postres.add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 90));
+        btnpostre6.setText("cupcake");
+        postres.add(btnpostre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 90));
 
-        jButton45.setText("Gelato");
-        postres.add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
+        btnpostre7.setText("Gelato");
+        postres.add(btnpostre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
 
-        jButton46.setText("Tiramisu");
-        postres.add(jButton46, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
+        btnpostre8.setText("Tiramisu");
+        postres.add(btnpostre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
 
-        jButton47.setText("Alfajor");
-        postres.add(jButton47, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
+        btnpostre9.setText("Alfajor");
+        postres.add(btnpostre9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
-        jButton48.setText("Crepa");
-        postres.add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
+        btnpostre10.setText("Crepa");
+        postres.add(btnpostre10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
-        jButton49.setText("Gelatina");
-        postres.add(jButton49, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
+        btnpostre11.setText("Gelatina");
+        postres.add(btnpostre11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
-        jButton50.setText("Mousse");
-        postres.add(jButton50, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
+        btnpostre12.setText("Mousse");
+        postres.add(btnpostre12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
 
         jPanel1.add(postres, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
 
         bebidas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton51.setText("Cafe");
-        bebidas.add(jButton51, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
+        btnbebida1.setText("Cafe");
+        bebidas.add(btnbebida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
-        jButton52.setText("Agua");
-        bebidas.add(jButton52, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
+        btnbebida2.setText("Agua");
+        bebidas.add(btnbebida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
 
-        jButton53.setText("Mate");
-        bebidas.add(jButton53, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
+        btnbebida3.setText("Mate");
+        bebidas.add(btnbebida3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
-        jButton54.setText("Cebada");
-        bebidas.add(jButton54, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
+        btnbebida4.setText("Cebada");
+        bebidas.add(btnbebida4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
-        jButton55.setText("Leche");
-        bebidas.add(jButton55, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
+        btnbebida5.setText("Leche");
+        bebidas.add(btnbebida5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
-        jButton56.setText("Licuado");
-        bebidas.add(jButton56, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 100, 90));
+        btnbebida6.setText("Licuado");
+        bebidas.add(btnbebida6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 100, 90));
 
-        jButton57.setText("Te");
-        bebidas.add(jButton57, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 100, 90));
+        btnbebida7.setText("Te");
+        bebidas.add(btnbebida7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 100, 90));
 
-        jButton58.setText("Mojito");
-        bebidas.add(jButton58, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 100, 90));
+        btnbebida8.setText("Mojito");
+        bebidas.add(btnbebida8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 100, 90));
 
-        jButton59.setText("Vino");
-        bebidas.add(jButton59, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
+        btnbebida9.setText("Vino");
+        bebidas.add(btnbebida9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
-        jButton60.setText("Choco");
-        bebidas.add(jButton60, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 100, 90));
+        btnbebida10.setText("Choco");
+        bebidas.add(btnbebida10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 100, 90));
 
-        jButton61.setText("Soda");
-        bebidas.add(jButton61, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
+        btnbebida11.setText("Soda");
+        bebidas.add(btnbebida11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
-        jButton62.setText("Horchata");
-        bebidas.add(jButton62, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 90));
+        btnbebida12.setText("Horchata");
+        bebidas.add(btnbebida12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 90));
 
         jPanel1.add(bebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
 
         platos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton27.setText("Carne ");
-        platos.add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
+        btnplato1.setText("Carne ");
+        platos.add(btnplato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
-        jButton28.setText("Estofado");
-        platos.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 90));
+        btnplato2.setText("Estofado");
+        platos.add(btnplato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 90));
 
-        jButton29.setText("Pasta");
-        platos.add(jButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
+        btnplato3.setText("Pasta");
+        platos.add(btnplato3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
-        jButton30.setText("Ramen");
-        platos.add(jButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
+        btnplato4.setText("Ramen");
+        platos.add(btnplato4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
-        jButton31.setText("Flauta");
-        platos.add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
+        btnplato5.setText("Flauta");
+        platos.add(btnplato5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
-        jButton32.setText("Sopa");
-        platos.add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 90, 90));
+        btnplato6.setText("Sopa");
+        platos.add(btnplato6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 90, 90));
 
-        jButton33.setText("Arroz");
-        platos.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
+        btnplato7.setText("Arroz");
+        platos.add(btnplato7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
 
-        jButton34.setText("Pescado");
-        platos.add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
+        btnplato8.setText("Pescado");
+        platos.add(btnplato8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
 
-        jButton35.setText("Guiso");
-        platos.add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
+        btnplato9.setText("Guiso");
+        platos.add(btnplato9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
-        jButton36.setText("Vegetal");
-        platos.add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
+        btnplato10.setText("Vegetal");
+        platos.add(btnplato10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
-        jButton37.setText("Pollo");
-        platos.add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
+        btnplato11.setText("Pollo");
+        platos.add(btnplato11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
-        jButton38.setText("Pupusa");
-        platos.add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
+        btnplato12.setText("Pupusa");
+        platos.add(btnplato12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
 
         jPanel1.add(platos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
 
-        jButton1.setText("Platos");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnplatos.setText("Platos");
+        btnplatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnplatosMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnplatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnplatosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, -1));
+        jPanel1.add(btnplatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 110, -1));
 
-        jButton2.setText("Bebidas");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnbebidas.setText("Bebidas");
+        btnbebidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnbebidasMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnbebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnbebidasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+        jPanel1.add(btnbebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
-        jButton3.setText("Postres");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnpostres.setText("Postres");
+        btnpostres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnpostresMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnpostres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnpostresActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 30, 110, -1));
+        jPanel1.add(btnpostres, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 30, 110, -1));
 
         btnquitar.setBackground(new java.awt.Color(102, 204, 102));
         btnquitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
@@ -631,37 +642,120 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
   
     }//GEN-LAST:event_btneliminarMouseMoved
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnplatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnplatosMouseClicked
         this.platos.setVisible(true);
         this.bebidas.setVisible(false);
         this.postres.setVisible(false);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnplatosMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnplatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplatosActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+          rs = null;
+    seleccionado="1";//es la categoria platos
+        rs = productos.productobyid(seleccionado);
+      Vector producto=new Vector(12,5);//se crea un vector de 12 de elemntos con un margen de 5 mas si se sobrepasa el limite de 12
+      
+        try {
+            while (rs.next()) {
+                producto.addElement(rs.getString(1));//agregando cada elemento de la consulta al vector productos
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+        //aqui se agrega cada elemento del vector a los  botones correspondientes
+        btnplato1.setText((String) producto.elementAt(0));
+        btnplato2.setText((String) producto.elementAt(1));
+        btnplato3.setText((String) producto.elementAt(2));
+        btnplato4.setText((String) producto.elementAt(3));
+        btnplato5.setText((String) producto.elementAt(4));
+        btnplato6.setText((String) producto.elementAt(5));
+        btnplato7.setText((String) producto.elementAt(6));
+        btnplato8.setText((String) producto.elementAt(7));
+        btnplato9.setText((String) producto.elementAt(8));
+        btnplato10.setText((String) producto.elementAt(9));
+        btnplato11.setText((String) producto.elementAt(10));
+        btnplato11.setText((String) producto.elementAt(11));
+    }//GEN-LAST:event_btnplatosActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnbebidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbebidasMouseClicked
         this.bebidas.setVisible(true);
         this.platos.setVisible(false);
         this.postres.setVisible(false);
 
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnbebidasMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnbebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebidasActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        rs = null;
+    seleccionado="2";//es la categoria bebidas
+        rs = productos.productobyid(seleccionado);
+      Vector producto=new Vector(12,5);//se crea un vector de 12 de elemntos con un margen de 5 mas si se sobrepasa el limite de 12
+      
+        try {
+            while (rs.next()) {
+                producto.addElement(rs.getString(1));//agregando cada elemento de la consulta al vector productos
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+        //aqui se agrega cada elemento del vector a los  botones correspondientes
+        btnbebida1.setText((String) producto.elementAt(0));
+        btnbebida2.setText((String) producto.elementAt(1));
+        btnbebida3.setText((String) producto.elementAt(2));
+        btnbebida4.setText((String) producto.elementAt(3));
+        btnbebida5.setText((String) producto.elementAt(4));
+        btnbebida6.setText((String) producto.elementAt(5));
+        btnbebida7.setText((String) producto.elementAt(6));
+        btnbebida8.setText((String) producto.elementAt(7));
+        btnbebida9.setText((String) producto.elementAt(8));
+        btnbebida10.setText((String) producto.elementAt(9));
+        btnbebida11.setText((String) producto.elementAt(10));
+        btnbebida12.setText((String) producto.elementAt(11));
+        
+    }//GEN-LAST:event_btnbebidasActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnpostresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpostresMouseClicked
         // TODO add your handling code here:
         this.bebidas.setVisible(false);
         this.platos.setVisible(false);
         this.postres.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btnpostresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnpostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostresActionPerformed
+
+       rs = null;
+    seleccionado="3";//es la categoria postres
+        rs = productos.productobyid(seleccionado);
+      Vector producto=new Vector(12,5);//se crea un vector de 12 de elemntos con un margen de 5 mas si se sobrepasa el limite de 12
+      
+        try {
+            while (rs.next()) {
+                producto.addElement(rs.getString(1));//agregando cada elemento de la consulta al vector productos
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+        //aqui se agrega cada elemento del vector a los  botones correspondientes
+        btnpostre1.setText((String) producto.elementAt(0));
+        btnpostre2.setText((String) producto.elementAt(1));
+        btnpostre3.setText((String) producto.elementAt(2));
+        btnpostre4.setText((String) producto.elementAt(3));
+        btnpostre5.setText((String) producto.elementAt(4));
+        btnpostre6.setText((String) producto.elementAt(5));
+        btnpostre7.setText((String) producto.elementAt(6));
+        btnpostre8.setText((String) producto.elementAt(7));
+        btnpostre9.setText((String) producto.elementAt(8));
+        btnpostre10.setText((String) producto.elementAt(9));
+        btnpostre11.setText((String) producto.elementAt(10));
+        btnpostre11.setText((String) producto.elementAt(11));
+
+        
+    }//GEN-LAST:event_btnpostresActionPerformed
 
     private void btnquitarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseMoved
         // TODO add your handling code here:
@@ -739,50 +833,50 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.panel.PanelRound bebidas;
     private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btnbebida1;
+    private javax.swing.JButton btnbebida10;
+    private javax.swing.JButton btnbebida11;
+    private javax.swing.JButton btnbebida12;
+    private javax.swing.JButton btnbebida2;
+    private javax.swing.JButton btnbebida3;
+    private javax.swing.JButton btnbebida4;
+    private javax.swing.JButton btnbebida5;
+    private javax.swing.JButton btnbebida6;
+    private javax.swing.JButton btnbebida7;
+    private javax.swing.JButton btnbebida8;
+    private javax.swing.JButton btnbebida9;
+    private javax.swing.JButton btnbebidas;
     private javax.swing.JButton btncobrar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnplato1;
+    private javax.swing.JButton btnplato10;
+    private javax.swing.JButton btnplato11;
+    private javax.swing.JButton btnplato12;
+    private javax.swing.JButton btnplato2;
+    private javax.swing.JButton btnplato3;
+    private javax.swing.JButton btnplato4;
+    private javax.swing.JButton btnplato5;
+    private javax.swing.JButton btnplato6;
+    private javax.swing.JButton btnplato7;
+    private javax.swing.JButton btnplato8;
+    private javax.swing.JButton btnplato9;
+    private javax.swing.JButton btnplatos;
+    private javax.swing.JButton btnpostre1;
+    private javax.swing.JButton btnpostre10;
+    private javax.swing.JButton btnpostre11;
+    private javax.swing.JButton btnpostre12;
+    private javax.swing.JButton btnpostre2;
+    private javax.swing.JButton btnpostre3;
+    private javax.swing.JButton btnpostre4;
+    private javax.swing.JButton btnpostre5;
+    private javax.swing.JButton btnpostre6;
+    private javax.swing.JButton btnpostre7;
+    private javax.swing.JButton btnpostre8;
+    private javax.swing.JButton btnpostre9;
+    private javax.swing.JButton btnpostres;
     private javax.swing.JButton btnquitar;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
-    private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
-    private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
-    private javax.swing.JButton jButton40;
-    private javax.swing.JButton jButton41;
-    private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton43;
-    private javax.swing.JButton jButton44;
-    private javax.swing.JButton jButton45;
-    private javax.swing.JButton jButton46;
-    private javax.swing.JButton jButton47;
-    private javax.swing.JButton jButton48;
-    private javax.swing.JButton jButton49;
-    private javax.swing.JButton jButton50;
-    private javax.swing.JButton jButton51;
-    private javax.swing.JButton jButton52;
-    private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton54;
-    private javax.swing.JButton jButton55;
-    private javax.swing.JButton jButton56;
-    private javax.swing.JButton jButton57;
-    private javax.swing.JButton jButton58;
-    private javax.swing.JButton jButton59;
-    private javax.swing.JButton jButton60;
-    private javax.swing.JButton jButton61;
-    private javax.swing.JButton jButton62;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

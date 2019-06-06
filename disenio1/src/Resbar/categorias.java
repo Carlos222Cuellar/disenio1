@@ -1,5 +1,5 @@
 
-import Resbar.Categoria;
+import Resbar.controladorcategoria;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class categorias extends javax.swing.JFrame {
      */
    DefaultTableModel modeloCategoria = new DefaultTableModel();
     ResultSet rs = null;
-    Categoria categorias = new Categoria();
+    controladorcategoria categorias = new controladorcategoria();
     
     
     public categorias() {
@@ -34,10 +34,17 @@ public class categorias extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Categorias");
          this.setLocationRelativeTo(null);
-         
-         //Llenando el cmbDepartamento mediante un modelo
-        rs = categorias.llenarCategorias();
+        panelmodificar.setVisible(false);
+        llenar();//metodo para llenar la tabla
         
+    }
+    
+    
+    public void llenar(){
+    
+       
+        rs = categorias.llenarCategorias();
+       //le pone el nombre  a las columnas en la tabla
         modeloCategoria.addColumn("IdCategorias");
         modeloCategoria.addColumn("nombre");
         String[] dato=new String[2];
@@ -51,8 +58,10 @@ public class categorias extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        jtblcategorias.setModel(modeloCategoria);
-         
+        tblcategorias.setModel(modeloCategoria);
+    
+    
+    
     }
 
     /**
@@ -64,32 +73,41 @@ public class categorias extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelcategorias = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtblcategorias = new javax.swing.JTable();
+        tblcategorias = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        panelmodificar = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtnombre = new javax.swing.JTextField();
+        btnguardar = new javax.swing.JButton();
+        btndescartar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Categorias");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelcategorias.setBackground(new java.awt.Color(0, 0, 0));
+        panelcategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 102));
         jLabel1.setText("categorias");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+        panelcategorias.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/categories_gnome_applications_15716.png"))); // NOI18N
         jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 70, 40));
+        panelcategorias.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 70, 40));
 
-        jtblcategorias.setBackground(new java.awt.Color(204, 255, 255));
-        jtblcategorias.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jtblcategorias.setModel(new javax.swing.table.DefaultTableModel(
+        tblcategorias.setBackground(new java.awt.Color(204, 255, 255));
+        tblcategorias.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblcategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -115,10 +133,15 @@ public class categorias extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtblcategorias.setToolTipText("Categorias");
-        jScrollPane1.setViewportView(jtblcategorias);
+        tblcategorias.setToolTipText("Categorias");
+        tblcategorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblcategoriasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblcategorias);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 90));
+        panelcategorias.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 90));
 
         btnmodificar.setBackground(new java.awt.Color(102, 255, 102));
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
@@ -137,7 +160,12 @@ public class categorias extends javax.swing.JFrame {
                 btnmodificarMouseEntered(evt);
             }
         });
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, 40));
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
+        panelcategorias.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, 40));
 
         btnsalir.setBackground(new java.awt.Color(102, 255, 102));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1486564399-close_81512.png"))); // NOI18N
@@ -161,18 +189,47 @@ public class categorias extends javax.swing.JFrame {
                 btnsalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 150, 40));
+        panelcategorias.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 150, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-        );
+        getContentPane().add(panelcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 615, 326));
+
+        panelmodificar.setBackground(new java.awt.Color(0, 0, 0));
+        panelmodificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Modificar Categoria");
+        panelmodificar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 210, 40));
+
+        txtid.setEditable(false);
+        panelmodificar.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 180, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setText("IdCategoria");
+        panelmodificar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 105, 110, 30));
+
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("Nombre");
+        panelmodificar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 70, 20));
+        panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 180, -1));
+
+        btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
+        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+
+        btndescartar.setText("Descartar");
+        btndescartar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndescartarActionPerformed(evt);
+            }
+        });
+        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+
+        getContentPane().add(panelmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 3, 620, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,6 +273,54 @@ public class categorias extends javax.swing.JFrame {
         btnmodificar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
     }//GEN-LAST:event_btnmodificarMouseMoved
 
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        // TODO add your handling code here:
+        
+        if (tblcategorias.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+        
+        {
+            txtid.setText(modeloCategoria.getValueAt(tblcategorias.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+            txtnombre.setText(modeloCategoria.getValueAt(tblcategorias.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el nombre
+            
+             panelcategorias.setVisible(false);//deshabilita el panel donde esta tabla
+              panelmodificar.setVisible(true);//habilita el panel donde estan los campos a modificar
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para editar", null, JOptionPane.WARNING_MESSAGE);
+        }
+       
+        
+    }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void btndescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescartarActionPerformed
+            panelmodificar.setVisible(false);
+            panelcategorias.setVisible(true);
+    }//GEN-LAST:event_btndescartarActionPerformed
+
+    private void tblcategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblcategoriasMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_tblcategoriasMouseClicked
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+     
+        if (txtid.getText().equals("") || (txtnombre.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria", null, JOptionPane.WARNING_MESSAGE);
+            txtnombre.requestFocus();
+        } else {
+            String id = txtid.getText();
+            String nombre = txtnombre.getText();
+                categorias.modificar(id, nombre);
+                JOptionPane.showMessageDialog(null,"Modificacion exitosa");
+                panelmodificar.setVisible(false);
+                panelcategorias.setVisible(true);
+                ActualizarTabla();
+           
+        }
+        
+        
+    }//GEN-LAST:event_btnguardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,14 +355,41 @@ public class categorias extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void ActualizarTabla(){
+    rs = categorias.llenarCategorias();
+        String[] dato=new String[2];
+         modeloCategoria.setRowCount(0);
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                modeloCategoria.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblcategorias.setModel(modeloCategoria);
+    
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btndescartar;
+    private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtblcategorias;
+    private javax.swing.JPanel panelcategorias;
+    private javax.swing.JPanel panelmodificar;
+    private javax.swing.JTable tblcategorias;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }
