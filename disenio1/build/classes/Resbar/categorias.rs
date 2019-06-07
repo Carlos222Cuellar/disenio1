@@ -1,8 +1,12 @@
-categorias$1
 categorias$2
 categorias$3
+categorias$1
+categorias$10
 categorias
-categorias$4
-categorias$5
-categorias$6
+categorias$9
+categorias$8
 categorias$7
+categorias$6
+categorias$5
+categorias$11
+categorias$4
