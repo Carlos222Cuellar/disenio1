@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `dbpos` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `DBpos`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: DBpos
+-- Host: 127.0.0.1    Database: DBpos
 -- ------------------------------------------------------
 -- Server version	5.5.15
 
@@ -133,11 +135,11 @@ DROP TABLE IF EXISTS `parametros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parametros` (
-  `IdParametros` int(10) NOT NULL,
+  `IdParametros` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) DEFAULT NULL,
   `valor` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdParametros`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +148,7 @@ CREATE TABLE `parametros` (
 
 LOCK TABLES `parametros` WRITE;
 /*!40000 ALTER TABLE `parametros` DISABLE KEYS */;
+INSERT INTO `parametros` VALUES (1,'ModoEntorno','Caja'),(2,'Nombre','Grupo Zero'),(3,'Descripcion','se especializa, en la reparacion de equipos de refrigeracion.'),(4,'Telefono','2472-3302'),(5,'Nit','1029484948-8'),(6,'Giro','Automotriz'),(7,'Direcion','3av sur y 3 calle oriente'),(8,'ImpTicketProdPrepara','SI'),(9,'ImpTicketProdNoPrepa','SI');
 /*!40000 ALTER TABLE `parametros` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-31 11:55:28
+-- Dump completed on 2019-06-06 22:41:18
