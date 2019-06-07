@@ -2,6 +2,7 @@
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import AppPackage.AnimationClass;
+//import Resbar.Parametros;
 import Resbar.PrinterService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -759,8 +760,11 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
 
     private void lblconfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblconfiguracionMouseClicked
         // TODO add your handling code here:
-        rbtnmodomesa.setVisible(true);
-        rbtnmodocaja.setVisible(true);
+        //rbtnmodomesa.setVisible(true);
+        //rbtnmodocaja.setVisible(true);
+        Parametros parametros=new Parametros();
+        parametros.setVisible(true);
+        
     }//GEN-LAST:event_lblconfiguracionMouseClicked
 
     private void rbtnmodomesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnmodomesaMouseClicked
