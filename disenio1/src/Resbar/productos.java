@@ -37,8 +37,9 @@ public class productos extends javax.swing.JFrame {
          
          panelmodificar.setVisible(false);
         modeloProducto.addColumn("IdCategorias");
-        modeloProducto.addColumn("nombre");
-       
+        modeloProducto.addColumn("Nombre");
+        modeloProducto.addColumn("Precio");
+           
     }
     
     
@@ -47,12 +48,13 @@ public class productos extends javax.swing.JFrame {
         rs = productos.llenarProductos(seleccionado);
         //modeloProducto.addColumn("IdCategorias");
         //modeloProducto.addColumn("nombre");
-        String[] dato=new String[2]; 
+        String[] dato=new String[3]; 
         
         try {
             while (rs.next()) {
                 dato[0]=rs.getString(1);
                 dato[1]=rs.getString(2);
+                dato[2]=rs.getString(3);
                 modeloProducto.addRow(dato);
             }
         } catch (SQLException ex) {
@@ -78,7 +80,7 @@ public class productos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cmbcategorias = new javax.swing.JComboBox<String>();
+        cmbcategorias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblproducto = new javax.swing.JTable();
         btnnuevo = new javax.swing.JButton();
@@ -93,6 +95,8 @@ public class productos extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         btnguardar = new javax.swing.JButton();
         btndescartar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtprecio = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,7 +109,7 @@ public class productos extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Productos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -129,7 +133,7 @@ public class productos extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/shipping_products_22121.png"))); // NOI18N
         panelproducto.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 80, 70));
 
-        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Platos", "Bebidas", "Postres" }));
+        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Platos", "Bebidas", "Postres" }));
         cmbcategorias.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbcategoriasItemStateChanged(evt);
@@ -151,20 +155,20 @@ public class productos extends javax.swing.JFrame {
         tblproducto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
         tblproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "IdProducto", "Nombre"
+                "IdProducto", "Nombre", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -184,17 +188,17 @@ public class productos extends javax.swing.JFrame {
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.setBorder(null);
-        btnnuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseExited(evt);
-            }
-        });
         btnnuevo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnnuevoMouseMoved(evt);
+            }
+        });
+        btnnuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseEntered(evt);
             }
         });
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -256,17 +260,17 @@ public class productos extends javax.swing.JFrame {
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1486564399-close_81512.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.setBorder(null);
-        btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnsalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnsalirMouseExited(evt);
-            }
-        });
         btnsalir.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnsalirMouseMoved(evt);
+            }
+        });
+        btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnsalirMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsalirMouseEntered(evt);
             }
         });
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -293,24 +297,59 @@ public class productos extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Nombre");
-        panelmodificar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 70, 20));
-        panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 180, -1));
+        panelmodificar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 70, 20));
+
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+        });
+        panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 180, -1));
 
         btnguardar.setText("Guardar");
+        btnguardar.setToolTipText("Guardar");
+        btnguardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnguardarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnguardarMouseEntered(evt);
+            }
+        });
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
             }
         });
-        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
 
         btndescartar.setText("Descartar");
+        btndescartar.setToolTipText("Descartar");
+        btndescartar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndescartarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndescartarMouseEntered(evt);
+            }
+        });
         btndescartar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndescartarActionPerformed(evt);
             }
         });
-        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, -1, -1));
+        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("Precio");
+        panelmodificar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 80, 20));
+
+        txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprecioKeyTyped(evt);
+            }
+        });
+        panelmodificar.add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -335,9 +374,7 @@ public class productos extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbcategoriasActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-         dashboard menu=new dashboard();
-        menu.setVisible(true);
+  
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
@@ -443,7 +480,8 @@ public class productos extends javax.swing.JFrame {
         } else {
             String id = txtid.getText();
             String nombre = txtnombre.getText();
-            productos.modificarproducto(id, nombre);
+            String precio="";
+            productos.modificarproducto(id, nombre,precio);
             JOptionPane.showMessageDialog(null,"Modificacion exitosa");
             panelmodificar.setVisible(false);
             panelproducto.setVisible(true);
@@ -486,6 +524,46 @@ public class productos extends javax.swing.JFrame {
        //a
     }//GEN-LAST:event_btnnuevoActionPerformed
 
+    private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
+        // TODO add your handling code here:
+        btnguardar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseEntered
+
+    private void btndescartarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseEntered
+        // TODO add your handling code here:
+        btndescartar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseEntered
+
+    private void btndescartarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseExited
+        // TODO add your handling code here:
+           btndescartar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseExited
+
+    private void btnguardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseExited
+        // TODO add your handling code here:
+           btnguardar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseExited
+
+    private void txtprecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioKeyTyped
+          char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '.') && (caracter != '/') && (caracter != '-')) {
+            evt.consume();
+        } else if (((caracter > '0') || (caracter < '9'))) {
+            evt.consume();
+            txtprecio.setText(txtprecio.getText() + String.valueOf(caracter));
+        }
+    }//GEN-LAST:event_txtprecioKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtnombre.setText(txtnombre.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnombreKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -527,12 +605,13 @@ public class productos extends javax.swing.JFrame {
         rs = productos.llenarProductos(seleccionado);
         //modeloProducto.addColumn("IdCategorias");
         //modeloProducto.addColumn("nombre");
-        String[] dato=new String[2]; 
+        String[] dato=new String[3]; 
         modeloProducto.setRowCount(0);//borra las filas 
         try {
             while (rs.next()) {
                 dato[0]=rs.getString(1);
                 dato[1]=rs.getString(2);
+                dato[2]=rs.getString(3);
                 modeloProducto.addRow(dato);
             }
         } catch (SQLException ex) {
@@ -576,6 +655,7 @@ if (eleccion == JOptionPane.YES_OPTION)
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelmodificar;
@@ -583,5 +663,6 @@ if (eleccion == JOptionPane.YES_OPTION)
     private javax.swing.JTable tblproducto;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txtprecio;
     // End of variables declaration//GEN-END:variables
 }

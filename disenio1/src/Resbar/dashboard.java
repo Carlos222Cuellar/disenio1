@@ -49,7 +49,7 @@ public class dashboard extends javax.swing.JFrame {
           lblmensaje.setVisible(false);
           ticket_X ticket=new ticket_X();
        ticket.setVisible(false);
-    
+       btnnuevaorden.requestFocus();
           
           
     }
@@ -227,7 +227,7 @@ public class dashboard extends javax.swing.JFrame {
         lblmodo = new javax.swing.JLabel();
         lblmensaje = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtfiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,7 +263,7 @@ public class dashboard extends javax.swing.JFrame {
         btnagregarproducto.setBackground(new java.awt.Color(102, 255, 102));
         btnagregarproducto.setForeground(new java.awt.Color(0, 102, 204));
         btnagregarproducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
-        btnagregarproducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnagregarproducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnagregarproducto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar2.png"))); // NOI18N
         btnagregarproducto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar1.png"))); // NOI18N
         btnagregarproducto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -549,8 +549,19 @@ public class dashboard extends javax.swing.JFrame {
         jLabel3.setText("Filtrar:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 340, 30));
+        txtfiltro.setBackground(new java.awt.Color(0, 255, 204));
+        txtfiltro.setText("BUSCAR");
+        txtfiltro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtfiltroFocusLost(evt);
+            }
+        });
+        txtfiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtfiltroMouseClicked(evt);
+            }
+        });
+        jPanel1.add(txtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 340, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -822,6 +833,16 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
         cate.setVisible(true);
     }//GEN-LAST:event_lblcategoriaMouseClicked
 
+    private void txtfiltroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtfiltroMouseClicked
+        // TODO add your handling code here:
+        txtfiltro.setText("");
+    }//GEN-LAST:event_txtfiltroMouseClicked
+
+    private void txtfiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtfiltroFocusLost
+        // TODO add your handling code here:
+        txtfiltro.setText("BUSCAR");
+    }//GEN-LAST:event_txtfiltroFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -870,7 +891,6 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblcategoria;
     private javax.swing.JLabel lblconfiguracion;
     private javax.swing.JLabel lblestadistica;
@@ -880,5 +900,6 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
     private javax.swing.JLabel lblproducto;
     private javax.swing.JRadioButton rbtnmodocaja;
     private javax.swing.JRadioButton rbtnmodomesa;
+    private javax.swing.JTextField txtfiltro;
     // End of variables declaration//GEN-END:variables
 }

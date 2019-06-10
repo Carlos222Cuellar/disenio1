@@ -39,7 +39,7 @@ public class controladorproducto {
      * @return un producto segun el id de categoria que se le pase como parametro
      */
     public ResultSet llenarProductos( String categoria) {
-        return (cn.getValores("SELECT IdProductos,nombre FROM Productos where IdCategoria= '"+categoria+"'"));
+        return (cn.getValores("SELECT IdProductos,nombre,precio FROM Productos where IdCategoria= '"+categoria+"'"));
     }
     
     
@@ -48,12 +48,12 @@ public class controladorproducto {
      *  @return devuelve producto segun su id ingressado
      */     
     public ResultSet productobyid( String producto) {
-        return (cn.getValores("SELECT nombre FROM Productos where IdCategoria= '"+producto+"'"));
+        return (cn.getValores("SELECT nombre,precio FROM Productos where IdCategoria= '"+producto+"'"));
     }
     
-   public void modificarproducto (String IdProducto,String nombre)
+   public void modificarproducto (String IdProducto,String nombre,String precio)
    {
-  cn.UID("UPDATE productos SET nombre='" + nombre + "' WHERE IdProductos='" + IdProducto + "'");
+  cn.UID("UPDATE productos SET nombre='" + nombre + "', precio='" + precio + "' WHERE IdProductos='" + IdProducto + "'");
    
    }
     public void eliminar (String IdProducto)

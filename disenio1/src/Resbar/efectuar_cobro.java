@@ -61,7 +61,7 @@ public class efectuar_cobro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtefectivo = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         btncobrar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
@@ -88,8 +88,13 @@ public class efectuar_cobro extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 80, -1));
 
-        jTextField2.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 80, -1));
+        txtefectivo.setBackground(new java.awt.Color(0, 255, 204));
+        txtefectivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtefectivoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtefectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 80, -1));
 
         jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(0, 255, 204));
@@ -210,6 +215,17 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
           mostrar();
     }//GEN-LAST:event_btncobrarActionPerformed
 
+    private void txtefectivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtefectivoKeyTyped
+        // TODO add your handling code here:
+         char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '.') && (caracter != '/') && (caracter != '-')) {
+            evt.consume();
+        } else if (((caracter > '0') || (caracter < '9'))) {
+            evt.consume();
+            txtefectivo.setText(txtefectivo.getText() + String.valueOf(caracter));
+        }
+    }//GEN-LAST:event_txtefectivoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -253,8 +269,8 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblmensaje;
+    private javax.swing.JTextField txtefectivo;
     // End of variables declaration//GEN-END:variables
 }

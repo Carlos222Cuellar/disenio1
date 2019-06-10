@@ -66,6 +66,7 @@ public class cobrar_orden extends javax.swing.JFrame {
         jLabel2.setText("Mesa");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 50, -1));
 

@@ -35,7 +35,7 @@ public class Parametros extends javax.swing.JFrame {
          this.setLocationRelativeTo(null);
         panelmodificar.setVisible(false);
         llenar();//metodo para llenar la tabla    
-        
+       
     }
     
 
@@ -88,7 +88,7 @@ public class Parametros extends javax.swing.JFrame {
         btnguardar = new javax.swing.JButton();
         btndescartar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelparametros.setBackground(new java.awt.Color(0, 0, 0));
@@ -197,7 +197,7 @@ public class Parametros extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Modificar Parametros");
-        panelmodificar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 210, 40));
+        panelmodificar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 240, 40));
 
         txtid.setEditable(false);
         txtid.addActionListener(new java.awt.event.ActionListener() {
@@ -214,9 +214,24 @@ public class Parametros extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("Valor");
         panelmodificar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 70, 20));
+
+        txtvalor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtvalorKeyTyped(evt);
+            }
+        });
         panelmodificar.add(txtvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 180, -1));
 
         btnguardar.setText("Guardar");
+        btnguardar.setToolTipText("Guardar");
+        btnguardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnguardarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnguardarMouseEntered(evt);
+            }
+        });
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
@@ -225,6 +240,15 @@ public class Parametros extends javax.swing.JFrame {
         panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         btndescartar.setText("Descartar");
+        btndescartar.setToolTipText("Descartar");
+        btndescartar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndescartarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndescartarMouseEntered(evt);
+            }
+        });
         btndescartar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndescartarActionPerformed(evt);
@@ -292,17 +316,8 @@ public class Parametros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsalirMouseEntered
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-//         dashboard kk=new dashboard();
-//        kk.setVisible(true);
-//        this.dispose();
-dashboard menu=new dashboard();
-menu.setVisible(true);
-this.dispose();
 
-
-
-
+         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
@@ -356,6 +371,37 @@ this.dispose();
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
+
+    private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
+        // TODO add your handling code here:
+         btnguardar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseEntered
+
+    private void btnguardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseExited
+        // TODO add your handling code here:
+         btnguardar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseExited
+
+    private void btndescartarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseExited
+        // TODO add your handling code here:
+         btndescartar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseExited
+
+    private void btndescartarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseEntered
+        // TODO add your handling code here:
+        btndescartar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseEntered
+
+    private void txtvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalorKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtvalor.setText(txtvalor.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtvalorKeyTyped
 
     /**
      * @param args the command line arguments

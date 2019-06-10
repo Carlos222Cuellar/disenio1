@@ -36,7 +36,7 @@ public class categorias extends javax.swing.JFrame {
          this.setLocationRelativeTo(null);
         panelmodificar.setVisible(false);
         llenar();//metodo para llenar la tabla
-        
+       
     }
     
     
@@ -214,9 +214,24 @@ public class categorias extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("Nombre");
         panelmodificar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 70, 20));
+
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+        });
         panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 180, -1));
 
         btnguardar.setText("Guardar");
+        btnguardar.setToolTipText("Guardar");
+        btnguardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnguardarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnguardarMouseEntered(evt);
+            }
+        });
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
@@ -225,6 +240,15 @@ public class categorias extends javax.swing.JFrame {
         panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         btndescartar.setText("Descartar");
+        btndescartar.setToolTipText("Descartar");
+        btndescartar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndescartarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndescartarMouseEntered(evt);
+            }
+        });
         btndescartar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndescartarActionPerformed(evt);
@@ -238,9 +262,7 @@ public class categorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-         dashboard menu=new dashboard();
-         menu.setVisible(true);
+   
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
@@ -327,6 +349,37 @@ public class categorias extends javax.swing.JFrame {
     private void btnsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalirMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsalirMouseClicked
+
+    private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
+        // TODO add your handling code here:
+         btnguardar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseEntered
+
+    private void btnguardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseExited
+        // TODO add your handling code here:
+         btnguardar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btnguardarMouseExited
+
+    private void btndescartarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseExited
+        // TODO add your handling code here:
+         btndescartar.setBackground(new Color(102,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseExited
+
+    private void btndescartarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndescartarMouseEntered
+        // TODO add your handling code here:
+        btndescartar.setBackground(new Color(0,204,51));//cambia el color del boton cuando paso el puntero sobre el boton
+    }//GEN-LAST:event_btndescartarMouseEntered
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtnombre.setText(txtnombre.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnombreKeyTyped
 
     /**
      * @param args the command line arguments

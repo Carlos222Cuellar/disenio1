@@ -142,6 +142,7 @@ public class modificar_orden extends javax.swing.JFrame {
         jTextField7.setFocusable(false);
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 60, -1));
 
+        jTextField8.setEditable(false);
         jTextField8.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 60, -1));
 
@@ -165,6 +166,7 @@ public class modificar_orden extends javax.swing.JFrame {
         jLabel5.setText("Observacion:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 110, -1));
 
+        jTextField10.setEditable(false);
         jTextField10.setBackground(new java.awt.Color(0, 255, 204));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,9 +175,11 @@ public class modificar_orden extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 390, 50));
 
+        jTextField9.setEditable(false);
         jTextField9.setBackground(new java.awt.Color(0, 255, 204));
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 390, -1));
 
+        jTextField11.setEditable(false);
         jTextField11.setBackground(new java.awt.Color(0, 255, 204));
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

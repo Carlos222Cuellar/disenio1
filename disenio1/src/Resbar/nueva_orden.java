@@ -58,11 +58,11 @@ public class nueva_orden extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        txtorden = new javax.swing.JTextField();
+        txtmesa = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
+        txtobservacion = new javax.swing.JTextField();
+        txtmesero = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnplatos = new javax.swing.JButton();
@@ -171,32 +171,52 @@ public class nueva_orden extends javax.swing.JFrame {
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 110, 40));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField7.setFocusable(false);
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 60, -1));
+        txtorden.setEditable(false);
+        txtorden.setBackground(new java.awt.Color(0, 255, 204));
+        txtorden.setFocusable(false);
+        jPanel1.add(txtorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 60, -1));
 
-        jTextField8.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 150, 60, -1));
-
-        jTextField9.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 180, 390, -1));
-
-        jTextField10.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+        txtmesa.setBackground(new java.awt.Color(0, 255, 204));
+        txtmesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmesaKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 210, 390, 50));
+        jPanel1.add(txtmesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 150, 60, -1));
 
-        jTextField11.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+        txtcliente.setBackground(new java.awt.Color(0, 255, 204));
+        txtcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtclienteKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 150, 250, -1));
+        jPanel1.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 180, 390, -1));
+
+        txtobservacion.setBackground(new java.awt.Color(0, 255, 204));
+        txtobservacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtobservacionActionPerformed(evt);
+            }
+        });
+        txtobservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtobservacionKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtobservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 210, 390, 50));
+
+        txtmesero.setBackground(new java.awt.Color(0, 255, 204));
+        txtmesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtmeseroActionPerformed(evt);
+            }
+        });
+        txtmesero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmeseroKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtmesero, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 150, 250, -1));
 
         btnsalir.setBackground(new java.awt.Color(102, 255, 102));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dispose.png"))); // NOI18N
@@ -534,13 +554,13 @@ public class nueva_orden extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnsalirActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txtobservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtobservacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txtobservacionActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void txtmeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmeseroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_txtmeseroActionPerformed
 
     private void btnguardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseMoved
         // TODO add your handling code here:
@@ -744,6 +764,50 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
     }//GEN-LAST:event_btnquitarMouseExited
 
+    private void txtmesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmesaKeyTyped
+        // TODO add your handling code here:
+          char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '.') && (caracter != '/') && (caracter != '-')) {
+            evt.consume();
+        } else if (((caracter > '0') || (caracter < '9'))) {
+            evt.consume();
+            txtmesa.setText(txtmesa.getText() + String.valueOf(caracter));
+        }
+    }//GEN-LAST:event_txtmesaKeyTyped
+
+    private void txtmeseroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmeseroKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtmesero.setText(txtmesero.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtmeseroKeyTyped
+
+    private void txtclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtclienteKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtcliente.setText(txtcliente.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtclienteKeyTyped
+
+    private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isSpaceChar(caracter)) {
+            evt.consume();
+            txtobservacion.setText(txtobservacion.getText() + String.valueOf(caracter));
+        } else if (!Character.isLetter(caracter) || !Character.isSpaceChar(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtobservacionKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -835,13 +899,13 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private org.edisoncor.gui.panel.PanelRound platos;
     private org.edisoncor.gui.panel.PanelRound postres;
+    private javax.swing.JTextField txtcliente;
+    private javax.swing.JTextField txtmesa;
+    private javax.swing.JTextField txtmesero;
+    private javax.swing.JTextField txtobservacion;
+    private javax.swing.JTextField txtorden;
     // End of variables declaration//GEN-END:variables
 }
