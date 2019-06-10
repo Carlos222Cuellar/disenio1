@@ -239,8 +239,8 @@ public class categorias extends javax.swing.JFrame {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-         dashboard menu=new dashboard();
-         menu.setVisible(true);
+        // dashboard menu=new dashboard();
+         //menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
