@@ -183,7 +183,7 @@ public class dashboard extends javax.swing.JFrame {
            lblmensaje.setVisible(true);
           
           lblmensaje.setText("Imprimiendo....");
-          ticket_X ticket=new ticket_X();
+          final ticket_X ticket=new ticket_X();
        ticket.setVisible(true);
           Timer timer=new Timer();
           TimerTask task=new TimerTask(){

@@ -292,9 +292,12 @@ public class Parametros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsalirMouseEntered
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-
-//dashboard menu=new dashboard();
-//menu.setVisible(true);
+        // TODO add your handling code here:
+//         dashboard kk=new dashboard();
+//        kk.setVisible(true);
+//        this.dispose();
+dashboard menu=new dashboard();
+menu.setVisible(true);
 this.dispose();
 
 

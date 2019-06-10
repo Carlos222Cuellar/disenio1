@@ -35,7 +35,7 @@ public class productos extends javax.swing.JFrame {
         this.setTitle("Productos");
          this.setLocationRelativeTo(null);
          
-         
+         panelmodificar.setVisible(false);
         modeloProducto.addColumn("IdCategorias");
         modeloProducto.addColumn("nombre");
        
@@ -58,10 +58,10 @@ public class productos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        jtblproducto.setModel(modeloProducto);
+        tblproducto.setModel(modeloProducto);
     }
     
-    
+   
     
 
     /**
@@ -74,17 +74,25 @@ public class productos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelproducto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cmbcategorias = new javax.swing.JComboBox<>();
+        cmbcategorias = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtblproducto = new javax.swing.JTable();
+        tblproducto = new javax.swing.JTable();
         btnnuevo = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        panelmodificar = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtnombre = new javax.swing.JTextField();
+        btnguardar = new javax.swing.JButton();
+        btndescartar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,34 +105,34 @@ public class productos extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Productos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelproducto.setBackground(new java.awt.Color(0, 0, 0));
+        panelproducto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 102));
         jLabel1.setText("productos");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
+        panelproducto.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 102));
         jLabel3.setText("categorias:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, 20));
+        panelproducto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/shipping_products_22121.png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 80, 70));
+        panelproducto.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 80, 70));
 
-        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Platos", "Bebidas", "Postres" }));
+        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Platos", "Bebidas", "Postres" }));
         cmbcategorias.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbcategoriasItemStateChanged(evt);
-            }
-        });
-        cmbcategorias.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cmbcategoriasFocusGained(evt);
             }
         });
         cmbcategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -132,11 +140,16 @@ public class productos extends javax.swing.JFrame {
                 cmbcategoriasActionPerformed(evt);
             }
         });
-        jPanel2.add(cmbcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 218, -1));
+        cmbcategorias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbcategoriasFocusGained(evt);
+            }
+        });
+        panelproducto.add(cmbcategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 218, -1));
 
-        jtblproducto.setBackground(new java.awt.Color(204, 255, 255));
-        jtblproducto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jtblproducto.setModel(new javax.swing.table.DefaultTableModel(
+        tblproducto.setBackground(new java.awt.Color(204, 255, 255));
+        tblproducto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -162,83 +175,98 @@ public class productos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtblproducto.setToolTipText("Productos");
-        jScrollPane1.setViewportView(jtblproducto);
+        tblproducto.setToolTipText("Productos");
+        jScrollPane1.setViewportView(tblproducto);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 560, 90));
+        panelproducto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 560, 90));
 
         btnnuevo.setBackground(new java.awt.Color(102, 255, 102));
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.setBorder(null);
+        btnnuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseExited(evt);
+            }
+        });
         btnnuevo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnnuevoMouseMoved(evt);
             }
         });
-        btnnuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseEntered(evt);
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 140, 40));
+        panelproducto.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 140, 40));
 
         btnmodificar.setBackground(new java.awt.Color(102, 255, 102));
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
         btnmodificar.setText("Modificar");
         btnmodificar.setBorder(null);
+        btnmodificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnmodificarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnmodificarMouseExited(evt);
+            }
+        });
         btnmodificar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btnmodificarMouseMoved(evt);
             }
         });
-        btnmodificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnmodificarMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnmodificarMouseEntered(evt);
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 160, 40));
+        panelproducto.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 160, 40));
 
         btneliminar.setBackground(new java.awt.Color(102, 255, 102));
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.setBorder(null);
+        btneliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btneliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btneliminarMouseExited(evt);
+            }
+        });
         btneliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 btneliminarMouseMoved(evt);
             }
         });
-        btneliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btneliminarMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btneliminarMouseEntered(evt);
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 110, 40));
+        panelproducto.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 110, 40));
 
         btnsalir.setBackground(new java.awt.Color(102, 255, 102));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1486564399-close_81512.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.setBorder(null);
-        btnsalir.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnsalirMouseMoved(evt);
-            }
-        });
         btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsalirMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnsalirMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnsalirMouseEntered(evt);
+        });
+        btnsalir.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnsalirMouseMoved(evt);
             }
         });
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -246,19 +274,57 @@ public class productos extends javax.swing.JFrame {
                 btnsalirActionPerformed(evt);
             }
         });
-        jPanel2.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 120, 40));
+        panelproducto.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 120, 40));
+
+        panelmodificar.setBackground(new java.awt.Color(0, 0, 0));
+        panelmodificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Modificar Producto");
+        panelmodificar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 210, 40));
+
+        txtid.setEditable(false);
+        panelmodificar.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 180, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("IdProducto");
+        panelmodificar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 110, 30));
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("Nombre");
+        panelmodificar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 70, 20));
+        panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 180, -1));
+
+        btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
+        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+
+        btndescartar.setText("Descartar");
+        btndescartar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndescartarActionPerformed(evt);
+            }
+        });
+        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+            .addComponent(panelproducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelmodificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,8 +336,8 @@ public class productos extends javax.swing.JFrame {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        // dashboard menu=new dashboard();
-        //menu.setVisible(true);
+         dashboard menu=new dashboard();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
@@ -355,6 +421,71 @@ public class productos extends javax.swing.JFrame {
         Producto(seleccionado);
     }//GEN-LAST:event_cmbcategoriasFocusGained
 
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+         if (tblproducto.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+        
+        {
+            txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+            txtnombre.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el nombre
+            
+             panelproducto.setVisible(false);//deshabilita el panel donde esta tabla
+              panelmodificar.setVisible(true);//habilita el panel donde estan los campos a modificar
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para editar", null, JOptionPane.WARNING_MESSAGE);
+         }
+    }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+
+        if (txtid.getText().equals("") || (txtnombre.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria", null, JOptionPane.WARNING_MESSAGE);
+            txtnombre.requestFocus();
+        } else {
+            String id = txtid.getText();
+            String nombre = txtnombre.getText();
+            productos.modificarproducto(id, nombre);
+            JOptionPane.showMessageDialog(null,"Modificacion exitosa");
+            panelmodificar.setVisible(false);
+            panelproducto.setVisible(true);
+            ActualizarTabla();
+
+        }
+
+        
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void btndescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescartarActionPerformed
+        panelmodificar.setVisible(false);
+        panelproducto.setVisible(true);
+    }//GEN-LAST:event_btndescartarActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        if (tblproducto.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+ 
+        {
+            txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+             String id = txtid.getText();
+            productos.eliminar(id);
+              cerrar();
+           
+           
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
+         
+        } 
+      
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+       //a
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,19 +520,68 @@ public class productos extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void ActualizarTabla(){
+          rs = null;
+        rs = productos.llenarProductos(seleccionado);
+        //modeloProducto.addColumn("IdCategorias");
+        //modeloProducto.addColumn("nombre");
+        String[] dato=new String[2]; 
+        modeloProducto.setRowCount(0);//borra las filas 
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                modeloProducto.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblproducto.setModel(modeloProducto);
+  
+         
+       
+    
+    }
+    
+    public void cerrar(){
+Object [] opciones ={"Aceptar","Cancelar"};
+int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea borrar el dato","Mensaje de Confirmacion",
+JOptionPane.YES_NO_OPTION,
+JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+if (eleccion == JOptionPane.YES_OPTION)
+{
+ ActualizarTabla();
+ JOptionPane.showMessageDialog(null, "dato eliminado con exito ");
+}else{
+    JOptionPane.showMessageDialog(null, "cancelado", null, JOptionPane.WARNING_MESSAGE);
+}}
+  
+
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btndescartar;
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cmbcategorias;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtblproducto;
+    private javax.swing.JPanel panelmodificar;
+    private javax.swing.JPanel panelproducto;
+    private javax.swing.JTable tblproducto;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }

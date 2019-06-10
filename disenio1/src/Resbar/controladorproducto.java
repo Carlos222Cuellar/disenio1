@@ -51,4 +51,16 @@ public class controladorproducto {
         return (cn.getValores("SELECT nombre FROM Productos where IdCategoria= '"+producto+"'"));
     }
     
+   public void modificarproducto (String IdProducto,String nombre)
+   {
+  cn.UID("UPDATE productos SET nombre='" + nombre + "' WHERE IdProductos='" + IdProducto + "'");
+   
+   }
+    public void eliminar (String IdProducto)
+   {
+  cn.UID("DELETE FROM productos WHERE IdProductos='" + IdProducto + "'");
+   
+   }
+    
+    
 }
