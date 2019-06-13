@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 import AppPackage.AnimationClass;
 //import Resbar.Parametros;
 import Resbar.PrinterService;
+import Resbar.controladorOrdenes;
+import Resbar.controladorcategoria;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Timer;
@@ -20,9 +22,12 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.JOptionPane;
 import br.com.adilson.util.Extenso;
 import br.com.adilson.util.PrinterMatrix;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 
 /*
@@ -40,6 +45,13 @@ public class dashboard extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
+    
+    
+     DefaultTableModel modeloOrdenes = new DefaultTableModel();
+    ResultSet rs = null;
+    controladorOrdenes ordenes = new controladorOrdenes();
+    
+    
     public dashboard() {
         initComponents();
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
@@ -54,6 +66,35 @@ public class dashboard extends javax.swing.JFrame {
           
     }
 
+    
+     public void llenar(){
+    
+       
+        rs = ordenes.llenarOrdenes();
+       //le pone el nombre  a las columnas en la tabla
+        modeloOrdenes.addColumn("IdOrden");
+        modeloOrdenes.addColumn("Mesa");
+        modeloOrdenes.addColumn("Cliente");
+        modeloOrdenes.addColumn("Mesero");
+        String[] dato=new String[4];
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(4);
+                dato[2]=rs.getString(5);
+                dato[3]=rs.getString(3);
+                modeloOrdenes.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblordenes.setModel(modeloOrdenes);
+    
+    
+    
+    }
+    
     
     
      public void tiempo(){
@@ -212,7 +253,7 @@ public class dashboard extends javax.swing.JFrame {
         btnagregarproducto = new javax.swing.JButton();
         btnmodificarorden = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblordenes = new javax.swing.JTable();
         btnimprimirorden = new javax.swing.JButton();
         btncobrarorden = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -311,11 +352,11 @@ public class dashboard extends javax.swing.JFrame {
         });
         jPanel1.add(btnmodificarorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 450, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jTable1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(153, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblordenes.setBackground(new java.awt.Color(204, 255, 255));
+        tblordenes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        tblordenes.setForeground(new java.awt.Color(153, 255, 255));
+        tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -377,8 +418,8 @@ public class dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jTable1);
+        tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(tblordenes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 1190, 500));
 
@@ -890,7 +931,6 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblcategoria;
     private javax.swing.JLabel lblconfiguracion;
     private javax.swing.JLabel lblestadistica;
@@ -900,6 +940,7 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
     private javax.swing.JLabel lblproducto;
     private javax.swing.JRadioButton rbtnmodocaja;
     private javax.swing.JRadioButton rbtnmodomesa;
+    private javax.swing.JTable tblordenes;
     private javax.swing.JTextField txtfiltro;
     // End of variables declaration//GEN-END:variables
 }
