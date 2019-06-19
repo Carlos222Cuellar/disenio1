@@ -18,8 +18,11 @@ import javax.swing.JOptionPane;
  */
 public class Conexionn {
     private String url = "jdbc:mysql://localhost:3306/DBpos";
+
     private String login = "SistemaPos"; //Administrador de MySQL
     private String password = "pos2019sis";
+
+    
     private Connection cnx = null;
     private Statement sttm = null;
     private ResultSet rst = null;

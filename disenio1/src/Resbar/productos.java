@@ -80,7 +80,7 @@ public class productos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cmbcategorias = new javax.swing.JComboBox<>();
+        cmbcategorias = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblproducto = new javax.swing.JTable();
         btnnuevo = new javax.swing.JButton();
@@ -133,7 +133,7 @@ public class productos extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/shipping_products_22121.png"))); // NOI18N
         panelproducto.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 80, 70));
 
-        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Platos", "Bebidas", "Postres" }));
+        cmbcategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Platos", "Bebidas", "Postres" }));
         cmbcategorias.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbcategoriasItemStateChanged(evt);
@@ -464,7 +464,7 @@ public class productos extends javax.swing.JFrame {
         {
             txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
             txtnombre.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el nombre
-            
+            txtprecio.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(),2).toString());
              panelproducto.setVisible(false);//deshabilita el panel donde esta tabla
               panelmodificar.setVisible(true);//habilita el panel donde estan los campos a modificar
         } else {
@@ -474,13 +474,13 @@ public class productos extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
-        if (txtid.getText().equals("") || (txtnombre.getText().equals(""))) {
+        if (txtid.getText().equals("") || (txtprecio.getText().equals("") ||(txtnombre.getText().equals("")))) {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria", null, JOptionPane.WARNING_MESSAGE);
             txtnombre.requestFocus();
         } else {
             String id = txtid.getText();
             String nombre = txtnombre.getText();
-            String precio="";
+            String precio=txtprecio.getText();
             productos.modificarproducto(id, nombre,precio);
             JOptionPane.showMessageDialog(null,"Modificacion exitosa");
             panelmodificar.setVisible(false);
