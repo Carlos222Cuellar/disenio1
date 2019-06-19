@@ -2,6 +2,8 @@
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import AppPackage.AnimationClass;
+import Modelo.Ordenes;
+import Resbar.ControladorAgregarOrden;
 //import Resbar.Parametros;
 import Resbar.PrinterService;
 import Resbar.controladorOrdenes;
@@ -54,6 +56,7 @@ public class dashboard extends javax.swing.JFrame {
     
     public dashboard() {
         initComponents();
+        llenar();
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
           this.setExtendedState(JFrame.MAXIMIZED_BOTH);//maximiza el frame al tamaño de la pantalla completa
           rbtnmodomesa.setVisible(false);
@@ -62,35 +65,38 @@ public class dashboard extends javax.swing.JFrame {
           ticket_X ticket=new ticket_X();
        ticket.setVisible(false);
        btnnuevaorden.requestFocus();
+       
+       
           
           
     }
 
     
      public void llenar(){
-    
-       
-        rs = ordenes.llenarOrdenes();
+        
+         ControladorAgregarOrden cao = new ControladorAgregarOrden();
+        
        //le pone el nombre  a las columnas en la tabla
+      
         modeloOrdenes.addColumn("IdOrden");
+        modeloOrdenes.addColumn("Mesero");
         modeloOrdenes.addColumn("Mesa");
         modeloOrdenes.addColumn("Cliente");
-        modeloOrdenes.addColumn("Mesero");
-        String[] dato=new String[4];
-        
-        try {
-            while (rs.next()) {
-                dato[0]=rs.getString(1);
-                dato[1]=rs.getString(4);
-                dato[2]=rs.getString(5);
-                dato[3]=rs.getString(3);
-                modeloOrdenes.addRow(dato);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+       
+        for(Ordenes orden:cao.findAll())
+        {
+             String[] or=new String[4];
+            
+            or[0]=orden.getIdOrden().toString();
+            or[1]=orden.getMesero();
+            or[2]=orden.getMesa();
+            or[3]=orden.getCliente();
+          
+            modeloOrdenes.addRow(or);
         }
+       
         tblordenes.setModel(modeloOrdenes);
-    
+       
     
     
     }
@@ -355,7 +361,6 @@ public class dashboard extends javax.swing.JFrame {
         tblordenes.setBackground(new java.awt.Color(204, 255, 255));
         tblordenes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
         tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        tblordenes.setForeground(new java.awt.Color(153, 255, 255));
         tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -400,11 +405,11 @@ public class dashboard extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Cuenta", "Mesa", "Cliente", "Mesero"
+                "Cuenta", "Mesero", "Mesa", "Cliente"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -419,6 +424,7 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
         tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblordenes.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblordenes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 1190, 500));
@@ -719,15 +725,34 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
 
     private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
         // TODO add your handling code here:
-        if(rbtnmodomesa.isSelected()==true){
-        agregar_producto agregar=new agregar_producto();
-        agregar.setVisible(true);
-        this.dispose();
-        }else{
-        agregar_producto_modo_caja agregarModoCaja=new agregar_producto_modo_caja();
-        agregarModoCaja.setVisible(true);
-        this.dispose();
+        //if(rbtnmodomesa.isSelected()==true){
+        //agregar_producto agregar=new agregar_producto();
+        //agregar.setVisible(true);
+        //this.dispose();
+        //}else{
+        //agregar_producto_modo_caja agregarModoCaja=new agregar_producto_modo_caja();
+        //agregarModoCaja.setVisible(true);
+        //this.dispose();
+        //}
+        
+         if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+
+        {
+            agregar_producto ap = new agregar_producto(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
+          
+            
+            ap.setVisible(true);
+           
+            
+            
+            
+        } else {
+             
+             JOptionPane.showMessageDialog(null, "Seleccione una Orden,para agregar mas productos", null, JOptionPane.WARNING_MESSAGE);
+            
         }
+         
+
     }//GEN-LAST:event_btnagregarproductoActionPerformed
 
     private void btnmodificarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarordenActionPerformed
@@ -914,7 +939,9 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboard().setVisible(true);
+               
+                    new dashboard().setVisible(true);
+              
             }
         });
     }

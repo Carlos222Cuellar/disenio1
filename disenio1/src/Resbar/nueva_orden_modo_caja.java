@@ -1,8 +1,11 @@
 
+import Modelo.Ordenes;
+import Resbar.ControladorAgregarOrden;
 import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.time.Instant.now;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -22,7 +25,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
     /**
      * Creates new form nueva_orden
      */
-    
+    private String fechaActual="2019-06-18 00:00:00";
     
      ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
@@ -110,6 +113,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         btnbebidas = new javax.swing.JButton();
         btnpostres = new javax.swing.JButton();
         btnquitar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +155,11 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnguardarMouseEntered(evt);
+            }
+        });
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
             }
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 110, 40));
@@ -353,6 +362,11 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
                 btneliminarMouseEntered(evt);
             }
         });
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 50, -1));
 
         btnagregar.setBackground(new java.awt.Color(102, 204, 102));
@@ -549,6 +563,14 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 650, 50, 25));
+
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -858,6 +880,49 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         }
     }//GEN-LAST:event_txtobservacionKeyTyped
 
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+       JOptionPane.showMessageDialog(null,"Error");
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+     
+        JOptionPane.showMessageDialog(null,"Error");
+        ControladorAgregarOrden cao = new ControladorAgregarOrden();
+        if(this.txtmesa.getText().isEmpty() || this.txtmesero.getText().isEmpty() 
+             || this.txtcliente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Error");
+     }
+     else{
+     Ordenes orden = new Ordenes();
+     orden.setFecha(this.fechaActual);
+     orden.setMesa(this.txtmesa.getText());
+     orden.setMesero(this.txtmesero.getText());
+     orden.setEstado('A');
+     orden.setObservacion(this.txtobservacion.getText());
+     cao.agregaOrden(orden);
+     JOptionPane.showMessageDialog(null,"Se agrego la orden exitosamente");
+     }
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          JOptionPane.showMessageDialog(null,"Error");
+        ControladorAgregarOrden cao = new ControladorAgregarOrden();
+        if(this.txtmesa.getText().isEmpty() || this.txtmesero.getText().isEmpty() 
+             || this.txtcliente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Error");
+     }
+     else{
+     Ordenes orden = new Ordenes();
+     orden.setFecha(this.fechaActual);
+     orden.setMesa(this.txtmesa.getText());
+     orden.setMesero(this.txtmesero.getText());
+     orden.setEstado('A');
+     orden.setObservacion(this.txtobservacion.getText());
+     cao.agregaOrden(orden);
+     JOptionPane.showMessageDialog(null,"Se agrego la orden exitosamente");
+     }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -889,7 +954,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto().setVisible(true);
+                new agregar_producto("").setVisible(true);
             }
         });
     }
@@ -941,6 +1006,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JButton btnpostres;
     private javax.swing.JButton btnquitar;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

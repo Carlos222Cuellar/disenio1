@@ -81,7 +81,7 @@ public class Parametros extends javax.swing.JFrame {
         btnsalir = new javax.swing.JButton();
         panelmodificar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
@@ -199,16 +199,16 @@ public class Parametros extends javax.swing.JFrame {
         jLabel2.setText("Modificar Parametros");
         panelmodificar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 240, 40));
 
-        txtid.setEditable(false);
-        txtid.addActionListener(new java.awt.event.ActionListener() {
+        txtnombre.setEditable(false);
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidActionPerformed(evt);
+                txtnombreActionPerformed(evt);
             }
         });
-        panelmodificar.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 180, -1));
+        panelmodificar.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 180, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("IdParametros");
+        jLabel4.setText("Nombre");
         panelmodificar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 105, 110, 30));
 
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
@@ -288,7 +288,7 @@ public class Parametros extends javax.swing.JFrame {
         if (tblparametros.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
 
         {
-            txtid.setText(modeloParametros.getValueAt(tblparametros.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+            txtnombre.setText(modeloParametros.getValueAt(tblparametros.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
             txtvalor.setText(modeloParametros.getValueAt(tblparametros.getSelectedRow(), 2).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el nombre
 
             panelparametros.setVisible(false);//deshabilita el panel donde esta tabla
@@ -322,13 +322,13 @@ public class Parametros extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
-        if (txtid.getText().equals("") || (txtvalor.getText().equals(""))) {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la parametro", null, JOptionPane.WARNING_MESSAGE);
+        if (txtnombre.getText().equals("") || (txtvalor.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del parametro", null, JOptionPane.WARNING_MESSAGE);
             txtvalor.requestFocus();
         } else {
-            String id = txtid.getText();
-            String nombre = txtvalor.getText();
-            parametros.modificarParametro(id, nombre);
+            String nombre= txtnombre.getText();
+            String valor = txtvalor.getText();
+            parametros.modificarParametro(nombre, valor);
             JOptionPane.showMessageDialog(null,"Modificacion exitosa");
             panelmodificar.setVisible(false);
             panelparametros.setVisible(true);
@@ -368,9 +368,9 @@ public class Parametros extends javax.swing.JFrame {
         panelparametros.setVisible(true);
     }//GEN-LAST:event_btndescartarActionPerformed
 
-    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidActionPerformed
+    }//GEN-LAST:event_txtnombreActionPerformed
 
     private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
         // TODO add your handling code here:
@@ -452,7 +452,7 @@ public class Parametros extends javax.swing.JFrame {
     private javax.swing.JPanel panelmodificar;
     private javax.swing.JPanel panelparametros;
     private javax.swing.JTable tblparametros;
-    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables
 }

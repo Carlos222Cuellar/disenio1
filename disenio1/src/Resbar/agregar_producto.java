@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,14 +25,22 @@ public class agregar_producto extends javax.swing.JFrame {
      */
     
     
-    
+     
+   
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
     String seleccionado;
+
+   DefaultTableModel modeloAgregarProducto = new DefaultTableModel();
+   
+   
     
+   
     
-    public agregar_producto() {
+    public agregar_producto(String id) {
         initComponents();
+        
+        this.txtIdOrden.setText(id);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());//se quita el icono de la taza de java
         this.setTitle("Agregar Productos");
          this.setExtendedState(MAXIMIZED_BOTH);
@@ -40,6 +49,7 @@ public class agregar_producto extends javax.swing.JFrame {
          platos.setVisible(true);
          
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,12 +65,12 @@ public class agregar_producto extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        txtIdOrden = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAgregarPouctos = new javax.swing.JTable();
         btneliminar = new javax.swing.JButton();
         btnagregar = new javax.swing.JButton();
         postres = new org.edisoncor.gui.panel.PanelRound();
@@ -146,12 +156,17 @@ public class agregar_producto extends javax.swing.JFrame {
                 btnguardarMouseEntered(evt);
             }
         });
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 670, 110, 40));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField7.setFocusable(false);
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 60, -1));
+        txtIdOrden.setEditable(false);
+        txtIdOrden.setBackground(new java.awt.Color(0, 255, 204));
+        txtIdOrden.setFocusable(false);
+        jPanel1.add(txtIdOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 60, -1));
 
         jTextField10.setBackground(new java.awt.Color(0, 255, 204));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
@@ -190,11 +205,11 @@ public class agregar_producto extends javax.swing.JFrame {
         jLabel2.setText("Orden:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 110, 70, 20));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jTable1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(153, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAgregarPouctos.setBackground(new java.awt.Color(204, 255, 255));
+        tblAgregarPouctos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblAgregarPouctos.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        tblAgregarPouctos.setForeground(new java.awt.Color(51, 0, 51));
+        tblAgregarPouctos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -256,10 +271,10 @@ public class agregar_producto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jTable1);
+        tblAgregarPouctos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(tblAgregarPouctos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 250, 570, 370));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 570, 370));
 
         btneliminar.setBackground(new java.awt.Color(102, 204, 102));
         btneliminar.setText("-");
@@ -275,6 +290,11 @@ public class agregar_producto extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btneliminarMouseEntered(evt);
+            }
+        });
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
             }
         });
         jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 50, -1));
@@ -300,21 +320,46 @@ public class agregar_producto extends javax.swing.JFrame {
         postres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnpostre1.setText("Flan");
+        btnpostre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre1ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
         btnpostre2.setText("Budin");
+        btnpostre2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre2ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
 
         btnpostre3.setText("Bollo");
+        btnpostre3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre3ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
         btnpostre4.setText("Pastel");
         postres.add(btnpostre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
         btnpostre5.setText("Milhoja");
+        btnpostre5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre5ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
         btnpostre6.setText("cupcake");
+        btnpostre6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre6ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 90));
 
         btnpostre7.setText("Gelato");
@@ -330,9 +375,19 @@ public class agregar_producto extends javax.swing.JFrame {
         postres.add(btnpostre10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
         btnpostre11.setText("Gelatina");
+        btnpostre11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre11ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
         btnpostre12.setText("Mousse");
+        btnpostre12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre12ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
 
         jPanel1.add(postres, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
@@ -742,6 +797,52 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
     }//GEN-LAST:event_btnquitarMouseExited
 
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btnpostre11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre11ActionPerformed
+     controladorproducto  cp = new controladorproducto();
+     ResultSet rs = cp.findByName("Gelatina");
+     
+     this.modeloAgregarProducto.addColumn("producto");
+       this.modeloAgregarProducto.addColumn("cantidad");
+         this.modeloAgregarProducto.addColumn("P/c");
+           this.modeloAgregarProducto.addColumn("subtotal");
+           
+           
+           
+           
+    }//GEN-LAST:event_btnpostre11ActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+     //llamar a la query de la tabla detalle orden y ahi poner los id del producto y de la orden 
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void btnpostre6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre6ActionPerformed
+
+    private void btnpostre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre2ActionPerformed
+
+    private void btnpostre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre3ActionPerformed
+
+    private void btnpostre5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre5ActionPerformed
+
+    private void btnpostre12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre12ActionPerformed
+
+    private void btnpostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -775,7 +876,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto().setVisible(true);
+                new agregar_producto("0").setVisible(true);
             }
         });
     }
@@ -833,11 +934,11 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
     private org.edisoncor.gui.panel.PanelRound platos;
     private org.edisoncor.gui.panel.PanelRound postres;
+    private javax.swing.JTable tblAgregarPouctos;
+    private javax.swing.JTextField txtIdOrden;
     // End of variables declaration//GEN-END:variables
 }

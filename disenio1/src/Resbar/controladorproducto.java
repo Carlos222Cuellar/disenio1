@@ -41,7 +41,9 @@ public class controladorproducto {
     public ResultSet llenarProductos( String categoria) {
         return (cn.getValores("SELECT IdProductos,nombre,precio FROM Productos where IdCategoria= '"+categoria+"'"));
     }
-    
+    public ResultSet findByName( String nombre) {
+        return (cn.getValores("SELECT IdProductos,nombre,precio FROM Productos where nombre= '"+nombre+"'"));
+    }
     
     /**
      * @param producto

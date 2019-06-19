@@ -20,9 +20,9 @@ public class controladorparametro {
     
     //modifica un valor de parametros a partir de si id
     
-     public void modificarParametro(String id, String valor) {
+     public void modificarParametro(String nombre, String valor) {
         
-        cn.UID("UPDATE parametros SET valor='" + valor + "' WHERE IdParametros='" + id + "'");
+        cn.UID("UPDATE parametros SET valor='" + valor + "' WHERE nombre='" + nombre + "'");
     }
     
     //Este metodo me trae una parametros de la base de datos por medio de su IdParametros

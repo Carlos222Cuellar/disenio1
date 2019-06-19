@@ -1,4 +1,6 @@
 
+import Modelo.Ordenes;
+import Resbar.ControladorAgregarOrden;
 import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -25,6 +27,7 @@ public class nueva_orden extends javax.swing.JFrame {
     /**
      * Creates new form nueva_orden
      */
+    private String fechaActual="2019-06-18 00:00:00";
     
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
@@ -167,6 +170,11 @@ public class nueva_orden extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnguardarMouseEntered(evt);
+            }
+        });
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
             }
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 110, 40));
@@ -808,6 +816,26 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         }
     }//GEN-LAST:event_txtobservacionKeyTyped
 
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+       
+        ControladorAgregarOrden cao = new ControladorAgregarOrden();
+        if(this.txtmesa.getText().isEmpty() || this.txtmesero.getText().isEmpty() 
+             || this.txtcliente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Error");
+     }
+     else{
+     Ordenes orden = new Ordenes();
+     orden.setFecha(this.fechaActual);
+     orden.setMesa(this.txtmesa.getText());
+     orden.setMesero(this.txtmesero.getText());
+     orden.setEstado('A');
+     orden.setCliente(this.txtcliente.getText());
+     orden.setObservacion(this.txtobservacion.getText());
+     cao.agregaOrden(orden);
+     JOptionPane.showMessageDialog(null,"Se agrego la orden exitosamente");
+     }
+    }//GEN-LAST:event_btnguardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -839,7 +867,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto().setVisible(true);
+                new agregar_producto("0").setVisible(true);
             }
         });
     }

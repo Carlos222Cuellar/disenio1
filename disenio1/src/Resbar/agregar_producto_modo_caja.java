@@ -143,6 +143,11 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
                 btnguardarMouseEntered(evt);
             }
         });
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 680, 110, 40));
 
         btncobrar.setBackground(new java.awt.Color(102, 255, 102));
@@ -325,12 +330,22 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
         postres.add(btnpostre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
         btnpostre2.setText("Budin");
+        btnpostre2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre2ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
 
         btnpostre3.setText("Bollo");
         postres.add(btnpostre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
         btnpostre4.setText("Pastel");
+        btnpostre4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre4ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
         btnpostre5.setText("Milhoja");
@@ -340,6 +355,11 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
         postres.add(btnpostre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 90));
 
         btnpostre7.setText("Gelato");
+        btnpostre7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre7ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
 
         btnpostre8.setText("Tiramisu");
@@ -352,6 +372,11 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
         postres.add(btnpostre10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
         btnpostre11.setText("Gelatina");
+        btnpostre11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre11ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
         btnpostre12.setText("Mousse");
@@ -740,6 +765,29 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
     }//GEN-LAST:event_btnquitarMouseExited
 
+    private void btnpostre11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre11ActionPerformed
+
+        
+
+       
+    }//GEN-LAST:event_btnpostre11ActionPerformed
+
+    private void btnpostre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre2ActionPerformed
+
+    private void btnpostre7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre7ActionPerformed
+
+    private void btnpostre4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpostre4ActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -773,7 +821,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto().setVisible(true);
+                new agregar_producto("0").setVisible(true);
             }
         });
     }
