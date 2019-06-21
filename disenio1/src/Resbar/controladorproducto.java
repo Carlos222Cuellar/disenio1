@@ -39,7 +39,7 @@ public class controladorproducto {
      * @return un producto segun el id de categoria que se le pase como parametro
      */
     public ResultSet llenarProductos( String categoria) {
-        return (cn.getValores("SELECT IdProductos,nombre,precio FROM Productos where IdCategoria= '"+categoria+"'"));
+        return (cn.getValores("SELECT IdProductos,nombre,precio,esPreparado FROM Productos where IdCategoria= '"+categoria+"'"));
     }
     public ResultSet findByName( String nombre) {
         return (cn.getValores("SELECT IdProductos,nombre,precio FROM Productos where nombre= '"+nombre+"'"));
@@ -53,9 +53,9 @@ public class controladorproducto {
         return (cn.getValores("SELECT nombre,precio FROM Productos where IdCategoria= '"+producto+"'"));
     }
     
-   public void modificarproducto (String IdProducto,String nombre,String precio)
+   public void modificarproducto (String IdProducto,String nombre,String precio,String esPreparado)
    {
-  cn.UID("UPDATE productos SET nombre='" + nombre + "', precio='" + precio + "' WHERE IdProductos='" + IdProducto + "'");
+  cn.UID("UPDATE productos SET nombre='" + nombre + "', precio='" + precio + "', esPreparado='" + esPreparado + "' WHERE IdProductos='" + IdProducto + "'");
    
    }
     public void eliminar (String IdProducto)
@@ -63,6 +63,15 @@ public class controladorproducto {
   cn.UID("DELETE FROM productos WHERE IdProductos='" + IdProducto + "'");
    
    }
-    
+     public void insertarproducto (String IdProductos,String nombre,double precio,String esPreparado,String IdCategoria)
+   {
+  cn.UID("INSERT INTO productos(IdProductos,nombre,precio,esPreparado,IdCategoria) VALUES('" +IdProductos+ "', '" + nombre + "','" + precio + "','" + esPreparado + "','" + IdCategoria + "')");
+   
+   }
+      public ResultSet contarRegistros(){
+        return (cn.getValores("SELECT MAX(IdProductos) FROM productos "));
+      }
+      
+       
     
 }

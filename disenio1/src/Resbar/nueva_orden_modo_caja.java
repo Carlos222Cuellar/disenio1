@@ -5,7 +5,7 @@ import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.time.Instant.now;
+//import static java.time.Instant.now;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

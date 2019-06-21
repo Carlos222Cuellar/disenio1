@@ -8,6 +8,7 @@ import Resbar.ControladorAgregarOrden;
 import Resbar.PrinterService;
 import Resbar.controladorOrdenes;
 import Resbar.controladorcategoria;
+import Resbar.productos;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Timer;

@@ -1,3 +1,5 @@
+package Resbar;
+
 
 import Resbar.controladorproducto;
 import java.awt.Color;
@@ -28,18 +30,52 @@ public class productos extends javax.swing.JFrame {
     controladorproducto productos = new controladorproducto();
     String seleccionado;
     
+     public void Contar() {
+         
+         
+         
+        int mayor = 0;
+        rs = null;
+        rs = productos.contarRegistros();
+
+        try {
+            while (rs.next()) {
+                mayor = rs.getInt(1);
+                if (mayor != 0) {
+                    mayor = mayor + 1;
+                    if (mayor > 0 && mayor < 10) {
+                        txtiduno.setText("000" + mayor);
+                    } else if (mayor > 9 && mayor < 100) {
+                        txtiduno.setText("00" + mayor);
+                    } else if (mayor > 99 && mayor < 1000) {
+                        txtiduno.setText("0" + mayor);
+                    } else {
+                        txtiduno.setText(String.valueOf(mayor));
+                    }
+                } else {
+                    txtiduno.setText("0001");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "AVISO DEL SISTEMA", 0);
+        }
+    }
     
     public productos() {
+        
+        
         initComponents();
+        jPanel2.setVisible(false);
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Productos");
          this.setLocationRelativeTo(null);
          
          panelmodificar.setVisible(false);
-        modeloProducto.addColumn("IdCategorias");
+        modeloProducto.addColumn("Idproducto");
         modeloProducto.addColumn("Nombre");
         modeloProducto.addColumn("Precio");
-           
+        modeloProducto.addColumn("es preparado");
+        //modeloProducto.addColumn("idcategoria");   
     }
     
     
@@ -48,13 +84,14 @@ public class productos extends javax.swing.JFrame {
         rs = productos.llenarProductos(seleccionado);
         //modeloProducto.addColumn("IdCategorias");
         //modeloProducto.addColumn("nombre");
-        String[] dato=new String[3]; 
+        String[] dato=new String[4]; 
         
         try {
             while (rs.next()) {
                 dato[0]=rs.getString(1);
                 dato[1]=rs.getString(2);
                 dato[2]=rs.getString(3);
+                dato[3]=rs.getString(4);
                 modeloProducto.addRow(dato);
             }
         } catch (SQLException ex) {
@@ -97,16 +134,32 @@ public class productos extends javax.swing.JFrame {
         btndescartar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtprecio = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtpreparado = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtiduno = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtnombreuno = new javax.swing.JTextField();
+        btninsertar = new javax.swing.JButton();
+        btncancelar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtpreciouno = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtpreparadouno = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtidcategoriauno = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 41, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 42, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -155,20 +208,20 @@ public class productos extends javax.swing.JFrame {
         tblproducto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
         tblproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "IdProducto", "Nombre", "Precio"
+                "IdProducto", "Nombre", "Precio", "esPreparado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -182,23 +235,23 @@ public class productos extends javax.swing.JFrame {
         tblproducto.setToolTipText("Productos");
         jScrollPane1.setViewportView(tblproducto);
 
-        panelproducto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 560, 90));
+        panelproducto.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 570, 90));
 
         btnnuevo.setBackground(new java.awt.Color(102, 255, 102));
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.setBorder(null);
-        btnnuevo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseMoved(evt);
-            }
-        });
         btnnuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnnuevoMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnnuevoMouseEntered(evt);
+        });
+        btnnuevo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnnuevoMouseMoved(evt);
             }
         });
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -260,17 +313,17 @@ public class productos extends javax.swing.JFrame {
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1486564399-close_81512.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.setBorder(null);
-        btnsalir.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnsalirMouseMoved(evt);
-            }
-        });
         btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnsalirMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnsalirMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnsalirMouseEntered(evt);
+        });
+        btnsalir.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnsalirMouseMoved(evt);
             }
         });
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -309,11 +362,11 @@ public class productos extends javax.swing.JFrame {
         btnguardar.setText("Guardar");
         btnguardar.setToolTipText("Guardar");
         btnguardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnguardarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnguardarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnguardarMouseExited(evt);
             }
         });
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -321,16 +374,16 @@ public class productos extends javax.swing.JFrame {
                 btnguardarActionPerformed(evt);
             }
         });
-        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
+        panelmodificar.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
 
         btndescartar.setText("Descartar");
         btndescartar.setToolTipText("Descartar");
         btndescartar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btndescartarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btndescartarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndescartarMouseExited(evt);
             }
         });
         btndescartar.addActionListener(new java.awt.event.ActionListener() {
@@ -338,7 +391,7 @@ public class productos extends javax.swing.JFrame {
                 btndescartarActionPerformed(evt);
             }
         });
-        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
+        panelmodificar.add(btndescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("Precio");
@@ -351,19 +404,142 @@ public class productos extends javax.swing.JFrame {
         });
         panelmodificar.add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 180, -1));
 
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("preparado");
+        panelmodificar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 80, 20));
+
+        txtpreparado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpreparadoActionPerformed(evt);
+            }
+        });
+        txtpreparado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpreparadoKeyTyped(evt);
+            }
+        });
+        panelmodificar.add(txtpreparado, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 180, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("Insertar Producto");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 210, 40));
+
+        txtiduno.setEditable(false);
+        txtiduno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidunoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtiduno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 180, -1));
+
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("IdProducto");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 110, 30));
+
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setText("Nombre");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 70, 20));
+
+        txtnombreuno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreunoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtnombreuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 180, -1));
+
+        btninsertar.setText("insertar");
+        btninsertar.setToolTipText("Guardar");
+        btninsertar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btninsertarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btninsertarMouseExited(evt);
+            }
+        });
+        btninsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninsertarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btninsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
+
+        btncancelar.setText("cancelar");
+        btncancelar.setToolTipText("Descartar");
+        btncancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btncancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btncancelarMouseExited(evt);
+            }
+        });
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
+
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("Precio");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 80, 20));
+
+        txtpreciouno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpreciounoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtpreciouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 180, -1));
+
+        jLabel13.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel13.setText("preparado");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 80, 20));
+
+        txtpreparadouno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpreparadounoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtpreparadouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 180, -1));
+
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setText("idcategoria");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 80, 20));
+
+        txtidcategoriauno.setEditable(false);
+        txtidcategoriauno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidcategoriaunoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtidcategoriauno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 180, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 931, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelproducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelmodificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panelproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
         );
 
         pack();
@@ -465,6 +641,7 @@ public class productos extends javax.swing.JFrame {
             txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
             txtnombre.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el nombre
             txtprecio.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(),2).toString());
+            txtpreparado.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(),3).toString());
              panelproducto.setVisible(false);//deshabilita el panel donde esta tabla
               panelmodificar.setVisible(true);//habilita el panel donde estan los campos a modificar
         } else {
@@ -474,14 +651,16 @@ public class productos extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
 
-        if (txtid.getText().equals("") || (txtprecio.getText().equals("") ||(txtnombre.getText().equals("")))) {
+        if (txtid.getText().equals("") || (txtprecio.getText().equals("") ||(txtnombre.getText().equals("")) ||(txtpreparado.getText().equals("")))) {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria", null, JOptionPane.WARNING_MESSAGE);
             txtnombre.requestFocus();
         } else {
             String id = txtid.getText();
             String nombre = txtnombre.getText();
-            String precio=txtprecio.getText();
-            productos.modificarproducto(id, nombre,precio);
+            String precio = txtprecio.getText();
+            String preparado = txtpreparado.getText();
+            productos.modificarproducto(id, nombre,precio,preparado);
+            
             JOptionPane.showMessageDialog(null,"Modificacion exitosa");
             panelmodificar.setVisible(false);
             panelproducto.setVisible(true);
@@ -498,20 +677,15 @@ public class productos extends javax.swing.JFrame {
     }//GEN-LAST:event_btndescartarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        if (tblproducto.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
  
-        {
-            txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
-             String id = txtid.getText();
-            productos.eliminar(id);
+            
+            
               cerrar();
+              
            
            
             
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
-         
-        } 
+       
       
     }//GEN-LAST:event_btneliminarActionPerformed
 
@@ -521,7 +695,24 @@ public class productos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-       //a
+String dato[]= new String[3];
+        String valor=(String.valueOf(cmbcategorias.getSelectedIndex()+1));
+        
+        Contar();
+        
+        
+        
+        
+        
+        
+      
+       txtidcategoriauno.setText(valor);
+        jPanel2.setVisible(true);
+        panelproducto.setVisible(false);
+       
+        
+        
+        
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
@@ -564,6 +755,95 @@ public class productos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtnombreKeyTyped
 
+    private void txtpreparadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpreparadoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpreparadoKeyTyped
+
+    private void txtnombreunoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreunoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreunoKeyTyped
+
+    private void btninsertarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninsertarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btninsertarMouseEntered
+
+    private void btninsertarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninsertarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btninsertarMouseExited
+
+    private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
+      // txtnombreuno.requestFocus();
+             
+          
+            
+            //productos.insertarproducto(precio, nombre, precio, preparado, precio);
+            
+     /*       JOptionPane.showMessageDialog(null,"Modificacion exitosa");
+            jPanel2.setVisible(false);
+            panelproducto.setVisible(true);
+            ActualizarTabla();
+*/
+        
+//        String dato[]= new String[5];
+//        dato[0]=txtiduno.getText();
+//        dato[1]=txtnombreuno.getText();
+//        dato[2]=txtpreciouno.getText();
+//        dato[3]=txtpreparadouno.getText();
+//        dato[4]=txtidcategoriauno.getText();
+       
+        
+       
+            String IdProductos = txtiduno.getText();
+            String nombre = txtnombreuno.getText();
+            double precio = Double.parseDouble(txtpreciouno.getText());
+            String IdCategoria= txtidcategoriauno.getText();
+            String  esPreparado= txtpreparadouno.getText();
+            productos.insertarproducto( IdProductos, nombre, precio, esPreparado,IdCategoria);
+             ActualizarTabla();
+            // modeloProducto.addRow(dato);
+       
+             txtnombreuno.setText("");
+             txtpreciouno.setText("");
+             txtpreparadouno.setText("");
+            //productos.insertarproducto( IdProductos, nombre, precio, esPreparado,IdCategoria);
+             jPanel2.setVisible(false);
+              panelproducto.setVisible(true);
+        
+    }//GEN-LAST:event_btninsertarActionPerformed
+
+    private void btncancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncancelarMouseEntered
+
+    private void btncancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncancelarMouseExited
+
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        jPanel2.setVisible(false);
+        panelproducto.setVisible(true);   
+    }//GEN-LAST:event_btncancelarActionPerformed
+
+    private void txtpreciounoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpreciounoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpreciounoKeyTyped
+
+    private void txtpreparadounoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpreparadounoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpreparadounoKeyTyped
+
+    private void txtidcategoriaunoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidcategoriaunoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidcategoriaunoKeyTyped
+
+    private void txtpreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpreparadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpreparadoActionPerformed
+
+    private void txtidunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidunoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -596,6 +876,7 @@ public class productos extends javax.swing.JFrame {
             public void run() {
                 new productos().setVisible(true);
             }
+            
         });
     }
     
@@ -605,13 +886,14 @@ public class productos extends javax.swing.JFrame {
         rs = productos.llenarProductos(seleccionado);
         //modeloProducto.addColumn("IdCategorias");
         //modeloProducto.addColumn("nombre");
-        String[] dato=new String[3]; 
+        String[] dato=new String[4]; 
         modeloProducto.setRowCount(0);//borra las filas 
         try {
             while (rs.next()) {
                 dato[0]=rs.getString(1);
                 dato[1]=rs.getString(2);
                 dato[2]=rs.getString(3);
+                dato[3]=rs.getString(4);
                 modeloProducto.addRow(dato);
             }
         } catch (SQLException ex) {
@@ -631,6 +913,23 @@ JOptionPane.YES_NO_OPTION,
 JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
 if (eleccion == JOptionPane.YES_OPTION)
 {
+       if (tblproducto.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+ 
+        {
+            txtid.setText(modeloProducto.getValueAt(tblproducto.getSelectedRow(), 0).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+             String id = txtid.getText();
+            productos.eliminar(id);
+            
+              
+              
+           
+           
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
+         
+        } 
+   
  ActualizarTabla();
  JOptionPane.showMessageDialog(null, "dato eliminado con exito ");
 }else{
@@ -642,27 +941,43 @@ if (eleccion == JOptionPane.YES_OPTION)
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncancelar;
     private javax.swing.JButton btndescartar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btninsertar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cmbcategorias;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelmodificar;
     private javax.swing.JPanel panelproducto;
     private javax.swing.JTable tblproducto;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtidcategoriauno;
+    private javax.swing.JTextField txtiduno;
     private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txtnombreuno;
     private javax.swing.JTextField txtprecio;
+    private javax.swing.JTextField txtpreciouno;
+    private javax.swing.JTextField txtpreparado;
+    private javax.swing.JTextField txtpreparadouno;
     // End of variables declaration//GEN-END:variables
 }
