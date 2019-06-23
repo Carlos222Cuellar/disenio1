@@ -72,6 +72,8 @@ public class controladorproducto {
         return (cn.getValores("SELECT MAX(IdProductos) FROM productos "));
       }
       
-       
+       public ResultSet traerprecio(String producto){
+        return (cn.getValores("select IdProductos,precio from Productos where nombre like '"+producto+"';"));
+      }
     
 }

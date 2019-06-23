@@ -33,7 +33,7 @@ public class agregar_producto extends javax.swing.JFrame {
     controladorcategoria categorias = new controladorcategoria();
     String seleccionado;
 
-   DefaultTableModel modeloAgregarProducto = new DefaultTableModel();
+   DefaultTableModel modeloorden = new DefaultTableModel();
    
    
     
@@ -60,7 +60,7 @@ public class agregar_producto extends javax.swing.JFrame {
     public agregar_producto(String id) {
         initComponents();
         
-        this.txtIdOrden.setText(id);
+        this.txtorden.setText(id);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());//se quita el icono de la taza de java
         this.setTitle("Agregar Productos");
          this.setExtendedState(MAXIMIZED_BOTH);
@@ -86,12 +86,12 @@ public class agregar_producto extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
-        txtIdOrden = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txtorden = new javax.swing.JTextField();
+        txtobservacion = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblAgregarPouctos = new javax.swing.JTable();
+        tblordenes = new javax.swing.JTable();
         btneliminar = new javax.swing.JButton();
         btnagregar = new javax.swing.JButton();
         postres = new org.edisoncor.gui.panel.PanelRound();
@@ -136,9 +136,7 @@ public class agregar_producto extends javax.swing.JFrame {
         btnplatos = new javax.swing.JButton();
         btnbebidas = new javax.swing.JButton();
         btnpostres = new javax.swing.JButton();
-        btnguardar1 = new javax.swing.JButton();
         btnquitar = new javax.swing.JButton();
-        btnquitar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,18 +182,18 @@ public class agregar_producto extends javax.swing.JFrame {
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 670, 110, 40));
 
-        txtIdOrden.setEditable(false);
-        txtIdOrden.setBackground(new java.awt.Color(0, 255, 204));
-        txtIdOrden.setFocusable(false);
-        jPanel1.add(txtIdOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 60, -1));
+        txtorden.setEditable(false);
+        txtorden.setBackground(new java.awt.Color(0, 255, 204));
+        txtorden.setFocusable(false);
+        jPanel1.add(txtorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, 60, -1));
 
-        jTextField10.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        txtobservacion.setBackground(new java.awt.Color(0, 255, 204));
+        txtobservacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                txtobservacionActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 140, 350, 70));
+        jPanel1.add(txtobservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 140, 350, 70));
 
         btnsalir.setBackground(new java.awt.Color(102, 255, 102));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dispose.png"))); // NOI18N
@@ -226,62 +224,61 @@ public class agregar_producto extends javax.swing.JFrame {
         jLabel2.setText("Orden:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 110, 70, 20));
 
-        tblAgregarPouctos.setBackground(new java.awt.Color(204, 255, 255));
-        tblAgregarPouctos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        tblAgregarPouctos.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        tblAgregarPouctos.setForeground(new java.awt.Color(51, 0, 51));
-        tblAgregarPouctos.setModel(new javax.swing.table.DefaultTableModel(
+        tblordenes.setBackground(new java.awt.Color(204, 255, 255));
+        tblordenes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Producto", "Cantidad", "P/c", "Subtotal"
+                "IdProducto", "Producto", "Cantidad", "P/c", "Subtotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -292,8 +289,8 @@ public class agregar_producto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblAgregarPouctos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(tblAgregarPouctos);
+        tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(tblordenes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 570, 370));
 
@@ -336,6 +333,11 @@ public class agregar_producto extends javax.swing.JFrame {
                 btnagregarMouseEntered(evt);
             }
         });
+        btnagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 630, 50, -1));
 
         postres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -365,6 +367,11 @@ public class agregar_producto extends javax.swing.JFrame {
         postres.add(btnpostre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
         btnpostre4.setText("Pastel");
+        btnpostre4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre4ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
         btnpostre5.setText("Milhoja");
@@ -384,15 +391,35 @@ public class agregar_producto extends javax.swing.JFrame {
         postres.add(btnpostre6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 90));
 
         btnpostre7.setText("Gelato");
+        btnpostre7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre7ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
 
         btnpostre8.setText("Tiramisu");
+        btnpostre8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre8ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
 
         btnpostre9.setText("Alfajor");
+        btnpostre9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre9ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
         btnpostre10.setText("Crepa");
+        btnpostre10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpostre10ActionPerformed(evt);
+            }
+        });
         postres.add(btnpostre10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
         btnpostre11.setText("Gelatina");
@@ -416,39 +443,99 @@ public class agregar_producto extends javax.swing.JFrame {
         bebidas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnbebida1.setText("Cafe");
+        btnbebida1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida1ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
         btnbebida2.setText("Agua");
+        btnbebida2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida2ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, 90));
 
         btnbebida3.setText("Mate");
+        btnbebida3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida3ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
         btnbebida4.setText("Cebada");
+        btnbebida4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida4ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
         btnbebida5.setText("Leche");
+        btnbebida5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida5ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
         btnbebida6.setText("Licuado");
+        btnbebida6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida6ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 100, 90));
 
         btnbebida7.setText("Te");
+        btnbebida7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida7ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 100, 90));
 
         btnbebida8.setText("Mojito");
+        btnbebida8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida8ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 100, 90));
 
         btnbebida9.setText("Vino");
+        btnbebida9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida9ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
         btnbebida10.setText("Choco");
+        btnbebida10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida10ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 100, 90));
 
         btnbebida11.setText("Soda");
+        btnbebida11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida11ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
         btnbebida12.setText("Horchata");
+        btnbebida12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbebida12ActionPerformed(evt);
+            }
+        });
         bebidas.add(btnbebida12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 90));
 
         jPanel1.add(bebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
@@ -456,39 +543,99 @@ public class agregar_producto extends javax.swing.JFrame {
         platos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnplato1.setText("Carne ");
+        btnplato1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato1ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 90));
 
         btnplato2.setText("Estofado");
+        btnplato2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato2ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 90));
 
         btnplato3.setText("Pasta");
+        btnplato3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato3ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 90, 90));
 
         btnplato4.setText("Ramen");
+        btnplato4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato4ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 100, 90));
 
         btnplato5.setText("Flauta");
+        btnplato5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato5ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 90, 90));
 
         btnplato6.setText("Sopa");
+        btnplato6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato6ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 90, 90));
 
         btnplato7.setText("Arroz");
+        btnplato7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato7ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, 90));
 
         btnplato8.setText("Pescado");
+        btnplato8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato8ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, 90));
 
         btnplato9.setText("Guiso");
+        btnplato9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato9ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 90, 90));
 
         btnplato10.setText("Vegetal");
+        btnplato10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato10ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 90, 90));
 
         btnplato11.setText("Pollo");
+        btnplato11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato11ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 100, 90));
 
         btnplato12.setText("Pupusa");
+        btnplato12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplato12ActionPerformed(evt);
+            }
+        });
         platos.add(btnplato12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 90));
 
         jPanel1.add(platos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 570, 610));
@@ -532,25 +679,6 @@ public class agregar_producto extends javax.swing.JFrame {
         });
         jPanel1.add(btnpostres, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 30, 110, -1));
 
-        btnguardar1.setBackground(new java.awt.Color(102, 255, 102));
-        btnguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        btnguardar1.setText("guardar");
-        btnguardar1.setBorder(null);
-        btnguardar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnguardar1MouseMoved(evt);
-            }
-        });
-        btnguardar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnguardar1MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnguardar1MouseEntered(evt);
-            }
-        });
-        jPanel1.add(btnguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 670, 110, 40));
-
         btnquitar.setBackground(new java.awt.Color(102, 204, 102));
         btnquitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
         btnquitar.setBorderPainted(false);
@@ -567,16 +695,12 @@ public class agregar_producto extends javax.swing.JFrame {
                 btnquitarMouseEntered(evt);
             }
         });
-        jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 630, 50, 25));
-
-        btnquitar1.setBackground(new java.awt.Color(102, 204, 102));
-        btnquitar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
-        btnquitar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnquitar1MouseMoved(evt);
+        btnquitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnquitarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnquitar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 630, 50, 20));
+        jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 630, 50, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -617,9 +741,9 @@ public class agregar_producto extends javax.swing.JFrame {
         btnsalir.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
     }//GEN-LAST:event_btnsalirMouseMoved
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txtobservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtobservacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txtobservacionActionPerformed
 
     private void btnguardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseEntered
         // TODO add your handling code here:
@@ -765,28 +889,12 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
     }//GEN-LAST:event_btnpostresActionPerformed
 
-    private void btnguardar1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardar1MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguardar1MouseMoved
-
-    private void btnguardar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardar1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguardar1MouseExited
-
-    private void btnguardar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardar1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguardar1MouseEntered
-
     private void btnquitarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseMoved
         // TODO add your handling code here:
         String texto="Quitar";
         btnquitar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
   
     }//GEN-LAST:event_btnquitarMouseMoved
-
-    private void btnquitar1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitar1MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnquitar1MouseMoved
 
     private void btneliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseEntered
         // TODO add your handling code here:
@@ -820,49 +928,1008 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
+        estatico=1;
+        if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+            valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
+          Nvalor=Integer.parseInt(valor);
+            if(Nvalor>1){
+
+          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
+          Nvalor=Integer.parseInt(valor)-estatico;
+           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 2);
+           valorp=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 3));
+            subtotal=Double.parseDouble(valorp)*Nvalor;
+            tblordenes.setValueAt(subtotal,tblordenes.getSelectedRow(), 4);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede eliminar cantidades iguales a uno");
+        } 
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
+         }
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnpostre11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre11ActionPerformed
-     controladorproducto  cp = new controladorproducto();
-     ResultSet rs = cp.findByName("Gelatina");
+   
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre11.getText());
+        dato[1]=btnpostre11.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
      
-     this.modeloAgregarProducto.addColumn("producto");
-       this.modeloAgregarProducto.addColumn("cantidad");
-         this.modeloAgregarProducto.addColumn("P/c");
-           this.modeloAgregarProducto.addColumn("subtotal");
-           
-           
-           
-           
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre11.setEnabled(false); 
     }//GEN-LAST:event_btnpostre11ActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
      //llamar a la query de la tabla detalle orden y ahi poner los id del producto y de la orden 
+     String IdOrden = txtorden.getText();
+        String observacion = txtobservacion.getText();
+
+        if (IdOrden.isEmpty() ||  observacion.isEmpty()  ) {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+        } else {
+          
+            
+            txtorden.setText("");
+           
+           
+            
+            JOptionPane.showMessageDialog(null, "Registro agregado");
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnpostre6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre6ActionPerformed
-        // TODO add your handling code here:
+       
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre6.getText());
+        dato[1]=btnpostre6.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre6.setEnabled(false); 
     }//GEN-LAST:event_btnpostre6ActionPerformed
 
     private void btnpostre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre2ActionPerformed
-        // TODO add your handling code here:
+        
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre2.getText());
+        dato[1]=btnpostre2.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre2.setEnabled(false); 
     }//GEN-LAST:event_btnpostre2ActionPerformed
 
     private void btnpostre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre3ActionPerformed
-        // TODO add your handling code here:
+     
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre3.getText());
+        dato[1]=btnpostre3.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre3.setEnabled(false); 
     }//GEN-LAST:event_btnpostre3ActionPerformed
 
     private void btnpostre5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre5ActionPerformed
-        // TODO add your handling code here:
+       
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre5.getText());
+        dato[1]=btnpostre5.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre5.setEnabled(false); 
     }//GEN-LAST:event_btnpostre5ActionPerformed
 
     private void btnpostre12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre12ActionPerformed
-        // TODO add your handling code here:
+       
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre12.getText());
+        dato[1]=btnpostre12.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre12.setEnabled(false); 
     }//GEN-LAST:event_btnpostre12ActionPerformed
 
     private void btnpostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre1ActionPerformed
         // TODO add your handling code here:
+        
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre1.getText());
+        dato[1]=btnpostre1.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre1.setEnabled(false); 
     }//GEN-LAST:event_btnpostre1ActionPerformed
+
+    private void btnpostre4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre4ActionPerformed
+      
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre4.getText());
+        dato[1]=btnpostre4.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre4.setEnabled(false); 
+    }//GEN-LAST:event_btnpostre4ActionPerformed
+
+    private void btnpostre7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre7ActionPerformed
+        
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre7.getText());
+        dato[1]=btnpostre7.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre7.setEnabled(false); 
+    }//GEN-LAST:event_btnpostre7ActionPerformed
+
+    private void btnpostre8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre8ActionPerformed
+       
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre8.getText());
+        dato[1]=btnpostre8.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre8.setEnabled(false); 
+    }//GEN-LAST:event_btnpostre8ActionPerformed
+
+    private void btnpostre9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre9ActionPerformed
+        
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre9.getText());
+        dato[1]=btnpostre9.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre9.setEnabled(false); 
+    }//GEN-LAST:event_btnpostre9ActionPerformed
+
+    private void btnpostre10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre10ActionPerformed
+        
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnpostre10.getText());
+        dato[1]=btnpostre10.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnpostre10.setEnabled(false); 
+    }//GEN-LAST:event_btnpostre10ActionPerformed
+
+    private void btnbebida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida1ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida1.getText());
+        dato[1]=btnbebida1.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida1.setEnabled(false);
+    }//GEN-LAST:event_btnbebida1ActionPerformed
+
+    private void btnbebida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida2ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida2.getText());
+        dato[1]=btnbebida2.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida2.setEnabled(false);
+    }//GEN-LAST:event_btnbebida2ActionPerformed
+
+    private void btnbebida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida3ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida3.getText());
+        dato[1]=btnbebida3.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida3.setEnabled(false);
+    }//GEN-LAST:event_btnbebida3ActionPerformed
+
+    private void btnbebida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida4ActionPerformed
+       int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida4.getText());
+        dato[1]=btnbebida4.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida4.setEnabled(false);
+    }//GEN-LAST:event_btnbebida4ActionPerformed
+
+    private void btnbebida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida5ActionPerformed
+       int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida5.getText());
+        dato[1]=btnbebida5.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida5.setEnabled(false);
+    }//GEN-LAST:event_btnbebida5ActionPerformed
+
+    private void btnbebida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida6ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida6.getText());
+        dato[1]=btnbebida6.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida6.setEnabled(false);
+    }//GEN-LAST:event_btnbebida6ActionPerformed
+
+    private void btnbebida7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida7ActionPerformed
+     int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida7.getText());
+        dato[1]=btnbebida7.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida7.setEnabled(false);
+    }//GEN-LAST:event_btnbebida7ActionPerformed
+
+    private void btnbebida8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida8ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida8.getText());
+        dato[1]=btnbebida8.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida8.setEnabled(false);
+    }//GEN-LAST:event_btnbebida8ActionPerformed
+
+    private void btnbebida9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida9ActionPerformed
+       int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida9.getText());
+        dato[1]=btnbebida9.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida9.setEnabled(false);
+    }//GEN-LAST:event_btnbebida9ActionPerformed
+
+    private void btnbebida10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida10ActionPerformed
+      int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida10.getText());
+        dato[1]=btnbebida10.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida10.setEnabled(false);
+    }//GEN-LAST:event_btnbebida10ActionPerformed
+
+    private void btnbebida11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida11ActionPerformed
+      int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida11.getText());
+        dato[1]=btnbebida11.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida11.setEnabled(false);
+    }//GEN-LAST:event_btnbebida11ActionPerformed
+
+    private void btnbebida12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida12ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnbebida12.getText());
+        dato[1]=btnbebida12.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnbebida12.setEnabled(false);
+    }//GEN-LAST:event_btnbebida12ActionPerformed
+
+    private void btnplato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato1ActionPerformed
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato1.getText());
+        dato[1]=btnplato1.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato1.setEnabled(false);
+    }//GEN-LAST:event_btnplato1ActionPerformed
+
+    private void btnplato2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato2ActionPerformed
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato2.getText());
+        dato[1]=btnplato2.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato2.setEnabled(false);
+    }//GEN-LAST:event_btnplato2ActionPerformed
+
+    private void btnplato3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato3ActionPerformed
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato3.getText());
+        dato[1]=btnplato3.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato3.setEnabled(false);
+    }//GEN-LAST:event_btnplato3ActionPerformed
+
+    private void btnplato4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato4ActionPerformed
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato4.getText());
+        dato[1]=btnplato4.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato4.setEnabled(false);
+    }//GEN-LAST:event_btnplato4ActionPerformed
+
+    private void btnplato5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato5ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato5.getText());
+        dato[1]=btnplato5.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato5.setEnabled(false);
+    }//GEN-LAST:event_btnplato5ActionPerformed
+
+    private void btnplato6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato6ActionPerformed
+        int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato6.getText());
+        dato[1]=btnplato6.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato6.setEnabled(false);
+    }//GEN-LAST:event_btnplato6ActionPerformed
+
+    private void btnplato7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato7ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato7.getText());
+        dato[1]=btnplato7.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato7.setEnabled(false);
+    }//GEN-LAST:event_btnplato7ActionPerformed
+
+    private void btnplato8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato8ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato8.getText());
+        dato[1]=btnplato8.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato8.setEnabled(false);
+    }//GEN-LAST:event_btnplato8ActionPerformed
+
+    private void btnplato9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato9ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato9.getText());
+        dato[1]=btnplato9.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato9.setEnabled(false);
+    }//GEN-LAST:event_btnplato9ActionPerformed
+
+    private void btnplato10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato10ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato10.getText());
+        dato[1]=btnplato10.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato10.setEnabled(false);
+    }//GEN-LAST:event_btnplato10ActionPerformed
+
+    private void btnplato11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato11ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato11.getText());
+        dato[1]=btnplato11.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato11.setEnabled(false);
+    }//GEN-LAST:event_btnplato11ActionPerformed
+
+    private void btnplato12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato12ActionPerformed
+        // TODO add your handling code here:
+         int contador=1;
+        rs = null;
+        Object[] dato=new Object[5]; 
+        
+          
+           rs=productos.traerprecio(btnplato12.getText());
+        dato[1]=btnplato12.getText();
+        dato[2]=""+contador;
+        try {
+            while (rs.next()) {
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        
+     
+         modeloorden.addRow(dato);
+        tblordenes.setModel(modeloorden);
+        this.btnplato12.setEnabled(false);
+    }//GEN-LAST:event_btnplato12ActionPerformed
+
+    
+    
+    int estatico;
+    String valor,valorp;
+    int Nvalor=0;
+    double subtotal=0;
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
+        // TODO add your handling code here:
+        estatico=1;
+        if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+//            int cantidad=Integer.parseInt(modeloorden.getValueAt(tblordenes.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+//          cantidad=cantidad+1;
+           //dato[1]=""+cantidad;
+            
+          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
+          Nvalor=Integer.parseInt(valor)+estatico;
+           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 2);
+            valorp=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 3));
+            subtotal=Double.parseDouble(valorp)*Nvalor;
+            tblordenes.setValueAt(subtotal,tblordenes.getSelectedRow(), 4);
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
+         } 
+
+    }//GEN-LAST:event_btnagregarActionPerformed
+
+    private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
+        // TODO add your handling code here:
+          if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+            
+          modeloorden.removeRow(tblordenes.getSelectedRow()); 
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
+         } 
+    }//GEN-LAST:event_btnquitarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,7 +1987,6 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JButton btnbebidas;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
-    private javax.swing.JButton btnguardar1;
     private javax.swing.JButton btnplato1;
     private javax.swing.JButton btnplato10;
     private javax.swing.JButton btnplato11;
@@ -948,18 +2014,17 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JButton btnpostre9;
     private javax.swing.JButton btnpostres;
     private javax.swing.JButton btnquitar;
-    private javax.swing.JButton btnquitar1;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField5;
     private org.edisoncor.gui.panel.PanelRound platos;
     private org.edisoncor.gui.panel.PanelRound postres;
-    private javax.swing.JTable tblAgregarPouctos;
-    private javax.swing.JTextField txtIdOrden;
+    private javax.swing.JTable tblordenes;
+    private javax.swing.JTextField txtobservacion;
+    private javax.swing.JTextField txtorden;
     // End of variables declaration//GEN-END:variables
 }

@@ -359,56 +359,56 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Productos", "Cantidad", "P/c", "Subtotal"
+                "IdProducto", "Productos", "Cantidad", "P/c", "Subtotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1145,13 +1145,16 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
             
         {
-            valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 1));
+            valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
           Nvalor=Integer.parseInt(valor);
             if(Nvalor>1){
 
-          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 1));
+          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
           Nvalor=Integer.parseInt(valor)-estatico;
-           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 1);
+           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 2);
+           valorp=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 3));
+            subtotal=Double.parseDouble(valorp)*Nvalor;
+            tblordenes.setValueAt(subtotal,tblordenes.getSelectedRow(), 4);
             }else{
                 JOptionPane.showMessageDialog(null, "No se puede eliminar cantidades iguales a uno");
         } 
@@ -1185,49 +1188,52 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnpostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre1ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre1.getText());
+        dato[1]=btnpostre1.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre1.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre1.setEnabled(false); 
+
     }//GEN-LAST:event_btnpostre1ActionPerformed
 
     private void btnpostre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre2ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+       int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre2.getText());
+        dato[1]=btnpostre2.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre2.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre2.setEnabled(false); 
@@ -1235,24 +1241,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnpostre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre3ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+     int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre3.getText());
+        dato[1]=btnpostre3.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre3.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre3.setEnabled(false); 
@@ -1260,24 +1267,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnpostre4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre4ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+       int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre4.getText());
+        dato[1]=btnpostre4.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre4.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre4.setEnabled(false); 
@@ -1287,22 +1295,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre5.getText());
+        dato[1]=btnpostre5.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre5.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre5.setEnabled(false); 
@@ -1312,22 +1321,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre6.getText());
+        dato[1]=btnpostre6.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre6.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre6.setEnabled(false); 
@@ -1335,24 +1345,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnpostre7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre7ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+       int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre7.getText());
+        dato[1]=btnpostre7.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre7.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre7.setEnabled(false); 
@@ -1362,22 +1373,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre8.getText());
+        dato[1]=btnpostre8.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre8.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre8.setEnabled(false); 
@@ -1387,22 +1399,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre9.getText());
+        dato[1]=btnpostre9.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre9.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre9.setEnabled(false); 
@@ -1412,22 +1425,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre10.getText());
+        dato[1]=btnpostre10.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre10.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre10.setEnabled(false); 
@@ -1437,22 +1451,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre11.getText());
+        dato[1]=btnpostre11.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre11.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre11.setEnabled(false); 
@@ -1460,24 +1475,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnpostre12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre12ActionPerformed
         // TODO add your handling code here:
-        int contador=1;
+      int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnpostre12.getText());
+        dato[1]=btnpostre12.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnpostre12.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnpostre12.setEnabled(false); 
@@ -1487,22 +1503,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida1.getText());
+        dato[1]=btnbebida1.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida1.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida1.setEnabled(false); 
@@ -1510,24 +1527,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida2ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida2.getText());
+        dato[1]=btnbebida2.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida2.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida2.setEnabled(false); 
@@ -1535,24 +1553,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida3ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida3.getText());
+        dato[1]=btnbebida3.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida3.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida3.setEnabled(false); 
@@ -1560,24 +1579,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida4ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida4.getText());
+        dato[1]=btnbebida4.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida4.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida4.setEnabled(false); 
@@ -1587,22 +1607,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida5.getText());
+        dato[1]=btnbebida5.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida5.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida5.setEnabled(false); 
@@ -1612,22 +1633,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida6.getText());
+        dato[1]=btnbebida6.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida7.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida6.setEnabled(false); 
@@ -1637,22 +1659,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida7.getText());
+        dato[1]=btnbebida7.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida7.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida7.setEnabled(false); 
@@ -1662,22 +1685,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida8.getText());
+        dato[1]=btnbebida8.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida8.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida8.setEnabled(false); 
@@ -1685,24 +1709,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida9ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida9.getText());
+        dato[1]=btnbebida9.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida9.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida9.setEnabled(false); 
@@ -1712,22 +1737,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida10.getText());
+        dato[1]=btnbebida10.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida10.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida10.setEnabled(false); 
@@ -1735,24 +1761,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida11ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida11.getText());
+        dato[1]=btnbebida11.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida11.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida11.setEnabled(false); 
@@ -1760,24 +1787,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnbebida12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbebida12ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnbebida12.getText());
+        dato[1]=btnbebida12.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnbebida12.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnbebida12.setEnabled(false); 
@@ -1787,22 +1815,23 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
           int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato1.getText());
+        dato[1]=btnplato1.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato1.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato1.setEnabled(false); 
@@ -1810,24 +1839,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato2ActionPerformed
         // TODO add your handling code here:
-          int contador=1;
+         int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato2.getText());
+        dato[1]=btnplato2.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato2.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato2.setEnabled(false); 
@@ -1835,24 +1865,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato3ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato3.getText());
+        dato[1]=btnplato3.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato3.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato3.setEnabled(false); 
@@ -1860,24 +1891,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato4ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato4.getText());
+        dato[1]=btnplato4.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato4.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato4.setEnabled(false); 
@@ -1885,24 +1917,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato5ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato5.getText());
+        dato[1]=btnplato5.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato5.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato5.setEnabled(false); 
@@ -1912,47 +1945,49 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
          int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato6.getText());
+        dato[1]=btnplato6.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato6.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
-        this.btnplato6.setEnabled(false); 
+        this.btnplato6.setEnabled(false);  
     }//GEN-LAST:event_btnplato6ActionPerformed
 
     private void btnplato7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato7ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato7.getText());
+        dato[1]=btnplato7.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato7.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato7.setEnabled(false); 
@@ -1960,24 +1995,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato8ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato8.getText());
+        dato[1]=btnplato8.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato8.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato8.setEnabled(false); 
@@ -1985,24 +2021,25 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato9ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato9.getText());
+        dato[1]=btnplato9.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato9.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato9.setEnabled(false); 
@@ -2010,49 +2047,51 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato10ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato10.getText());
+        dato[1]=btnplato10.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato10.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
-        this.btnplato10.setEnabled(false); 
+        this.btnplato10.setEnabled(false);  
     }//GEN-LAST:event_btnplato10ActionPerformed
 
     private void btnplato11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato11ActionPerformed
         // TODO add your handling code here:
          int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato11.getText());
+        dato[1]=btnplato11.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato11.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
         this.btnplato11.setEnabled(false); 
@@ -2060,36 +2099,37 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 
     private void btnplato12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplato12ActionPerformed
         // TODO add your handling code here:
-         int contador=1;
+        int contador=1;
         rs = null;
+        Object[] dato=new Object[5]; 
         
-        rs = productos.llenarProductos(seleccionado);
-        //modeloProducto.addColumn("IdCategorias");
-        //modeloProducto.addColumn("nombre");
-        Object[] dato=new Object[4]; 
-        
+          
+           rs=productos.traerprecio(btnplato12.getText());
+        dato[1]=btnplato12.getText();
+        dato[2]=""+contador;
         try {
             while (rs.next()) {
-                dato[2]=rs.getString(3);
-                dato[3]=rs.getString(3);
+                dato[3]=rs.getString(2);
+                dato[4]=rs.getString(2);
+                dato[0]=rs.getString(1);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         }
-        dato[0]=btnplato12.getText();
-        dato[1]=""+contador;
+        
+     
          modeloorden.addRow(dato);
         tblordenes.setModel(modeloorden);
-        this.btnplato2.setEnabled(false); 
+        this.btnplato12.setEnabled(false);  
     }//GEN-LAST:event_btnplato12ActionPerformed
 
      int estatico;
-    String valor;
+    String valor,valorp;
     int Nvalor=0;
-    
+     double subtotal=0;
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         // TODO add your handling code here:
-         estatico=1;
+           estatico=1;
         if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
             
         {
@@ -2097,9 +2137,12 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
 //          cantidad=cantidad+1;
            //dato[1]=""+cantidad;
             
-          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 1));
+          valor=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 2));
           Nvalor=Integer.parseInt(valor)+estatico;
-           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 1);
+           tblordenes.setValueAt(Nvalor,tblordenes.getSelectedRow(), 2);
+            valorp=String.valueOf(tblordenes.getValueAt(tblordenes.getSelectedRow(), 3));
+            subtotal=Double.parseDouble(valorp)*Nvalor;
+            tblordenes.setValueAt(subtotal,tblordenes.getSelectedRow(), 4);
            
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
