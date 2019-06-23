@@ -5,6 +5,7 @@ import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,9 +27,26 @@ public class productos extends javax.swing.JFrame {
      */
     
     DefaultTableModel modeloProducto = new DefaultTableModel();
+     DefaultComboBoxModel modelocategorias = new DefaultComboBoxModel();
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
+     controladorcategoria categorias = new controladorcategoria();
     String seleccionado;
+    
+    public void llenarcategorias(){
+    //Llenando el cmbcategorias mediante un modelo
+        rs = categorias.llenarCategorias();
+        
+        try {
+            while (rs.next()) {
+                modelocategorias.addElement(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        cmbcategorias.setModel(modelocategorias);
+    
+    }
     
      public void Contar() {
          
@@ -69,7 +87,7 @@ public class productos extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Productos");
          this.setLocationRelativeTo(null);
-         
+         llenarcategorias();
          panelmodificar.setVisible(false);
         modeloProducto.addColumn("Idproducto");
         modeloProducto.addColumn("Nombre");

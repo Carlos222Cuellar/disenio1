@@ -1,4 +1,5 @@
 
+import Resbar.controladorcategoria;
 import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -29,13 +30,32 @@ public class agregar_producto extends javax.swing.JFrame {
    
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
+    controladorcategoria categorias = new controladorcategoria();
     String seleccionado;
 
    DefaultTableModel modeloAgregarProducto = new DefaultTableModel();
    
    
     
-   
+   public void llenarbotones(){
+      rs=null;
+      //Llenando el cmbDepartamento mediante un modelo
+        rs = categorias.llenarCategorias();
+           Vector producto=new Vector(3,5);
+        try {
+            while (rs.next()) {
+               producto.addElement(rs.getString(2));
+               
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+          btnplatos.setText((String) producto.elementAt(0));
+        btnbebidas.setText((String) producto.elementAt(1));
+        btnpostres.setText((String) producto.elementAt(2));
+       
+      
+  }
     
     public agregar_producto(String id) {
         initComponents();
@@ -44,6 +64,7 @@ public class agregar_producto extends javax.swing.JFrame {
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());//se quita el icono de la taza de java
         this.setTitle("Agregar Productos");
          this.setExtendedState(MAXIMIZED_BOTH);
+         llenarbotones();
          bebidas.setVisible(false);
          postres.setVisible(false);
          platos.setVisible(true);
