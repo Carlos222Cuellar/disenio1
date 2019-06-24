@@ -246,46 +246,7 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
         tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "IdProducto", "Producto", "Cantidad", "P/c", "Subtotal"
@@ -1073,20 +1034,28 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         // TODO add your handling code here:
         
          String IdOrden = txtorden.getText();
-       
         String observacion = txtobservacion.getText();
-
-        if (IdOrden.isEmpty() || observacion.isEmpty()  ) {
+        
+        if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
+              if (IdOrden.isEmpty() || observacion.isEmpty()  ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-           
+            if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
+              JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
+            }
+            //orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
             
-            txtorden.setText("");
            
            
             
             JOptionPane.showMessageDialog(null, "Registro agregado");
         }
+            }
+        else{
+        JOptionPane.showMessageDialog(null, "Ingrese algun producto para registrar la orden");
+        tblordenes.requestFocus();
+        }
+
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnpostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre1ActionPerformed

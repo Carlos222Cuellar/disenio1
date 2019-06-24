@@ -28,6 +28,28 @@ public class clasenuevaorden {
     
          
           public void insertar(String IdOrden ,String mesa, String mesero, String cliente, String observacion) {
-        cn.UID("INSERT INTO Ordenes(IdOrden,mesa,mesero,cliente,observacion) VALUES('" + IdOrden + "','" + mesa + "','" + mesero + "','" + cliente + "','" + observacion + "')");
+          cn.UID("INSERT INTO Ordenes(IdOrden,mesa,mesero,cliente,observacion) VALUES('" + IdOrden + "','" + mesa + "','" + mesero + "','" + cliente + "','" + observacion + "')");
     }
+          
+          
+            public void insertardetalleorden(String IdOrden ,String IdProducto, String cantidad, String precio) {
+            cn.UID("INSERT INTO DetalleOrden(IdOrden,IdProductos,cantidad,precio) VALUES('" + IdOrden + "','" + IdProducto + "','" + cantidad + "','" + precio + "')");
+            
+            
+            
+    }
+            
+            public void actualizardetalleorden(String idorden,String idproductos,String cantidad,String precio){
+            cn.UID("UPDATE DetalleOrden SET IdProductos='" + idproductos + "', cantidad='" + cantidad + "', precio='" + precio + "' WHERE IdOrden='" + idorden + "'");
+  
+            
+            }
+            
+            public void actualizarorden(String idorden,String observacion){
+            cn.UID("UPDATE Ordenes SET  observacion='" + observacion + "' WHERE IdOrden='" + idorden + "'");
+   
+            
+            }
+            
+          
 }

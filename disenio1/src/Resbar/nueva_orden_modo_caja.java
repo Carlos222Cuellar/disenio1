@@ -37,7 +37,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
      DefaultTableModel modeloorden = new DefaultTableModel();
    
     
-        clasenuevaorden id = new clasenuevaorden();
+        clasenuevaorden orden = new clasenuevaorden();
     
     
     
@@ -51,7 +51,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
       public void Contar() {
         int mayor = 0;
         rs = null;
-        rs = id.contarRegistros();
+        rs = orden.contarRegistros();
 
         try {
             while (rs.next()) {
@@ -359,46 +359,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         tblordenes.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         tblordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "IdProducto", "Productos", "Cantidad", "P/c", "Subtotal"
@@ -1165,25 +1126,44 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
          }
     }//GEN-LAST:event_btneliminarActionPerformed
 
+    
+              String idproducto="";
+              String cantidad="";
+              String precio="";   
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
      
-       String IdOrden = txtorden.getText();
+         String IdOrden = txtorden.getText();
         String mesa = txtmesa.getText();
         String mesero = txtmesero.getText();
         String cliente = txtcliente.getText();
         String observacion = txtobservacion.getText();
-
-        if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty() || observacion.isEmpty()  ) {
+        
+        if(this.tblordenes.getRowCount()!=0 ){
+              if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty() || observacion.isEmpty()  ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-            id.insertar(IdOrden, mesa, mesero, cliente, observacion);
-            
-            txtorden.setText("");
-            txtmesa.setText("");
+            if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
+              JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
+            }
+            orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
+            for(int i=0;i<tblordenes.getRowCount();i++){
+              idproducto=tblordenes.getValueAt(i,0).toString();
+               cantidad=tblordenes.getValueAt(i,2).toString();
+                precio=tblordenes.getValueAt(i,3).toString();
+                orden.insertardetalleorden(IdOrden, idproducto, cantidad, precio);
+            }
+           
            
             
             JOptionPane.showMessageDialog(null, "Registro agregado");
         }
+            }
+        else{
+        JOptionPane.showMessageDialog(null, "Ingrese algun producto para registrar la orden");
+        tblordenes.requestFocus();
+        }
+
+        
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnpostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre1ActionPerformed
