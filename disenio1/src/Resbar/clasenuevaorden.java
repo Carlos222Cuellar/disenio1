@@ -27,8 +27,8 @@ public class clasenuevaorden {
     }
     
          
-          public void insertar(String IdOrden ,String mesa, String mesero, String cliente, String observacion) {
-          cn.UID("INSERT INTO Ordenes(IdOrden,mesa,mesero,cliente,observacion) VALUES('" + IdOrden + "','" + mesa + "','" + mesero + "','" + cliente + "','" + observacion + "')");
+          public void insertar(String IdOrden ,String mesa, String mesero, String cliente, String observacion,String fecha,String estado,String total) {
+          cn.UID("INSERT INTO Ordenes(IdOrden,mesa,mesero,cliente,observacion,fecha,estado,total) VALUES('" + IdOrden + "','" + mesa + "','" + mesero + "','" + cliente + "','" + observacion + "','" + fecha + "','" + estado + "','" + total + "')");
     }
           
           
@@ -51,5 +51,5 @@ public class clasenuevaorden {
             
             }
             
-          
-}
+                
+    } 

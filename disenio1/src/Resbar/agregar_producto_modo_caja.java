@@ -1992,7 +1992,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto("0").setVisible(true);
+                new agregar_producto("0","").setVisible(true);
             }
         });
     }

@@ -21,4 +21,11 @@ public class controladorOrdenes {
         return (cn.getValores("SELECT * FROM Ordenes"));
     }
     
+    
+    public ResultSet buscarobervacion(String Id){
+        
+        return (cn.getValores("select observacion from Ordenes where IdOrden='"+Id+"'"));
+       
+    }
+    
 }

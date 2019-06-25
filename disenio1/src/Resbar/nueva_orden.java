@@ -7,7 +7,9 @@ import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -1055,10 +1057,18 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
               String idproducto="";
               String cantidad="";
               String precio="";
-    
+              String fecha="";
+              String estado="A";
+              String total="1.00";
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
        
-           
+         Date objDate = new Date(); // Sistema actual La fecha y la hora se asignan a objDate 
+ 
+      //  System.out.println(objDate); 
+        String strDateFormat = " YYYY-MM-dd"; // El formato de fecha está especificado  
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat); // La cadena de formato de fecha se pasa como un argumento al objeto 
+       /*de formato de fecha  */fecha=(objSDF.format(objDate)); // El formato de fecha se aplica a la fecha actual
+      
         String IdOrden = txtorden.getText();
         String mesa = txtmesa.getText();
         String mesero = txtmesero.getText();
@@ -1069,10 +1079,10 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
               if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty() || observacion.isEmpty()  ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-            if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
+            if(this.tblordenes.getRowCount()!=0 ){
               JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
             }
-            orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
+            orden.insertar(IdOrden, mesa, mesero, cliente, observacion,fecha,estado,total);
             for(int i=0;i<tblordenes.getRowCount();i++){
               idproducto=tblordenes.getValueAt(i,0).toString();
                cantidad=tblordenes.getValueAt(i,2).toString();
@@ -2157,7 +2167,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto("0").setVisible(true);
+                new agregar_producto("0","").setVisible(true);
             }
         });
     }

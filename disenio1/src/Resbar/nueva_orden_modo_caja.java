@@ -1145,7 +1145,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
             if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
               JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
             }
-            orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
+           // orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
             for(int i=0;i<tblordenes.getRowCount();i++){
               idproducto=tblordenes.getValueAt(i,0).toString();
                cantidad=tblordenes.getValueAt(i,2).toString();
@@ -2173,7 +2173,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto("").setVisible(true);
+                new agregar_producto("","").setVisible(true);
             }
         });
     }

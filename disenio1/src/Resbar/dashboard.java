@@ -53,7 +53,7 @@ public class dashboard extends javax.swing.JFrame {
      DefaultTableModel modeloOrdenes = new DefaultTableModel();
     ResultSet rs = null;
     controladorOrdenes ordenes = new controladorOrdenes();
-    
+    ControladorAgregarOrden agregarorden = new ControladorAgregarOrden();
     
     public dashboard() {
         initComponents();
@@ -609,6 +609,16 @@ public class dashboard extends javax.swing.JFrame {
                 txtfiltroMouseClicked(evt);
             }
         });
+        txtfiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfiltroActionPerformed(evt);
+            }
+        });
+        txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 340, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -724,24 +734,42 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
          btncobrarorden.setBackground(new Color(102,255,102));
     }//GEN-LAST:event_btncobrarordenMouseExited
 
-    private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
-        // TODO add your handling code here:
-        //if(rbtnmodomesa.isSelected()==true){
-        //agregar_producto agregar=new agregar_producto();
-        //agregar.setVisible(true);
-        //this.dispose();
-        //}else{
-        //agregar_producto_modo_caja agregarModoCaja=new agregar_producto_modo_caja();
-        //agregarModoCaja.setVisible(true);
-        //this.dispose();
-        //}
+     String observacion="";
+     int ordenid;
+     public void Observacion(int idorden){
+             rs = null;
+             rs=agregarorden.buscarobervacion(idorden);
+         String[] dato=new String[1]; 
         
-         if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+       
+             observacion=dato[0];
+             }
+    
+    private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
+        
+        
+             
+       
+        if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
 
-        {
-            agregar_producto ap = new agregar_producto(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
-          
+        {     
+           
+             String orden=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString();
+             ordenid=Integer.parseInt(orden);
+             Observacion(ordenid);
             
+            agregar_producto ap = new agregar_producto(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString(),observacion);
+          
+           
             ap.setVisible(true);
            
             
@@ -909,6 +937,15 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
         // TODO add your handling code here:
         txtfiltro.setText("BUSCAR");
     }//GEN-LAST:event_txtfiltroFocusLost
+
+    private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
+
+        
+    }//GEN-LAST:event_txtfiltroKeyReleased
+
+    private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfiltroActionPerformed
 
     /**
      * @param args the command line arguments

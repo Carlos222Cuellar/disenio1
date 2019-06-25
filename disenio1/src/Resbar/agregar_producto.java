@@ -57,11 +57,17 @@ public class agregar_producto extends javax.swing.JFrame {
        
       
   }
+   
+   
+   public void llenarobservacion(){
+   
+   }
     
-    public agregar_producto(String id) {
+    public agregar_producto(String id,String observacion) {
         initComponents();
         
         this.txtorden.setText(id);
+        this.txtobservacion.setText(observacion);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());//se quita el icono de la taza de java
         this.setTitle("Agregar Productos");
          this.setExtendedState(MAXIMIZED_BOTH);
@@ -69,6 +75,11 @@ public class agregar_producto extends javax.swing.JFrame {
          bebidas.setVisible(false);
          postres.setVisible(false);
          platos.setVisible(true);
+        modeloorden.addColumn("IdProductos");
+        modeloorden.addColumn("Productos");
+        modeloorden.addColumn("Cantidad");
+        modeloorden.addColumn("P/u");
+        modeloorden.addColumn("Sub-Total");
          
     }
     
@@ -1945,7 +1956,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new agregar_producto("0").setVisible(true);
+                new agregar_producto("0","").setVisible(true);
             }
         });
     }

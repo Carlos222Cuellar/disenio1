@@ -49,12 +49,20 @@ public class ControladorAgregarOrden {
         }catch(SQLException e){
             return null;
         }
-         
+        
+        
+        
+        
          
     }
     
     
-    
+    public ResultSet buscarobervacion(int Id){
+        
+        return (cn.getValores("select observacion from Ordenes where IdOrden='"+Id+"'"));
+       
+    }
+         
     
     
 }
