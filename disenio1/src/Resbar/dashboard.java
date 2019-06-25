@@ -57,7 +57,14 @@ public class dashboard extends javax.swing.JFrame {
     
     public dashboard() {
         initComponents();
-        llenar();
+        
+        //le pone el nombre  a las columnas en la tabla
+       modeloOrdenes.addColumn("IdOrden");
+        modeloOrdenes.addColumn("Mesero");
+        modeloOrdenes.addColumn("Mesa");
+        modeloOrdenes.addColumn("Cliente");
+        llenar();//metodo para llenar la tabla ordenes
+     
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
           this.setExtendedState(JFrame.MAXIMIZED_BOTH);//maximiza el frame al tamaño de la pantalla completa
           rbtnmodomesa.setVisible(false);
@@ -67,7 +74,6 @@ public class dashboard extends javax.swing.JFrame {
        ticket.setVisible(false);
        btnnuevaorden.requestFocus();
        
-       
           
           
     }
@@ -76,14 +82,8 @@ public class dashboard extends javax.swing.JFrame {
      public void llenar(){
         
          ControladorAgregarOrden cao = new ControladorAgregarOrden();
-        
-       //le pone el nombre  a las columnas en la tabla
-      
-        modeloOrdenes.addColumn("IdOrden");
-        modeloOrdenes.addColumn("Mesero");
-        modeloOrdenes.addColumn("Mesa");
-        modeloOrdenes.addColumn("Cliente");
        
+       modeloOrdenes.setRowCount(0);
         for(Ordenes orden:cao.findAll())
         {
              String[] or=new String[4];
@@ -598,7 +598,7 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         txtfiltro.setBackground(new java.awt.Color(0, 255, 204));
-        txtfiltro.setText("BUSCAR");
+        txtfiltro.setText("BUSCAR POR MESA");
         txtfiltro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtfiltroFocusLost(evt);
@@ -615,6 +615,9 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
         txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyTyped(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtfiltroKeyReleased(evt);
             }
@@ -938,14 +941,55 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
         txtfiltro.setText("BUSCAR");
     }//GEN-LAST:event_txtfiltroFocusLost
 
+    
+    
+      public void filtrar(int mesa){
+      rs=null;
+      rs=agregarorden.filtrarbymesa(mesa);
+      
+      
+       modeloOrdenes.setRowCount(0);
+        String[] dato=new String[4];
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                dato[2]=rs.getString(3);
+                dato[3]=rs.getString(4);
+                modeloOrdenes.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblordenes.setModel(modeloOrdenes);
+    
+      
+      }
     private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
-
+        if(txtfiltro.getText().isEmpty()){
+        llenar();
+        }
+        else{  
+        filtrar( Integer.parseInt(txtfiltro.getText()));
+        }
         
     }//GEN-LAST:event_txtfiltroKeyReleased
 
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfiltroActionPerformed
+
+    private void txtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyTyped
+        // TODO add your handling code here:
+         char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '.') && (caracter != '/') && (caracter != '-')) {
+            evt.consume();
+        } else if (((caracter > '0') || (caracter < '9'))) {
+            evt.consume();
+            txtfiltro.setText(txtfiltro.getText() + String.valueOf(caracter));
+        }
+    }//GEN-LAST:event_txtfiltroKeyTyped
 
     /**
      * @param args the command line arguments

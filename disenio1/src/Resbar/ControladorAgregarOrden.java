@@ -16,6 +16,7 @@ public class ControladorAgregarOrden {
     
     Conexionn cn = new Conexionn();
     
+    
     public Ordenes agregaOrden(Ordenes orden){
        try{
            cn.UID("INSERT INTO ordenes(fecha,mesero,mesa,cliente,estado,total,observacion) "
@@ -27,7 +28,12 @@ public class ControladorAgregarOrden {
        
     }
     
-    
+     /**
+    *
+    *
+    *@param 
+    * @return Retorna una coleecion de ordenes
+    */
     public List<Ordenes> findAll(){
         List<Ordenes> ordenes = new ArrayList();
         try{
@@ -55,14 +61,29 @@ public class ControladorAgregarOrden {
         
          
     }
-    
+    /**
+    *
+    *
+    *@param Id tipo entero
+    * @return Retorna una observacion de la base de datos que coincida con el id de orden que se le pasa como paramentro
+    */
     
     public ResultSet buscarobervacion(int Id){
         
         return (cn.getValores("select observacion from Ordenes where IdOrden='"+Id+"'"));
        
     }
-         
+    
+    /**
+    *
+    *
+    *@param mesa recibe un entero 
+    * @return Retorna una una orden filtrada dependiendo de el numero de mesa que se ingrese
+    */
+   public ResultSet filtrarbymesa(int mesa){
+   
+   return(cn.getValores("select IdOrden,mesero,mesa,cliente from Ordenes where mesa like '%"+mesa+"%'"));
+   } 
     
     
 }

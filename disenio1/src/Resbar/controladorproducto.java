@@ -52,12 +52,27 @@ public class controladorproducto {
     public ResultSet productobyid( String producto) {
         return (cn.getValores("SELECT nombre,precio FROM Productos where IdCategoria= '"+producto+"'"));
     }
+     /**
+    *
+    *
+    *@param IdProducto Id del producto a realizar UPDATE 
+    * @param  nombre  nombre del producto 
+    * @param precio   precio del producto
+    * @param  esPreparado 
+    *
+    */
     
    public void modificarproducto (String IdProducto,String nombre,String precio,String esPreparado)
    {
   cn.UID("UPDATE productos SET nombre='" + nombre + "', precio='" + precio + "', esPreparado='" + esPreparado + "' WHERE IdProductos='" + IdProducto + "'");
    
    }
+    /**
+    *
+    *
+    *@param IdProducto Id del producto a eliminar
+    * 
+    */
     public void eliminar (String IdProducto)
    {
   cn.UID("DELETE FROM productos WHERE IdProductos='" + IdProducto + "'");
