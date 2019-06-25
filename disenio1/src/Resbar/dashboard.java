@@ -26,12 +26,20 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.JOptionPane;
 import br.com.adilson.util.Extenso;
 import br.com.adilson.util.PrinterMatrix;
+import conexion.Conector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /*
@@ -128,85 +136,125 @@ public class dashboard extends javax.swing.JFrame {
      
      
           
-     public void imprimir() throws PrintException{
+     public void imprimir(){
           
-              
- 
-         StringBuilder builder = new StringBuilder();
-
-        PrinterMatrix printer = new PrinterMatrix();
-
-        Extenso e = new Extenso();
-
-        e.setNumber(101.85);
-
-
-        //Definir el tamanho del papel para la impresion  aca 25 lineas y 80 columnas
-        printer.setOutSize(10, 80);
-        //Imprimir * de la 2da linea a 25 en la columna 1;
-       // printer.printCharAtLin(2, 25, 1, "*");
-        //Imprimir * 1ra linea de la columa de 1 a 80
-       printer.printCharAtCol(1, 1, 80, "=");
-        //Imprimir Encabezado nombre del La EMpresa
-       printer.printTextWrap(1, 2, 30, 80, "FACTURA DE VENTA");
-       //printer.printTextWrap(linI, linE, colI, colE, null);
-       printer.printTextWrap(2, 3, 1, 22, "Num. Boleta : " );
-       printer.printTextWrap(2, 3, 25, 55, "Fecha de Emision: ");
-       printer.printTextWrap(2, 3, 60, 80, "Hora: 12:22:51");
-       printer.printTextWrap(3, 3, 1, 80, "Vendedor.  : " +" - " );
-       printer.printTextWrap(4, 4, 1, 80, "CLIENTE: " );
-       printer.printTextWrap(5, 5, 1, 80, "RUC/CI.: " );
-       printer.printTextWrap(6, 6, 1, 80, "DIRECCION: " + "");
-       printer.printCharAtCol(7, 1, 80, "=");
-       printer.printTextWrap(7, 8, 1, 80, "Codigo          Descripcion                Cant.      P  P.Unit.      P.Total");
-       printer.printCharAtCol(9, 1, 80, "-");
-       
-        printer.toFile("impresion.txt");
-
-      FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("impresion.txt");
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        if (inputStream == null) {
-            return;
-        }
-
-        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
-        Doc document = new SimpleDoc(inputStream, docFormat, null);
-
-        PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
-
-        PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
-
-
-        if (defaultPrintService != null) {
-            DocPrintJob printJob = defaultPrintService.createPrintJob();
-            try {
-                printJob.print(document, attributeSet);
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null,"No existen impresoras instaladas");
+         
+                     String datoo = modeloOrdenes.getValueAt(tblordenes.getSelectedRow(),0).toString();
            
+            int datoooo =Integer.parseInt(datoo);
+       
+
+
+             Conector cnt = new Conector();
+             
+             if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+
+       {
+            
+                
+             
+         try {
+             JasperReport reporte= (JasperReport) JRLoader.loadObject("ticket.jasper");
+                 Map parametro = new HashMap(); //Un objeto que mapea claves a los valores
+                  parametro.put("id",datoooo);
+                  
+                  JasperPrint j= JasperFillManager.fillReport(reporte, parametro, cnt.getConexion());
+                  JasperViewer jv= new JasperViewer(j,false);
+                  jv.setTitle("ticketes");
+                  jv.setVisible(true);
+                  
+             
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,"error al mostrar el reporte"+e);
+         }  
+     
+            
+        } else {
+             
+             JOptionPane.showMessageDialog(null, "Seleccione una Orden,para modificar", null, JOptionPane.WARNING_MESSAGE);
+            
         }
-        
-        
-        PrinterService printerService = new PrinterService(); 
 
-     System.out.println(printerService.getPrinters()); 
-
-     //print some stuff. Change the printer name to your thermal printer name. 
-     printerService.printString("POS-80C", "\n\n testing testing 1 2 3eeeee \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
-
-     // cut that paper! 
-     byte[] cutP = new byte[] { 0x1d, 'V', 1 }; 
-
-     printerService.printBytes("POS-80C", cutP); 
-
+         
+         
+         
+              
+// 
+//         StringBuilder builder = new StringBuilder();
+//
+//        PrinterMatrix printer = new PrinterMatrix();
+//
+//        Extenso e = new Extenso();
+//
+//        e.setNumber(101.85);
+//
+//
+//        //Definir el tamanho del papel para la impresion  aca 25 lineas y 80 columnas
+//        printer.setOutSize(10, 80);
+//        //Imprimir * de la 2da linea a 25 en la columna 1;
+//       // printer.printCharAtLin(2, 25, 1, "*");
+//        //Imprimir * 1ra linea de la columa de 1 a 80
+//       printer.printCharAtCol(1, 1, 80, "=");
+//        //Imprimir Encabezado nombre del La EMpresa
+//       printer.printTextWrap(1, 2, 30, 80, "FACTURA DE VENTA");
+//       //printer.printTextWrap(linI, linE, colI, colE, null);
+//       printer.printTextWrap(2, 3, 1, 22, "Num. Boleta : " );
+//       printer.printTextWrap(2, 3, 25, 55, "Fecha de Emision: ");
+//       printer.printTextWrap(2, 3, 60, 80, "Hora: 12:22:51");
+//       printer.printTextWrap(3, 3, 1, 80, "Vendedor.  : " +" - " );
+//       printer.printTextWrap(4, 4, 1, 80, "CLIENTE: " );
+//       printer.printTextWrap(5, 5, 1, 80, "RUC/CI.: " );
+//       printer.printTextWrap(6, 6, 1, 80, "DIRECCION: " + "");
+//       printer.printCharAtCol(7, 1, 80, "=");
+//       printer.printTextWrap(7, 8, 1, 80, "Codigo          Descripcion                Cant.      P  P.Unit.      P.Total");
+//       printer.printCharAtCol(9, 1, 80, "-");
+//       
+//        printer.toFile("impresion.txt");
+//
+//      FileInputStream inputStream = null;
+//        try {
+//            inputStream = new FileInputStream("impresion.txt");
+//        } catch (FileNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        if (inputStream == null) {
+//            return;
+//        }
+//
+//        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+//        Doc document = new SimpleDoc(inputStream, docFormat, null);
+//
+//        PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
+//
+//        PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+//
+//
+//        if (defaultPrintService != null) {
+//            DocPrintJob printJob = defaultPrintService.createPrintJob();
+//            try {
+//                printJob.print(document, attributeSet);
+//
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null,"No existen impresoras instaladas");
+//           
+//        }
+//        
+//        
+//        PrinterService printerService = new PrinterService(); 
+//
+//     System.out.println(printerService.getPrinters()); 
+//
+//     //print some stuff. Change the printer name to your thermal printer name. 
+//     printerService.printString("POS-80C", "\n\n testing testing 1 2 3eeeee \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); 
+//
+//     // cut that paper! 
+//     byte[] cutP = new byte[] { 0x1d, 'V', 1 }; 
+//
+//     printerService.printBytes("POS-80C", cutP); 
+//
 
            
           
@@ -982,16 +1030,9 @@ if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en l
 
     private void btnimprimirordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirordenActionPerformed
         // TODO add your handling code here:
-        mostrar();
         
-          try {
             imprimir();
-        } catch (PrintException ex) {
-            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
+       
         
         
         
