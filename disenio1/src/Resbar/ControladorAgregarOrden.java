@@ -37,7 +37,7 @@ public class ControladorAgregarOrden {
     public List<Ordenes> findAll(){
         List<Ordenes> ordenes = new ArrayList();
         try{
-            ResultSet rs = cn.getValores("SELECT * FROM Ordenes");
+            ResultSet rs = cn.getValores("SELECT * FROM Ordenes where estado like'%A%'");
          System.out.println("entra");
          while (rs.next()) {
              Ordenes orden = new Ordenes();
