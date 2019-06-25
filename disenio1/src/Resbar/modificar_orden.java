@@ -1,6 +1,15 @@
+package Resbar;
 
+
+import Modelo.Ordenes;
+import Resbar.ControladorAgregarOrden;
+import Resbar.controladorproducto;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +26,79 @@ public class modificar_orden extends javax.swing.JFrame {
     /**
      * Creates new form detalle
      */
-    public modificar_orden() {
+    
+     private String fechaActual="2019-06-18 00:00:00";
+    
+    DefaultTableModel modeloModificarOrden = new DefaultTableModel();
+    ResultSet rs = null;
+    controladorproducto productos = new controladorproducto();
+    //String IdOrden;
+    String seleccionado;
+    
+    
+    
+    
+    public modificar_orden(int id,String mesa,String mesero,String cliente) {
         initComponents();
+        
+        
+        
+        this.txtIdOrden.setText(Integer.toString(id));
+        this.txtmesa.setText(mesa);
+        this.txtmesero.setText(mesero);
+        this.txtcliente.setText(cliente);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Modificar Orden");
         this.setLocationRelativeTo(null);
+         String Id=this.txtIdOrden.getText();
+        llenar(Id);
+        
     }
+        
 
+//    modificar_orden(String toString) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    modificar_orden(String toString) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
+   // String Id=this.txtIdOrden.getText();
+    
+     private void llenar(String Id){
+    
+       rs=null;
+        rs = productos.findByIdOrden(Id);
+       //le pone el nombre  a las columnas en la tabla
+        modeloModificarOrden.addColumn("Producto");
+        modeloModificarOrden.addColumn("Cantidad");
+        modeloModificarOrden.addColumn("P/u");
+        modeloModificarOrden.addColumn("Subtotal");
+        String[] dato=new String[4];
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                dato[2]=rs.getString(3);
+                dato[3]=rs.getString(3);
+                modeloModificarOrden.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblModificarOrden.setModel(modeloModificarOrden);
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,24 +110,23 @@ public class modificar_orden extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblModificarOrden = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtIdOrden = new javax.swing.JTextField();
+        txtmesa = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        txtobservacion = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
+        txtmesero = new javax.swing.JTextField();
         btnguardar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnagregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btnquitar = new javax.swing.JButton();
+        txtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,11 +134,10 @@ public class modificar_orden extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jTable1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(153, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblModificarOrden.setBackground(new java.awt.Color(204, 255, 255));
+        tblModificarOrden.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblModificarOrden.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        tblModificarOrden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -126,8 +199,8 @@ public class modificar_orden extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jTable1);
+        tblModificarOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(tblModificarOrden);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 183, 570, 305));
 
@@ -137,14 +210,14 @@ public class modificar_orden extends javax.swing.JFrame {
         jLabel2.setText("Orden:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 70, 20));
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField7.setFocusable(false);
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 60, -1));
+        txtIdOrden.setEditable(false);
+        txtIdOrden.setBackground(new java.awt.Color(0, 255, 204));
+        txtIdOrden.setFocusable(false);
+        jPanel1.add(txtIdOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 60, -1));
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 60, -1));
+        txtmesa.setEditable(false);
+        txtmesa.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtmesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 60, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));
@@ -166,27 +239,26 @@ public class modificar_orden extends javax.swing.JFrame {
         jLabel5.setText("Observacion:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 110, -1));
 
-        jTextField10.setEditable(false);
-        jTextField10.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        txtobservacion.setBackground(new java.awt.Color(0, 255, 204));
+        txtobservacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                txtobservacionActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 390, 50));
+        jPanel1.add(txtobservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 390, 50));
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 390, -1));
+        txtcliente.setEditable(false);
+        txtcliente.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 390, -1));
 
-        jTextField11.setEditable(false);
-        jTextField11.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        txtmesero.setEditable(false);
+        txtmesero.setBackground(new java.awt.Color(0, 255, 204));
+        txtmesero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                txtmeseroActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 220, -1));
+        jPanel1.add(txtmesero, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 220, -1));
 
         btnguardar.setBackground(new java.awt.Color(102, 255, 102));
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
@@ -202,6 +274,11 @@ public class modificar_orden extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnguardarMouseEntered(evt);
+            }
+        });
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
             }
         });
         jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 524, -1, -1));
@@ -245,6 +322,11 @@ public class modificar_orden extends javax.swing.JFrame {
                 btneliminarMouseEntered(evt);
             }
         });
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 50, -1));
 
         btnagregar.setBackground(new java.awt.Color(102, 204, 102));
@@ -263,46 +345,33 @@ public class modificar_orden extends javax.swing.JFrame {
                 btnagregarMouseEntered(evt);
             }
         });
+        btnagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 50, -1));
 
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Total:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 110, -1));
-
-        btnquitar.setBackground(new java.awt.Color(102, 204, 102));
-        btnquitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Multiply_32px.png"))); // NOI18N
-        btnquitar.setBorderPainted(false);
-        btnquitar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnquitarMouseMoved(evt);
-            }
-        });
-        btnquitar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnquitarMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnquitarMouseEntered(evt);
-            }
-        });
-        jPanel1.add(btnquitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 50, 25));
+        txtTotal.setEditable(false);
+        txtTotal.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 110, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txtobservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtobservacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txtobservacionActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void txtmeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmeseroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_txtmeseroActionPerformed
 
     private void btnguardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseMoved
         // TODO add your handling code here:
@@ -364,13 +433,6 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
   
     }//GEN-LAST:event_btnagregarMouseMoved
 
-    private void btnquitarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseMoved
-        // TODO add your handling code here:
-        String texto="Quitar";
-        btnquitar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo el puntero del raton sobre el boton muestre el nombre del boton
-  
-    }//GEN-LAST:event_btnquitarMouseMoved
-
     private void btneliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneliminarMouseEntered
         // TODO add your handling code here:
         btneliminar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
@@ -391,15 +453,162 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
         btnagregar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
     }//GEN-LAST:event_btnagregarMouseExited
 
-    private void btnquitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseEntered
-        // TODO add your handling code here:
-        btnquitar.setBackground(new Color(0,255,102));//cambia el color del boton cuando paso el puntero sobre el boton
-    }//GEN-LAST:event_btnquitarMouseEntered
+    
+//    double subtotal=1;
+//    double total=0;
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+       
+ if (tblModificarOrden.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+           
+           
+           String nombre=modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 0).toString(); 
+           int cantidad=Integer.parseInt(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1).toString());
+           double precio=Double.parseDouble(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 2).toString());
 
-    private void btnquitarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnquitarMouseExited
+           int IdOrden=Integer.parseInt(txtIdOrden.getText());
+           
+           String observacion=txtobservacion.getText();
+           
+           
+           
+           double subtotal=precio*cantidad;
+           
+           double total=subtotal;
+           
+           //modeloModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 4);
+           
+           tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
+           
+           this.txtTotal.setText(String.valueOf(total));
+           
+           
+          
+           
+           productos.ModificarOrden(total, cantidad, observacion, nombre, IdOrden);
+           
+           JOptionPane.showMessageDialog(null,"Modificacion exitosa");
+           
+         
+       
+            
+ } else {
+             
+             JOptionPane.showMessageDialog(null, "Seleccione una Orden,para modificar", null, JOptionPane.WARNING_MESSAGE);
+            
+        }
+ 
+ dispose();
+
+
+
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    double subtotal=1;
+    double total=0;
+    int estatico=1;
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         // TODO add your handling code here:
-        btnquitar.setBackground(new Color(102,204,102));//cambia el color del boton cuando paso el puntero sobre el boton
-    }//GEN-LAST:event_btnquitarMouseExited
+        
+         if (tblModificarOrden.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+//            int cantidad=Integer.parseInt(modeloorden.getValueAt(tblordenes.getSelectedRow(), 1).toString());//mando la informacion de la fila a los txt donde se editara la informacion en este caso para el id
+//          cantidad=cantidad+1;
+           //dato[1]=""+cantidad;
+            
+          String valor=String.valueOf(tblModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1));
+          int Nvalor=Integer.parseInt(valor)+estatico;
+         tblModificarOrden.setValueAt(Nvalor,tblModificarOrden.getSelectedRow(), 1);
+         
+         int cantidad=Integer.parseInt(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1).toString());
+           double precio=Double.parseDouble(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 2).toString());
+         
+          double subtotal=precio*cantidad;
+           
+           double total=subtotal;
+           
+           tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
+           
+           this.txtTotal.setText(String.valueOf(total));
+           
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
+         } 
+
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnagregarActionPerformed
+ int estatico2=1;
+//  double subtotal2=1;
+//    double total2=0;
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // TODO add your handling code here:
+         if (tblModificarOrden.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+            
+        {
+            String valor=String.valueOf(tblModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1));
+         int Nvalor=Integer.parseInt(valor);
+            if(Nvalor>1){
+
+          valor=String.valueOf(tblModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1));
+          Nvalor=Integer.parseInt(valor)-estatico;
+           tblModificarOrden.setValueAt(Nvalor,tblModificarOrden.getSelectedRow(), 1);
+            
+           
+           int cantidad=Integer.parseInt(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 1).toString());
+           double precio=Double.parseDouble(modeloModificarOrden.getValueAt(tblModificarOrden.getSelectedRow(), 2).toString());
+         
+          double subtotal=precio*cantidad;
+           
+           double total=subtotal;
+           tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
+            this.txtTotal.setText(String.valueOf(total));
+
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede eliminar cantidades iguales a uno");
+        } 
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
+         }
+
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btneliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,7 +643,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new modificar_orden().setVisible(true);
+                new modificar_orden(0,"0","0","0").setVisible(true);
             }
         });
     }
@@ -443,7 +652,6 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
-    private javax.swing.JButton btnquitar;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -453,12 +661,12 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tblModificarOrden;
+    private javax.swing.JTextField txtIdOrden;
+    private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtcliente;
+    private javax.swing.JTextField txtmesa;
+    private javax.swing.JTextField txtmesero;
+    private javax.swing.JTextField txtobservacion;
     // End of variables declaration//GEN-END:variables
 }

@@ -90,5 +90,22 @@ public class controladorproducto {
        public ResultSet traerprecio(String producto){
         return (cn.getValores("select IdProductos,precio from Productos where nombre like '"+producto+"';"));
       }
+       
+       
+    public ResultSet findByIdOrden(String IdOrden){
+        
+        return (cn.getValores("select  nombre,cantidad,Productos.precio from DetalleOrden inner join Productos on DetalleOrden.IdProductos=Productos.IdProductos where IdOrden= '"+IdOrden+"'"));
+   
+        
+    }
+    
+    
+    public void ModificarOrden (Double total,int cantidad,String observacion, String nombre,int IdOrden){
+        
+        cn.UID("update ordenes, detalleorden join dbpos.productos set ordenes.total='"+total+"',detalleorden.cantidad='"+cantidad+"', "
+                + "Ordenes.observacion ='"+observacion+"' where detalleorden.IdProductos=( select IdProductos from dbpos.productos where nombre like '%"+nombre+ "%') "
+                + "AND ordenes.IdOrden='"+IdOrden+"' and detalleorden.IdOrden='"+IdOrden+"'");
+}
+    
     
 }

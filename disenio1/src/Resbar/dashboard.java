@@ -8,6 +8,7 @@ import Resbar.ControladorAgregarOrden;
 import Resbar.PrinterService;
 import Resbar.controladorOrdenes;
 import Resbar.controladorcategoria;
+import Resbar.modificar_orden;
 import Resbar.productos;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -789,14 +790,59 @@ btncobrarorden.setToolTipText(texto);//el metodo setToolTipTex hace que cuando p
 
     private void btnmodificarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarordenActionPerformed
         // TODO add your handling code here:
-        if(rbtnmodomesa.isSelected()==true){
+//        if(rbtnmodomesa.isSelected()==true){
+//           
+//        modificar_orden modificar=new modificar_orden();
+//        modificar.setVisible(true);
+//        
+//        }else{
+//       
+//        }
+
+
+if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+
+        {
+            
+          // modificar_orden mo=new modificar_orden(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
+            
+//          controladorOrdenes co=new controladorOrdenes ();
+//          Ordenes orden = new Ordenes();
+//          
+//          char estado=orden.getEstado();
+          
+          
+          
+     {
+            
+            
+            //String id=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString();
+             
+             int id=Integer.parseInt(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
+             String mesa=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),2).toString();
+             String mesero=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),1).toString();
+             String cliente=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),3).toString();
+              modificar_orden mo=new modificar_orden(id,mesa,mesero,cliente);
+             
+           mo.setVisible(true);
+            
+            }
+             
+             
            
-        modificar_orden modificar=new modificar_orden();
-        modificar.setVisible(true);
-        
-        }else{
-       
+            
+            
+            
+        } else {
+             
+             JOptionPane.showMessageDialog(null, "Seleccione una Orden,para modificar", null, JOptionPane.WARNING_MESSAGE);
+            
         }
+
+
+
+
+
     }//GEN-LAST:event_btnmodificarordenActionPerformed
 
     private void btncobrarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarordenActionPerformed
