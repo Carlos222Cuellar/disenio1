@@ -725,7 +725,7 @@ public class agregar_producto_modo_caja extends javax.swing.JFrame {
 
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         // TODO add your handling code here:
-        cobrar_orden cobrar=new cobrar_orden();
+        cobrar_orden cobrar=new cobrar_orden(0,"","","");
         cobrar.setVisible(true);
         
     }//GEN-LAST:event_btncobrarActionPerformed

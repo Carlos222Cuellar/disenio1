@@ -1076,12 +1076,12 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         String observacion = txtobservacion.getText();
         
         if(this.tblordenes.getRowCount()!=0 ){
-              if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty() || observacion.isEmpty()  ) {
+              if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty()   ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-            if(this.tblordenes.getRowCount()!=0 ){
-              JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
-            }
+            //if(this.tblordenes.getRowCount()!=0 ){
+              //JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
+            //}
             orden.insertar(IdOrden, mesa, mesero, cliente, observacion,fecha,estado,total);
             for(int i=0;i<tblordenes.getRowCount();i++){
               idproducto=tblordenes.getValueAt(i,0).toString();
@@ -1093,6 +1093,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
            
             
             JOptionPane.showMessageDialog(null, "Registro agregado");
+            this.dispose();
         }
             }
         else{

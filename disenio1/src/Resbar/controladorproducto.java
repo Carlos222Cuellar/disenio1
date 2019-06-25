@@ -102,9 +102,9 @@ public class controladorproducto {
     
     public void ModificarOrden (Double total,int cantidad,String observacion, String nombre,int IdOrden){
         
-        cn.UID("update ordenes, detalleorden join dbpos.productos set ordenes.total='"+total+"',detalleorden.cantidad='"+cantidad+"', "
-                + "Ordenes.observacion ='"+observacion+"' where detalleorden.IdProductos=( select IdProductos from dbpos.productos where nombre like '%"+nombre+ "%') "
-                + "AND ordenes.IdOrden='"+IdOrden+"' and detalleorden.IdOrden='"+IdOrden+"'");
+        cn.UID("update Ordenes, DetalleOrden join DBpos.Productos set Ordenes.total='"+total+"',DetalleOrden.cantidad='"+cantidad+"', "
+                + "Ordenes.observacion ='"+observacion+"' where DetalleOrden.IdProductos=( select IdProductos from DBpos.Productos where nombre like '%"+nombre+ "%') "
+                + "AND Ordenes.IdOrden='"+IdOrden+"' and DetalleOrden.IdOrden='"+IdOrden+"'");
 }
     
     

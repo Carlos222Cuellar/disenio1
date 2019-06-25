@@ -202,7 +202,7 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
         int valor=JOptionPane.showConfirmDialog(null, "Realmente desea cancelar el cobro?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(valor==0){
             this.dispose();
-            cobrar_orden cobrar=new cobrar_orden();
+            cobrar_orden cobrar=new cobrar_orden(0,"","","");
             cobrar.setVisible(false);
         }else{
         

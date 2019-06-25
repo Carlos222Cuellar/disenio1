@@ -693,8 +693,7 @@ public class agregar_producto extends javax.swing.JFrame {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        dashboard menu=new dashboard();
-        menu.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
@@ -963,9 +962,9 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
               if (IdOrden.isEmpty() ||  observacion.isEmpty()  ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         } else {
-            if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
-              JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
-            }
+            //if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
+              //JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
+           // }
             orden.actualizarorden(IdOrden, observacion);
             for(int i=0;i<tblordenes.getRowCount();i++){
               idproducto=tblordenes.getValueAt(i,0).toString();

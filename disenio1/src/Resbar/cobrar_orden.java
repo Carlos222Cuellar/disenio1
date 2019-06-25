@@ -1,6 +1,11 @@
 
+import Resbar.controladorproducto;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +22,54 @@ public class cobrar_orden extends javax.swing.JFrame {
     /**
      * Creates new form cobrar_orden
      */
-    public cobrar_orden() {
+    
+    DefaultTableModel modeloorden = new DefaultTableModel();
+    ResultSet rs = null;
+    controladorproducto productos = new controladorproducto();
+    
+    public cobrar_orden(int id,String mesa,String mesero,String cliente) {
         initComponents();
+        this.txtid.setText(Integer.toString(id));
+        this.txtmesa.setText(mesa);
+        this.txtmesero.setText(mesero);
+        this.txtcliente.setText(cliente);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
          this.setTitle("Cobrar Orden");
          this.setLocationRelativeTo(null);
+         String Id=this.txtid.getText();
+         llenar(Id);
     }
 
+    
+    
+        private void llenar(String Id){
+    
+       rs=null;
+        rs = productos.findByIdOrden(Id);
+       //le pone el nombre  a las columnas en la tabla
+        modeloorden.addColumn("Producto");
+        modeloorden.addColumn("Cantidad");
+        modeloorden.addColumn("P/u");
+        modeloorden.addColumn("Subtotal");
+        String[] dato=new String[4];
+        
+        try {
+            while (rs.next()) {
+                dato[0]=rs.getString(1);
+                dato[1]=rs.getString(2);
+                dato[2]=rs.getString(3);
+                dato[3]=rs.getString(3);
+                modeloorden.addRow(dato);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+        }
+        tblorden.setModel(modeloorden);
+    
+    
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,18 +81,18 @@ public class cobrar_orden extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtmesa = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtmesero = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblorden = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txttotal = new javax.swing.JTextField();
         btncobrar = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -58,45 +104,36 @@ public class cobrar_orden extends javax.swing.JFrame {
         jLabel1.setText("Orden");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 70, -1));
+        txtid.setEditable(false);
+        txtid.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 70, -1));
 
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("Mesa");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 50, -1));
+        txtmesa.setEditable(false);
+        txtmesa.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtmesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 50, -1));
 
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));
         jLabel3.setText("Mesero");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 180, -1));
+        txtmesero.setEditable(false);
+        txtmesero.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtmesero, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 180, -1));
 
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
         jLabel4.setText("Cliente");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
-        jTable1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(153, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblorden.setBackground(new java.awt.Color(204, 255, 255));
+        tblorden.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 0), 2, true));
+        tblorden.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        tblorden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Producto", "Cantidad", "P/u", "Subtotal"
@@ -117,7 +154,8 @@ public class cobrar_orden extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblorden.setToolTipText("Orden");
+        jScrollPane1.setViewportView(tblorden);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 410, 123));
 
@@ -125,9 +163,9 @@ public class cobrar_orden extends javax.swing.JFrame {
         jLabel6.setText("Total");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 50, -1));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 90, -1));
+        txttotal.setEditable(false);
+        txttotal.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txttotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 90, -1));
 
         btncobrar.setBackground(new java.awt.Color(102, 204, 102));
         btncobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cobro1.png"))); // NOI18N
@@ -152,9 +190,9 @@ public class cobrar_orden extends javax.swing.JFrame {
         });
         jPanel1.add(btncobrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 180, -1));
+        txtcliente.setEditable(false);
+        txtcliente.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 180, -1));
 
         btnsalir.setBackground(new java.awt.Color(102, 204, 102));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dispose.png"))); // NOI18N
@@ -270,7 +308,7 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cobrar_orden().setVisible(true);
+                new cobrar_orden(0,"","","").setVisible(true);
             }
         });
     }
@@ -285,11 +323,11 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tblorden;
+    private javax.swing.JTextField txtcliente;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtmesa;
+    private javax.swing.JTextField txtmesero;
+    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

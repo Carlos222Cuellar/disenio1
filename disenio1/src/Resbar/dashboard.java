@@ -822,7 +822,10 @@ if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en l
              String mesa=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),2).toString();
              String mesero=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),1).toString();
              String cliente=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),3).toString();
-              modificar_orden mo=new modificar_orden(id,mesa,mesero,cliente);
+             String orden=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString();
+             ordenid=Integer.parseInt(orden);
+             Observacion(ordenid);
+              modificar_orden mo=new modificar_orden(id,mesa,mesero,cliente,observacion);
              
            mo.setVisible(true);
             
@@ -847,8 +850,44 @@ if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en l
 
     private void btncobrarordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarordenActionPerformed
         // TODO add your handling code here:
-        cobrar_orden cobrar=new cobrar_orden ();
-        cobrar.setVisible(true);
+        if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+
+        {
+            
+          // modificar_orden mo=new modificar_orden(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
+            
+//          controladorOrdenes co=new controladorOrdenes ();
+//          Ordenes orden = new Ordenes();
+//          
+//          char estado=orden.getEstado();
+          
+          
+          
+     {
+            
+            
+            //String id=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString();
+             
+             int id=Integer.parseInt(this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString());
+             String mesa=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),2).toString();
+             String mesero=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),1).toString();
+             String cliente=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),3).toString();
+              
+             cobrar_orden cobrar=new cobrar_orden (id,mesa,mesero,cliente);
+             cobrar.setVisible(true);
+            }
+             
+             
+           
+            
+            
+            
+        } else {
+             
+             JOptionPane.showMessageDialog(null, "Seleccione una Orden,para cobrar", null, JOptionPane.WARNING_MESSAGE);
+            
+        }
+       
         //this.dispose();
     }//GEN-LAST:event_btncobrarordenActionPerformed
 

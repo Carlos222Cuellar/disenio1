@@ -38,7 +38,7 @@ public class modificar_orden extends javax.swing.JFrame {
     
     
     
-    public modificar_orden(int id,String mesa,String mesero,String cliente) {
+    public modificar_orden(int id,String mesa,String mesero,String cliente,String observacion) {
         initComponents();
         
         
@@ -47,6 +47,7 @@ public class modificar_orden extends javax.swing.JFrame {
         this.txtmesa.setText(mesa);
         this.txtmesero.setText(mesero);
         this.txtcliente.setText(cliente);
+        this.txtobservacion.setText(observacion);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Modificar Orden");
         this.setLocationRelativeTo(null);
@@ -643,7 +644,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new modificar_orden(0,"0","0","0").setVisible(true);
+                new modificar_orden(0,"0","0","0","").setVisible(true);
             }
         });
     }
