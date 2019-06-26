@@ -26,7 +26,16 @@ public class productos extends javax.swing.JFrame {
      * Creates new form productos
      */
     
-    DefaultTableModel modeloProducto = new DefaultTableModel();
+    DefaultTableModel modeloProducto = new DefaultTableModel(){
+      @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==4){
+            return true;
+            }else{
+            return false;
+            }
+         }
+    };
      DefaultComboBoxModel modelocategorias = new DefaultComboBoxModel();
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();

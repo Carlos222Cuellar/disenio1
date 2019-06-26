@@ -18,7 +18,16 @@ import javax.swing.table.DefaultTableModel;
 public class Parametros extends javax.swing.JFrame {
 
   
-    DefaultTableModel modeloParametros = new DefaultTableModel();
+    DefaultTableModel modeloParametros = new DefaultTableModel(){
+      @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==2){
+            return true;
+            }else{
+            return false;
+            }
+         }
+    };
     ResultSet rs = null;
     controladorparametro parametros = new controladorparametro();
     
@@ -131,7 +140,7 @@ public class Parametros extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblparametros.setToolTipText("Categorias");
+        tblparametros.setToolTipText("Parametros");
         tblparametros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblparametrosMouseClicked(evt);

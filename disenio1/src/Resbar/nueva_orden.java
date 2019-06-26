@@ -39,7 +39,16 @@ public class nueva_orden extends javax.swing.JFrame {
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
     controladorcategoria categorias = new controladorcategoria();
-    DefaultTableModel modeloorden = new DefaultTableModel();
+    DefaultTableModel modeloorden = new DefaultTableModel(){
+      @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==5){
+            return true;
+            }else{
+            return false;
+            }
+         }
+    };
     String seleccionado;
     
         clasenuevaorden orden = new clasenuevaorden();
@@ -399,6 +408,7 @@ public class nueva_orden extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblordenes.setToolTipText("Ordenes");
         tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tblordenes);
 

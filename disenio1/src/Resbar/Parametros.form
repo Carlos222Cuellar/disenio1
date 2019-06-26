@@ -100,7 +100,7 @@
                     <Column editable="false" title="Nombre" type="java.lang.String"/>
                   </Table>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Categorias"/>
+                <Property name="toolTipText" type="java.lang.String" value="Parametros"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblparametrosMouseClicked"/>

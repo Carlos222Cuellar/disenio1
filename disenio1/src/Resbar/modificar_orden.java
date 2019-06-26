@@ -29,7 +29,17 @@ public class modificar_orden extends javax.swing.JFrame {
     
      private String fechaActual="2019-06-18 00:00:00";
     
-    DefaultTableModel modeloModificarOrden = new DefaultTableModel();
+    DefaultTableModel modeloModificarOrden = new DefaultTableModel(){
+    
+      @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==4){
+            return true;
+            }else{
+            return false;
+            }
+         }
+    };
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
     //String IdOrden;
@@ -200,6 +210,7 @@ public class modificar_orden extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblModificarOrden.setToolTipText("Ordenes");
         tblModificarOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tblModificarOrden);
 

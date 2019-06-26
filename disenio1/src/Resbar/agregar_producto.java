@@ -34,7 +34,16 @@ public class agregar_producto extends javax.swing.JFrame {
     controladorcategoria categorias = new controladorcategoria();
     String seleccionado;
 
-   DefaultTableModel modeloorden = new DefaultTableModel();
+   DefaultTableModel modeloorden = new DefaultTableModel(){
+     @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==5){
+            return true;
+            }else{
+            return false;
+            }
+         }
+   };
     clasenuevaorden orden = new clasenuevaorden();
    
     
@@ -262,6 +271,7 @@ public class agregar_producto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblordenes.setToolTipText("Ordenes");
         tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tblordenes);
 

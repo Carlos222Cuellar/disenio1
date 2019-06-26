@@ -170,7 +170,7 @@
                     <Column editable="false" title="Subtotal" type="java.lang.Float"/>
                   </Table>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Orden"/>
+                <Property name="toolTipText" type="java.lang.String" value="Cobrar Orden"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -24,7 +24,17 @@ public class categorias extends javax.swing.JFrame {
     /**
      * Creates new form categorias
      */
-   DefaultTableModel modeloCategoria = new DefaultTableModel();
+   DefaultTableModel modeloCategoria = new DefaultTableModel(){
+     @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==2){
+            return true;
+            }else{
+            return false;
+            }
+         }
+   
+   };
     ResultSet rs = null;
     controladorcategoria categorias = new controladorcategoria();
     

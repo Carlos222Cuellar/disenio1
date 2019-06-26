@@ -59,7 +59,19 @@ public class dashboard extends javax.swing.JFrame {
      */
     
     
-     DefaultTableModel modeloOrdenes = new DefaultTableModel();
+     DefaultTableModel modeloOrdenes = new DefaultTableModel(){
+         @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==4){
+            return true;
+            }else{
+            return false;
+            }
+         }
+     
+     
+     };
+             
     ResultSet rs = null;
     controladorOrdenes ordenes = new controladorOrdenes();
     ControladorAgregarOrden agregarorden = new ControladorAgregarOrden();
@@ -473,6 +485,7 @@ public class dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblordenes.setToolTipText("Ordenes");
         tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblordenes.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblordenes);
@@ -1064,7 +1077,7 @@ if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en l
 
     private void txtfiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtfiltroFocusLost
         // TODO add your handling code here:
-        txtfiltro.setText("BUSCAR");
+        txtfiltro.setText("BUSCAR POR MESA");
     }//GEN-LAST:event_txtfiltroFocusLost
 
     

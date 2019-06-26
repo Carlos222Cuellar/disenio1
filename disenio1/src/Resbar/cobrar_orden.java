@@ -23,7 +23,17 @@ public class cobrar_orden extends javax.swing.JFrame {
      * Creates new form cobrar_orden
      */
     
-    DefaultTableModel modeloorden = new DefaultTableModel();
+    DefaultTableModel modeloorden = new DefaultTableModel(){
+      //se sobreescribe el metodo
+        @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==4){
+            return true;//retorna true para que las coliumnas se puedan editar solo si son identicas a 4
+            }else{
+            return false;//si son diferentes a 4 la celda no se podra editar
+            }
+         }
+    };
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
     
@@ -154,7 +164,7 @@ public class cobrar_orden extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblorden.setToolTipText("Orden");
+        tblorden.setToolTipText("Cobrar Orden");
         jScrollPane1.setViewportView(tblorden);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 410, 123));
