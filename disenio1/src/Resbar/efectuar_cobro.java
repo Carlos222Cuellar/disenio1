@@ -1,10 +1,19 @@
 
+import Resbar.ControladorAgregarOrden;
+import conexion.Conector;
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,15 +31,57 @@ public class efectuar_cobro extends javax.swing.JFrame {
      * Creates new form efectuar_cobro
      */
     
-    
-    public efectuar_cobro(String total) {
+       ControladorAgregarOrden agregarorden = new ControladorAgregarOrden();
+       String ordennn;
+    public efectuar_cobro(String total,String id) {
          
         initComponents();
         txtTotal.setText(total);
+        ordennn=id;
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Efectuar Cobro");
          this.setLocationRelativeTo(null);
     }
+    
+    
+    
+      public void imprimir(){
+          
+         
+                 int idd=Integer.parseInt(ordennn);
+                   
+       
+
+
+             Conector cnt = new Conector();
+        
+            
+                
+             
+         try {
+             JasperReport reporte= (JasperReport) JRLoader.loadObject("ticket.jasper");
+                 Map parametro = new HashMap(); //Un objeto que mapea claves a los valores
+                  parametro.put("id",idd);
+                  
+                  JasperPrint j= JasperFillManager.fillReport(reporte, parametro, cnt.getConexion());
+                  JasperViewer jv= new JasperViewer(j,false);
+                  jv.setTitle("ticketes");
+                  jv.setVisible(true);
+                  
+             
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,"error al mostrar el reporte"+e);
+         }  
+     
+        
+         
+         
+         
+             
+           
+          
+          } 
+    
 
     public void mostrar(){
            
@@ -218,7 +269,13 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
 
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         // TODO add your handling code here:
-          mostrar();
+        mostrar();
+         String estado="I";
+           
+            imprimir();
+            agregarorden.cambiarestadoorden(ordennn, estado);
+            
+          
     }//GEN-LAST:event_btncobrarActionPerformed
 
     private void txtefectivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtefectivoKeyTyped
@@ -274,7 +331,7 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new efectuar_cobro("").setVisible(true);
+                new efectuar_cobro("","").setVisible(true);
             }
         });
     }

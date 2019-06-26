@@ -1,11 +1,20 @@
 
 import Resbar.controladorproducto;
+import conexion.Conector;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +30,24 @@ public class cobrar_orden extends javax.swing.JFrame {
 
     /**
      * Creates new form cobrar_orden
+     * 
+     * 
+     * 
      */
+    
+    
+       DefaultTableModel modeloOrdenes = new DefaultTableModel(){
+         @Override
+         public boolean isCellEditable(int fila, int columna) {
+            if(columna==4){
+            return true;
+            }else{
+            return false;
+            }
+         }
+     
+     
+     };
     
     DefaultTableModel modeloorden = new DefaultTableModel(){
       //se sobreescribe el metodo
@@ -59,6 +85,18 @@ public class cobrar_orden extends javax.swing.JFrame {
          sumarcelda();
     }
 
+    
+    
+    
+    
+   
+          
+     
+    
+    
+    
+    
+    
     
     
         private void llenar(String Id){
@@ -252,7 +290,7 @@ public class cobrar_orden extends javax.swing.JFrame {
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         // TODO add your handling code here:
         
-        efectuar_cobro cobro=new efectuar_cobro(txttotal.getText());
+        efectuar_cobro cobro=new efectuar_cobro(txttotal.getText(),txtid.getText());
         cobro.setVisible(true);
         this.dispose();
         
