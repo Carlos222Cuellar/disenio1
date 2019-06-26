@@ -1043,9 +1043,18 @@ if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en l
 
     private void btnimprimirordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirordenActionPerformed
         // TODO add your handling code here:
-        
+          if (tblordenes.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
+
+        {
+            String estado="I";
+            String id=this.modeloOrdenes.getValueAt(this.tblordenes.getSelectedRow(),0).toString();
             imprimir();
-       
+            agregarorden.cambiarestadoorden(id, estado);
+            llenar();
+            
+        }else{
+          JOptionPane.showMessageDialog(null, "Seleccione una orden a imprimir");
+          }
         
         
         

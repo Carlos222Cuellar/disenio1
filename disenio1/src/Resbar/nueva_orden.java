@@ -92,7 +92,13 @@ public class nueva_orden extends javax.swing.JFrame {
     
     
     
-    
+    private void sumarcelda(){
+    double sumarcolumna=0;
+    for(int i=0;i<tblordenes.getRowCount();i++){
+    sumarcolumna=sumarcolumna+Double.parseDouble(modeloorden.getValueAt(i,4).toString());
+    txttotal.setText(String.valueOf(sumarcolumna));
+    }
+    }
     
     
     
@@ -410,6 +416,11 @@ public class nueva_orden extends javax.swing.JFrame {
         });
         tblordenes.setToolTipText("Ordenes");
         tblordenes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblordenes.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                tblordenesComponentAdded(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblordenes);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 270, 570, 370));
@@ -1069,7 +1080,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
               String precio="";
               String fecha="";
               String estado="A";
-              String total="1.00";
+              String total="";
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
        
          Date objDate = new Date(); // Sistema actual La fecha y la hora se asignan a objDate 
@@ -1084,7 +1095,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         String mesero = txtmesero.getText();
         String cliente = txtcliente.getText();
         String observacion = txtobservacion.getText();
-        
+               total=txttotal.getText();
         if(this.tblordenes.getRowCount()!=0 ){
               if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty()   ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
@@ -2104,7 +2115,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          } 
-
+       sumarcelda();
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -2131,6 +2142,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          }
+        sumarcelda();
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
@@ -2145,7 +2157,12 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
          } 
+        sumarcelda();
     }//GEN-LAST:event_btnquitarActionPerformed
+
+    private void tblordenesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tblordenesComponentAdded
+
+    }//GEN-LAST:event_tblordenesComponentAdded
 
     /**
      * @param args the command line arguments

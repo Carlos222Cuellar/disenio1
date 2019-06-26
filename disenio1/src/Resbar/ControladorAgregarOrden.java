@@ -31,7 +31,7 @@ public class ControladorAgregarOrden {
      /**
     *
     *
-    *@param 
+    *
     * @return Retorna una coleecion de ordenes
     */
     public List<Ordenes> findAll(){
@@ -85,5 +85,16 @@ public class ControladorAgregarOrden {
    return(cn.getValores("select IdOrden,mesero,mesa,cliente from Ordenes where mesa like '%"+mesa+"%'"));
    } 
     
+     /**
+    *
+    *
+    *@param idorden recibe un string que contiene el idorden para realizar el update en la base de datos 
+    * @param estado recibe un estado para que cuando se imprima la orden cambie de A(activo) a I(inactivo)
+    */
+    public void cambiarestadoorden(String idorden,String estado){
+            cn.UID("UPDATE Ordenes SET  estado='" + estado + "' WHERE IdOrden='" + idorden + "'");
+   
+            
+            }
     
 }

@@ -16,8 +16,11 @@ public class exito_de_cobro extends javax.swing.JFrame {
     /**
      * Creates new form exito_de_cobro
      */
-    public exito_de_cobro() {
+    public exito_de_cobro(String total,String efectivo,String cambio ) {
         initComponents();
+        lbltotal.setText(total);
+        lblefectivo.setText(efectivo);
+        lblcambio.setText(cambio);
          this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Confirmacion de Cobro");
          this.setLocationRelativeTo(null);
@@ -36,9 +39,9 @@ public class exito_de_cobro extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        lblcambio = new javax.swing.JLabel();
+        lblefectivo = new javax.swing.JLabel();
+        lbltotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -61,17 +64,14 @@ public class exito_de_cobro extends javax.swing.JFrame {
         jLabel26.setText("Cambio:");
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("$ 0.50");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
+        lblcambio.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblcambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 50, 20));
 
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("$ 2.00");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
+        lblefectivo.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblefectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 60, 20));
 
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("$ 1.50");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
+        lbltotal.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lbltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 60, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,18 +117,18 @@ public class exito_de_cobro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new exito_de_cobro().setVisible(true);
+                new exito_de_cobro("","","").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblcambio;
+    private javax.swing.JLabel lblefectivo;
+    private javax.swing.JLabel lbltotal;
     // End of variables declaration//GEN-END:variables
 }

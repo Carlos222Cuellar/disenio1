@@ -71,6 +71,14 @@ public class agregar_producto extends javax.swing.JFrame {
    public void llenarobservacion(){
    
    }
+   
+    private void sumarcelda(){
+    double sumarcolumna=0;
+    for(int i=0;i<tblordenes.getRowCount();i++){
+    sumarcolumna=sumarcolumna+Double.parseDouble(modeloorden.getValueAt(i,4).toString());
+    txttotal.setText(String.valueOf(sumarcolumna));
+    }
+    }
     
     public agregar_producto(String id,String observacion) {
         initComponents();
@@ -104,7 +112,7 @@ public class agregar_producto extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txttotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
         txtorden = new javax.swing.JTextField();
@@ -169,10 +177,10 @@ public class agregar_producto extends javax.swing.JFrame {
         jLabel5.setText("Observaciones");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 120, -1));
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField5.setFocusable(false);
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 640, 130, -1));
+        txttotal.setEditable(false);
+        txttotal.setBackground(new java.awt.Color(0, 255, 204));
+        txttotal.setFocusable(false);
+        jPanel1.add(txttotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 640, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
@@ -932,6 +940,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          }
+        sumarcelda();
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnpostre11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpostre11ActionPerformed
@@ -1916,7 +1925,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          } 
-
+      sumarcelda();
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
@@ -1930,6 +1939,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", null, JOptionPane.WARNING_MESSAGE);
          } 
+          sumarcelda();
     }//GEN-LAST:event_btnquitarActionPerformed
 
     /**
@@ -2021,11 +2031,11 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField5;
     private org.edisoncor.gui.panel.PanelRound platos;
     private org.edisoncor.gui.panel.PanelRound postres;
     private javax.swing.JTable tblordenes;
     private javax.swing.JTextField txtobservacion;
     private javax.swing.JTextField txtorden;
+    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

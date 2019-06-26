@@ -7,6 +7,8 @@ import Resbar.controladorproducto;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 //import static java.time.Instant.now;
 import java.util.Vector;
 import javax.swing.ImageIcon;
@@ -107,7 +109,13 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
       
   }
     
-    
+     private void sumarcelda(){
+    double sumarcolumna=0;
+    for(int i=0;i<tblordenes.getRowCount();i++){
+    sumarcolumna=sumarcolumna+Double.parseDouble(modeloorden.getValueAt(i,4).toString());
+    txttotal.setText(String.valueOf(sumarcolumna));
+    }
+    }
     
     
   
@@ -142,7 +150,7 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txttotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
         btncobrar = new javax.swing.JButton();
@@ -218,10 +226,10 @@ public class nueva_orden_modo_caja extends javax.swing.JFrame {
         jLabel6.setText("Mesero:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, -1, -1));
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(0, 255, 204));
-        jTextField5.setFocusable(false);
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 650, 130, -1));
+        txttotal.setEditable(false);
+        txttotal.setBackground(new java.awt.Color(0, 255, 204));
+        txttotal.setFocusable(false);
+        jPanel1.add(txttotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 650, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
@@ -1134,20 +1142,31 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          }
+        sumarcelda();
     }//GEN-LAST:event_btneliminarActionPerformed
 
     
               String idproducto="";
               String cantidad="";
-              String precio="";   
+              String precio=""; 
+              String fecha="";
+              String estado="A";
+              String total="";
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
      
+         Date objDate = new Date(); // Sistema actual La fecha y la hora se asignan a objDate 
+ 
+      //  System.out.println(objDate); 
+        String strDateFormat = " YYYY-MM-dd"; // El formato de fecha está especificado  
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat); // La cadena de formato de fecha se pasa como un argumento al objeto 
+       /*de formato de fecha  */fecha=(objSDF.format(objDate)); // El formato de fecha se aplica a la fecha actual
+       
          String IdOrden = txtorden.getText();
         String mesa = txtmesa.getText();
         String mesero = txtmesero.getText();
         String cliente = txtcliente.getText();
         String observacion = txtobservacion.getText();
-        
+               total=txttotal.getText();
         if(this.tblordenes.getRowCount()!=0 ){
               if (IdOrden.isEmpty() || mesa.isEmpty() || mesero.isEmpty() || cliente.isEmpty() || observacion.isEmpty()  ) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
@@ -1155,7 +1174,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
             if(this.tblordenes.getRowCount()!=0 && this.tblordenes.getSelectedRow()!=-1){
               JOptionPane.showMessageDialog(null, "Ingrese algun producto para la orden actual");
             }
-           // orden.insertar(IdOrden, mesa, mesero, cliente, observacion);
+            orden.insertar(IdOrden, mesa, mesero, cliente, observacion,fecha,estado,total);
             for(int i=0;i<tblordenes.getRowCount();i++){
               idproducto=tblordenes.getValueAt(i,0).toString();
                cantidad=tblordenes.getValueAt(i,2).toString();
@@ -2137,6 +2156,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para agregar o eliminar productos", null, JOptionPane.WARNING_MESSAGE);
          } 
+        sumarcelda();
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
@@ -2150,6 +2170,7 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar ", null, JOptionPane.WARNING_MESSAGE);
          } 
+         sumarcelda();
     }//GEN-LAST:event_btnquitarActionPerformed
 
     /**
@@ -2243,7 +2264,6 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField5;
     private org.edisoncor.gui.panel.PanelRound platos;
     private org.edisoncor.gui.panel.PanelRound postres;
     private javax.swing.JTable tblordenes;
@@ -2252,5 +2272,6 @@ btneliminar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pong
     private javax.swing.JTextField txtmesero;
     private javax.swing.JTextField txtobservacion;
     private javax.swing.JTextField txtorden;
+    private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
 }

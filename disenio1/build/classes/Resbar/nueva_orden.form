@@ -371,6 +371,9 @@
                   <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="tblordenesComponentAdded"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

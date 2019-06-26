@@ -46,7 +46,13 @@ public class modificar_orden extends javax.swing.JFrame {
     String seleccionado;
     
     
-    
+    private void sumarcelda(){
+    double sumarcolumna=0;
+    for(int i=0;i<tblModificarOrden.getRowCount();i++){
+    sumarcolumna=sumarcolumna+Double.parseDouble(modeloModificarOrden.getValueAt(i,3).toString());
+    txtTotal.setText(String.valueOf(sumarcolumna));
+    }
+    }
     
     public modificar_orden(int id,String mesa,String mesero,String cliente,String observacion) {
         initComponents();
@@ -63,7 +69,7 @@ public class modificar_orden extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
          String Id=this.txtIdOrden.getText();
         llenar(Id);
-        
+        sumarcelda();
     }
         
 
@@ -467,7 +473,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
 
     
 //    double subtotal=1;
-//    double total=0;
+     double total1=0;
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
        
  if (tblModificarOrden.getSelectedRow() != -1) //saber si esta seleccionada la fila en la tabla
@@ -484,21 +490,12 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
            String observacion=txtobservacion.getText();
            
            
-           
-           double subtotal=precio*cantidad;
-           
-           double total=subtotal;
-           
-           //modeloModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 4);
-           
-           tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
-           
-           this.txtTotal.setText(String.valueOf(total));
-           
+           total1=Double.parseDouble(txtTotal.getText().toString());
+          
            
           
            
-           productos.ModificarOrden(total, cantidad, observacion, nombre, IdOrden);
+           productos.ModificarOrden(total1, cantidad, observacion, nombre, IdOrden);
            
            JOptionPane.showMessageDialog(null,"Modificacion exitosa");
            
@@ -564,7 +561,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
            
            tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
            
-           this.txtTotal.setText(String.valueOf(total));
+         
            
            
         } else {
@@ -572,7 +569,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
          } 
 
         
-        
+        sumarcelda();
         
         
         
@@ -601,7 +598,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
            
            double total=subtotal;
            tblModificarOrden.setValueAt(subtotal,tblModificarOrden.getSelectedRow(), 3);
-            this.txtTotal.setText(String.valueOf(total));
+            
 
             
             }else{
@@ -616,7 +613,7 @@ btnagregar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo
         
         
         
-        
+        sumarcelda();
         
         
         

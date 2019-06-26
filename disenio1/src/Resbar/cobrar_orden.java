@@ -37,6 +37,14 @@ public class cobrar_orden extends javax.swing.JFrame {
     ResultSet rs = null;
     controladorproducto productos = new controladorproducto();
     
+    private void sumarcelda(){
+    double sumarcolumna=0;
+    for(int i=0;i<tblorden.getRowCount();i++){
+    sumarcolumna=sumarcolumna+Double.parseDouble(modeloorden.getValueAt(i,3).toString());
+    txttotal.setText(String.valueOf(sumarcolumna));
+    }
+    }
+    
     public cobrar_orden(int id,String mesa,String mesero,String cliente) {
         initComponents();
         this.txtid.setText(Integer.toString(id));
@@ -48,6 +56,7 @@ public class cobrar_orden extends javax.swing.JFrame {
          this.setLocationRelativeTo(null);
          String Id=this.txtid.getText();
          llenar(Id);
+         sumarcelda();
     }
 
     
@@ -243,7 +252,7 @@ public class cobrar_orden extends javax.swing.JFrame {
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         // TODO add your handling code here:
         
-        efectuar_cobro cobro=new efectuar_cobro();
+        efectuar_cobro cobro=new efectuar_cobro(txttotal.getText());
         cobro.setVisible(true);
         this.dispose();
         

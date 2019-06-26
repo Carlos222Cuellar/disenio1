@@ -21,9 +21,12 @@ public class efectuar_cobro extends javax.swing.JFrame {
     /**
      * Creates new form efectuar_cobro
      */
-    public efectuar_cobro() {
+    
+    
+    public efectuar_cobro(String total) {
          
         initComponents();
+        txtTotal.setText(total);
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/imagenrestaurante.png")).getImage());
         this.setTitle("Efectuar Cobro");
          this.setLocationRelativeTo(null);
@@ -33,7 +36,7 @@ public class efectuar_cobro extends javax.swing.JFrame {
            
           
         
-          final exito_de_cobro cobro=new exito_de_cobro();
+          final exito_de_cobro cobro=new exito_de_cobro(txtTotal.getText(),txtefectivo.getText(),txtcambio.getText());
        cobro.setVisible(true);
           Timer timer=new Timer();
           TimerTask task=new TimerTask(){
@@ -60,9 +63,9 @@ public class efectuar_cobro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         txtefectivo = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtcambio = new javax.swing.JTextField();
         btncobrar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         lblmensaje = new javax.swing.JLabel();
@@ -84,21 +87,24 @@ public class efectuar_cobro extends javax.swing.JFrame {
         jLabel3.setText("Cambio");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 80, -1));
+        txtTotal.setEditable(false);
+        txtTotal.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 80, -1));
 
         txtefectivo.setBackground(new java.awt.Color(0, 255, 204));
         txtefectivo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtefectivoKeyTyped(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtefectivoKeyReleased(evt);
+            }
         });
         jPanel1.add(txtefectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 80, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(0, 255, 204));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 80, -1));
+        txtcambio.setEditable(false);
+        txtcambio.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.add(txtcambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 80, -1));
 
         btncobrar.setBackground(new java.awt.Color(102, 204, 102));
         btncobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagar2.png"))); // NOI18N
@@ -226,6 +232,18 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
         }
     }//GEN-LAST:event_txtefectivoKeyTyped
 
+    private void txtefectivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtefectivoKeyReleased
+        // TODO add your handling code here:
+        double total1=Double.parseDouble(txtTotal.getText());
+        double efectivo=Double.parseDouble(txtefectivo.getText());
+        if(efectivo>total1){
+        double total2=efectivo-total1;
+        txtcambio.setText(String.valueOf(total2));
+        }else{
+        JOptionPane.showMessageDialog(null," el efectivo no puede ser menor al total");
+        }
+    }//GEN-LAST:event_txtefectivoKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -256,7 +274,7 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new efectuar_cobro().setVisible(true);
+                new efectuar_cobro("").setVisible(true);
             }
         });
     }
@@ -268,9 +286,9 @@ btncobrar.setToolTipText(texto);//el metodo setToolTipTex hace que cuando pongo 
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblmensaje;
+    private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtcambio;
     private javax.swing.JTextField txtefectivo;
     // End of variables declaration//GEN-END:variables
 }
